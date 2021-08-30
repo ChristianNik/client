@@ -7,8 +7,8 @@ import {
 	Route,
 	useHistory,
 } from 'react-router-dom';
-import { API } from './constants';
 import { fetchItems, sync } from './utils/server';
+import { parseImageBase64 } from './utils/image';
 
 const DEFAULT_TYPES = new Set(['shampoo', 't-shirt', 'pants']);
 
@@ -221,7 +221,16 @@ function App() {
 						capture='user'
 						accept='image/*'
 						name='image'
-						onChange={handleInputChange}
+						onChange={async (e) => {
+							if (!e.target.files[0]) return;
+							handleInputChange({
+								...e,
+								target: {
+									...e.target,
+									value: await parseImageBase64(e.target.files[0]),
+								},
+							});
+						}}
 					/>
 
 					<button
