@@ -8,10 +8,25 @@ export async function fetchItems() {
 	return data;
 }
 
-export async function sync(localItems) {
+export async function sync(localItems, callback) {
 	const serverItems = await fetchItems();
 
-	// remove local items from server
+	// add local items to db
+	localItems.forEach((item) => {
+		if (item.flag_mark_deleted) return;
+		const existsOnServer = !!serverItems.find(({ id }) => id == item.id);
+
+		if (existsOnServer) return;
+		fetch(API.itemsUrl, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(item),
+		});
+	});
+
+	// remove local items from db
 	localItems.forEach((item) => {
 		if (!item.flag_mark_deleted) return;
 		fetch(`${API.itemsUrl}/${item.id}`, {
@@ -25,6 +40,8 @@ export async function sync(localItems) {
 			}),
 		});
 	});
+
+	callback(await fetchItems());
 
 	// const dataIds = new Set([
 	// 	...serverItems.map(({ id }) => id),

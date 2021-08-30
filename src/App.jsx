@@ -24,7 +24,7 @@ function useItems() {
 	}, []);
 
 	const addItem = async (data) => {
-		setItems((prev) => [...prev, data]);
+		setItems((prev) => [...prev, { ...data, created: Date.now() }]);
 	};
 
 	const removeItem = async (id) => {
@@ -42,6 +42,7 @@ function useItems() {
 
 	return {
 		items,
+		setItems,
 		addItem,
 		removeItem,
 	};
@@ -91,7 +92,7 @@ function makeId(length = 20) {
 }
 
 function App() {
-	const { items, addItem, removeItem } = useItems();
+	const { items, setItems, addItem, removeItem } = useItems();
 	const history = useHistory();
 
 	const [formData, setFormData] = useState({
@@ -119,13 +120,6 @@ function App() {
 
 		await addItem(formData);
 		history.push('/items');
-		// fetch(API.itemsAddUrl, {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 	},
-		// 	body: JSON.stringify(formData),
-		// });
 	};
 
 	return (
@@ -136,7 +130,10 @@ function App() {
 			</nav>
 			<button
 				onClick={() => {
-					sync(items);
+					sync(items, (data) => {
+						console.log('data :', data);
+						setItems(data);
+					});
 				}}
 			>
 				Sync
@@ -227,6 +224,7 @@ function App() {
 								...e,
 								target: {
 									...e.target,
+									name: 'image',
 									value: await parseImageBase64(e.target.files[0]),
 								},
 							});
