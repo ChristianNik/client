@@ -366,7 +366,8 @@ function App() {
 											</div>
 											<div style={{ marginLeft: 'auto', display: 'grid' }}>
 												<button
-													onClick={() => {
+													onClick={(e) => {
+														e.stopPropagation();
 														removeItem(item.id);
 														// fetch(`${API.itemsRemoveUrl}/${item.id}`, {
 														// 	method: 'DELETE',
