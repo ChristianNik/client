@@ -1,8 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Avatar } from '../../components';
+import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
-import { useItems } from '../../hooks/use-items';
 import { sync } from '../../utils/server';
 
 const ItemsPage = () => {

@@ -37,18 +37,11 @@ const useAddItem = () => {
 		});
 	};
 
-	const handleAddItem = async (e) => {
-		e.preventDefault();
-
-		await addItem(formData);
-		history.push('/items');
-	};
-
 	const handleSelectImage = async () => {
 		const imageSelector = buildImageSelector();
+
 		imageSelector.onchange = async (e) => {
 			const [file] = e.target.files;
-
 			if (!file) return;
 
 			const compressedImage = await compressImage(file);
@@ -70,7 +63,6 @@ const useAddItem = () => {
 		addTag,
 		removeTag,
 		handleInputChange,
-		handleAddItem,
 		handleSelectImage,
 	};
 };

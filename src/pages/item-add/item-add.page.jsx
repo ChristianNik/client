@@ -1,18 +1,23 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Avatar, Hashtags, Input, Rating } from '../../components';
+import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
 
 const ItemAdd = () => {
 	const { lang } = useLanguage();
-	const {
-		formData,
-		addTag,
-		removeTag,
-		handleInputChange,
-		handleAddItem,
-		handleSelectImage,
-	} = useAddItem();
+	const { addItem } = useItems();
+	const history = useHistory();
+	const { formData, addTag, removeTag, handleInputChange, handleSelectImage } =
+		useAddItem();
+
+	const handleAddItem = async (e) => {
+		e.preventDefault();
+
+		await addItem(formData);
+		history.push('/items');
+	};
 
 	return (
 		<div>
