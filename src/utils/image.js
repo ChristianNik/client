@@ -17,3 +17,12 @@ export async function compressImage(file) {
 		);
 	});
 }
+
+export function buildImageSelector() {
+	const fileSelector = document.createElement('input');
+	fileSelector.setAttribute('type', 'file');
+	fileSelector.setAttribute('accept', 'image/*');
+	fileSelector.setAttribute('capture', 'user');
+
+	return fileSelector;
+}
