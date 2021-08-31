@@ -5,11 +5,12 @@ import {
 	BrowserRouter as Router,
 	NavLink,
 	Route,
+	Switch,
 	useHistory,
 	useParams,
 } from 'react-router-dom';
 import { fetchItem, fetchItems, sync } from './utils/server';
-import { parseImageBase64 } from './utils/image';
+import { compressImage } from './utils/image';
 
 const DEFAULT_TYPES = new Set(['shampoo', 't-shirt', 'pants']);
 
@@ -121,27 +122,19 @@ function Avatar(props) {
 		lg: { width: '56px', height: '56px' },
 		xl: { width: '150px', height: '150px' },
 	};
+
+	const elementStyle = {
+		...SIZE[props.size || 'lg'],
+		marginRight: '16px',
+		background: 'hsl(220, 13%, 26%)',
+		borderRadius: '50%',
+		...props.style,
+	};
+
 	return props.src ? (
-		<img
-			{...props}
-			src={props.src}
-			style={{
-				...SIZE[props.size || 'lg'],
-				marginRight: '16px',
-				background: 'hsl(220, 13%, 26%)',
-				borderRadius: '50%',
-			}}
-		/>
+		<img {...props} src={props.src} style={elementStyle} />
 	) : (
-		<div
-			{...props}
-			style={{
-				...SIZE[props.size || 'lg'],
-				background: 'hsl(220, 13%, 26%)',
-				borderRadius: '50%',
-				...props.style,
-			}}
-		/>
+		<div {...props} style={elementStyle} />
 	);
 }
 
@@ -237,6 +230,36 @@ function App() {
 		history.push('/items');
 	};
 
+	function buildImageSelector() {
+		const fileSelector = document.createElement('input');
+		fileSelector.setAttribute('type', 'file');
+		fileSelector.setAttribute('accept', 'image/*');
+		fileSelector.setAttribute('capture', 'user');
+
+		return fileSelector;
+	}
+
+	const handleSelectImage = async () => {
+		const imageSelector = buildImageSelector();
+		imageSelector.onchange = async (e) => {
+			const [file] = e.target.files;
+
+			if (!file) return;
+
+			const compressedImage = await compressImage(file);
+
+			handleInputChange({
+				...e,
+				target: {
+					...e.target,
+					name: 'image',
+					value: compressedImage,
+				},
+			});
+		};
+		imageSelector.click();
+	};
+
 	return (
 		<div className='App'>
 			<SideBar />
@@ -245,138 +268,142 @@ function App() {
 					padding: '16px',
 				}}
 			>
-				<Route exact path='/items/:id' component={ItemView} />
-				<Route exact path='/items'>
-					<button
-						onClick={() => {
-							sync(items, (data) => {
-								console.log('data :', data);
-								setItems(data);
-							});
-						}}
-					>
-						Sync
-					</button>
-					<ul>
-						{items
-							.filter((v) => !v.flag_mark_deleted)
-							.map((item) => {
-								return (
-									<li
-										key={item.id}
-										style={{
-											display: 'flex',
-										}}
-										onClick={() => {
-											history.push(`/items/${item.id}`);
-										}}
-									>
-										<Avatar
-											src={item.image}
-											style={{
-												marginRight: '16px',
-											}}
-										/>
-
-										<div>
-											<h3>{item.name}</h3>
-											<p>{item.description}</p>
-										</div>
-										<div style={{ marginLeft: 'auto', display: 'grid' }}>
-											<button
-												onClick={() => {
-													removeItem(item.id);
-													// fetch(`${API.itemsRemoveUrl}/${item.id}`, {
-													// 	method: 'DELETE',
-													// })
-												}}
-											>
-												remove
-											</button>
-										</div>
-									</li>
-								);
-							})}
-					</ul>
-				</Route>
-				<Route path='/items/add'>
-					<h2>Add Item</h2>
-					<form
-						onSubmit={handleAddItem}
-						style={{
-							display: 'grid',
-							gap: '8px',
-							padding: '16px',
-						}}
-					>
-						<Input
-							name='type'
-							text='Type'
-							value={formData.type}
-							onChange={handleInputChange}
-							options={[...DEFAULT_TYPES]}
-						/>
-						<Input
-							name='name'
-							text='Name'
-							value={formData.name}
-							onChange={handleInputChange}
-						/>
-						<Input
-							name='description'
-							text='Description'
-							value={formData.description}
-							onChange={handleInputChange}
-						/>
-
-						<h3>Valuation</h3>
-						<Input
-							name='valuationConvenience'
-							text='Convenience'
-							value={formData.valuationConvenience}
-							onChange={handleInputChange}
-						/>
-						<Input
-							name='valuationAppearance'
-							text='Appearance'
-							value={formData.valuationAppearance}
-							onChange={handleInputChange}
-						/>
-						<Input
-							name='valuationComfortableness'
-							text='Coziness'
-							value={formData.valuationComfortableness}
-							onChange={handleInputChange}
-						/>
-
-						<label htmlFor='imageFile'>Upload a photo of yourself:</label>
-						<input
-							type='file'
-							id='imageFile'
-							capture='user'
-							accept='image/*'
-							name='image'
-							onChange={async (e) => {
-								if (!e.target.files[0]) return;
-								handleInputChange({
-									...e,
-									target: {
-										...e.target,
-										name: 'image',
-										value: await parseImageBase64(e.target.files[0]),
-									},
+				<Switch>
+					<Route exact path='/items'>
+						<button
+							onClick={() => {
+								sync(items, (data) => {
+									console.log('data :', data);
+									setItems(data);
 								});
 							}}
-						/>
-
-						<button
-							type='submit'
-							style={{ width: 'max-content', padding: '7px 14px' }}
 						>
-							Add Item
+							Sync
 						</button>
-					</form>
-				</Route>
+						<ul>
+							{items
+								.filter((v) => !v.flag_mark_deleted)
+								.map((item) => {
+									return (
+										<li
+											key={item.id}
+											style={{
+												display: 'flex',
+											}}
+											onClick={() => {
+												history.push(`/items/${item.id}`);
+											}}
+										>
+											<Avatar
+												src={item.image}
+												style={{
+													marginRight: '16px',
+												}}
+											/>
+
+											<div>
+												<h3>{item.name}</h3>
+												<p>{item.description}</p>
+											</div>
+											<div style={{ marginLeft: 'auto', display: 'grid' }}>
+												<button
+													onClick={() => {
+														removeItem(item.id);
+														// fetch(`${API.itemsRemoveUrl}/${item.id}`, {
+														// 	method: 'DELETE',
+														// })
+													}}
+												>
+													remove
+												</button>
+											</div>
+										</li>
+									);
+								})}
+						</ul>
+					</Route>
+					<Route exact path='/items/add'>
+						<h2>Add Item</h2>
+						<form
+							onSubmit={handleAddItem}
+							style={{
+								display: 'grid',
+								gap: '8px',
+								padding: '16px',
+							}}
+						>
+							<div
+								style={{
+									textAlign: 'center',
+								}}
+							>
+								<div
+									style={{ display: 'flex', justifyContent: 'center' }}
+									onClick={handleSelectImage}
+								>
+									<Avatar
+										src={formData.image}
+										size='xl'
+										style={{
+											marginRight: '16px',
+										}}
+									/>
+								</div>
+							</div>
+							<hr
+								style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }}
+							/>
+
+							<Input
+								name='type'
+								text='Type'
+								value={formData.type}
+								onChange={handleInputChange}
+								options={[...DEFAULT_TYPES]}
+							/>
+							<Input
+								name='name'
+								text='Name'
+								value={formData.name}
+								onChange={handleInputChange}
+							/>
+							<Input
+								name='description'
+								text='Description'
+								value={formData.description}
+								onChange={handleInputChange}
+							/>
+
+							<h3>Valuation</h3>
+							<Input
+								name='valuationConvenience'
+								text='Convenience'
+								value={formData.valuationConvenience}
+								onChange={handleInputChange}
+							/>
+							<Input
+								name='valuationAppearance'
+								text='Appearance'
+								value={formData.valuationAppearance}
+								onChange={handleInputChange}
+							/>
+							<Input
+								name='valuationComfortableness'
+								text='Coziness'
+								value={formData.valuationComfortableness}
+								onChange={handleInputChange}
+							/>
+
+							<button
+								type='submit'
+								style={{ width: 'max-content', padding: '7px 14px' }}
+							>
+								Add Item
+							</button>
+						</form>
+					</Route>
+					<Route exact path='/items/:id' component={ItemView} />
+				</Switch>
 			</div>
 		</div>
 	);
