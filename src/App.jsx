@@ -252,6 +252,39 @@ function Rating(props) {
 	);
 }
 
+function Hashtags(props) {
+	return (
+		<div>
+			<div>
+				<input
+					onKeyUp={(e) => {
+						const isSpacePressed = e.code === 'Space' || e.keyCode === 229;
+						if (isSpacePressed) {
+							props.onSubmit && props.onSubmit(e.target.value);
+							e.target.value = '';
+						}
+					}}
+				/>
+			</div>
+			<p>
+				{props.tags &&
+					props.tags.map((tag) => (
+						<span
+							key={tag}
+							style={{ marginRight: '8px' }}
+							onContextMenu={(e) => {
+								e.preventDefault();
+								props.onRemove && props.onRemove(tag);
+							}}
+						>
+							#{tag}
+						</span>
+					))}
+			</p>
+		</div>
+	);
+}
+
 function App() {
 	const { items, setItems, addItem, removeItem } = useItems();
 	const history = useHistory();
@@ -265,7 +298,21 @@ function App() {
 		valuationAppearance: '0',
 		valuationComfortableness: '0',
 		image: '',
+		tags: [],
 	});
+
+	const addTag = (data) =>
+		setFormData((prev) => ({
+			...prev,
+			tags: [...new Set([...prev.tags, data])],
+		}));
+
+	const removeTag = (data) => {
+		setFormData((prev) => ({
+			...prev,
+			tags: prev.tags.filter((t) => t != data),
+		}));
+	};
 
 	const handleInputChange = (e) => {
 		setFormData((prev) => {
@@ -432,6 +479,12 @@ function App() {
 								text='Description'
 								value={formData.description}
 								onChange={handleInputChange}
+							/>
+							<h3>Tags</h3>
+							<Hashtags
+								tags={formData.tags}
+								onSubmit={addTag}
+								onRemove={removeTag}
 							/>
 
 							<h3>Valuation</h3>
