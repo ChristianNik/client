@@ -54,20 +54,23 @@ function Input(props) {
 	return (
 		<>
 			<label
-				htmlFor={props.name}
+				htmlFor={props.id || props.name}
 				style={{
 					display: 'flex',
 					flexDirection: 'column',
 				}}
 			>
-				{props.text}:
+				{props.text ? props.text + ':' : ''}
 				<input
 					list={props.options && `list-{$props.name}`}
-					id={props.name}
+					id={props.id || props.name}
 					name={props.name}
 					type={props.type}
 					value={props.value}
 					onChange={props.onChange}
+					min={props.min}
+					max={props.max}
+					step={props.step}
 					style={{ padding: '7px 14px' }}
 				/>
 			</label>
@@ -199,6 +202,56 @@ function ItemView(props) {
 	);
 }
 
+function Rating(props) {
+	return (
+		<div>
+			{props.text}
+			<div
+				style={{
+					display: 'grid',
+					gridAutoFlow: 'column',
+				}}
+			>
+				<Input
+					id={`${props.name}-1`}
+					type='radio'
+					name={`${props.name}`}
+					value='1'
+					onChange={props.onChange}
+				/>
+				<Input
+					id={`${props.name}-2`}
+					type='radio'
+					name={`${props.name}`}
+					value='2'
+					onChange={props.onChange}
+				/>
+				<Input
+					id={`${props.name}-3`}
+					type='radio'
+					name={`${props.name}`}
+					value='3'
+					onChange={props.onChange}
+				/>
+				<Input
+					id={`${props.name}-4`}
+					type='radio'
+					name={`${props.name}`}
+					value='4'
+					onChange={props.onChange}
+				/>
+				<Input
+					id={`${props.name}-5`}
+					type='radio'
+					name={`${props.name}`}
+					value='5'
+					onChange={props.onChange}
+				/>
+			</div>
+		</div>
+	);
+}
+
 function App() {
 	const { items, setItems, addItem, removeItem } = useItems();
 	const history = useHistory();
@@ -207,10 +260,10 @@ function App() {
 		id: makeId(20),
 		type: '',
 		name: '',
-		description: 'Eine einfacher test.',
-		valuationConvenience: '5',
-		valuationAppearance: '4',
-		valuationComfortableness: '1',
+		description: '',
+		valuationConvenience: '0',
+		valuationAppearance: '0',
+		valuationComfortableness: '0',
 		image: '',
 	});
 
@@ -381,22 +434,19 @@ function App() {
 							/>
 
 							<h3>Valuation</h3>
-							<Input
-								name='valuationConvenience'
+							<Rating
 								text='Convenience'
-								value={formData.valuationConvenience}
+								name='valuationConvenience'
 								onChange={handleInputChange}
 							/>
-							<Input
-								name='valuationAppearance'
+							<Rating
 								text='Appearance'
-								value={formData.valuationAppearance}
+								name='valuationAppearance'
 								onChange={handleInputChange}
 							/>
-							<Input
-								name='valuationComfortableness'
+							<Rating
 								text='Coziness'
-								value={formData.valuationComfortableness}
+								name='valuationComfortableness'
 								onChange={handleInputChange}
 							/>
 
