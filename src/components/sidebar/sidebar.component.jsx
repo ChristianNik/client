@@ -1,8 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useLanguage } from '../../context/language.context';
 import './sidebar.style.css';
 
 const Sidebar = (props) => {
+	const { lang } = useLanguage();
+
 	return (
 		<nav
 			className='Sidebar'
@@ -19,8 +22,8 @@ const Sidebar = (props) => {
 				backgroundColor: 'hsl(220, 13%, 50%)',
 			}}
 		>
-			<NavLink to='/items'>Items</NavLink>
-			<NavLink to='/items/add'>New</NavLink>
+			<NavLink to='/items'>{lang('menuItems')}</NavLink>
+			<NavLink to='/items/add'>{lang('menuItemsAdd')}</NavLink>
 		</nav>
 	);
 };

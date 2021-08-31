@@ -1,8 +1,10 @@
 import React from 'react';
 import { Avatar, Hashtags, Input, Rating } from '../../components';
+import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
 
 const ItemAdd = () => {
+	const { lang } = useLanguage();
 	const {
 		formData,
 		addTag,
@@ -11,9 +13,10 @@ const ItemAdd = () => {
 		handleAddItem,
 		handleSelectImage,
 	} = useAddItem();
+
 	return (
 		<div>
-			<h2>Add Item</h2>
+			<h2>{lang('addItemTitle')}</h2>
 			<form
 				onSubmit={handleAddItem}
 				style={{
@@ -44,39 +47,40 @@ const ItemAdd = () => {
 
 				<Input
 					name='type'
-					text='Type'
+					text={lang('typeTitle')}
 					value={formData.type}
 					onChange={handleInputChange}
 					options={['shampoo', 't-shirt', 'pants']}
 				/>
 				<Input
 					name='name'
-					text='Name'
+					text={lang('nameTitle')}
 					value={formData.name}
 					onChange={handleInputChange}
 				/>
 				<Input
 					name='description'
-					text='Description'
+					text={lang('descriptionTitle')}
 					value={formData.description}
 					onChange={handleInputChange}
 				/>
-				<h3>Tags</h3>
+				<h3>{lang('tagsTitle')}</h3>
 				<Hashtags tags={formData.tags} onSubmit={addTag} onRemove={removeTag} />
 
-				<h3>Valuation</h3>
+				<h3>{lang('valuationTitle')}</h3>
 				<Rating
-					text='Convenience'
+					text={lang('convenienceTitle')}
 					name='valuationConvenience'
 					onChange={handleInputChange}
 				/>
 				<Rating
-					text='Appearance'
+					text={lang('appearanceTitle')}
 					name='valuationAppearance'
 					onChange={handleInputChange}
 				/>
 				<Rating
 					text='Coziness'
+					text={lang('cozinessTitle')}
 					name='valuationComfortableness'
 					onChange={handleInputChange}
 				/>
@@ -85,7 +89,7 @@ const ItemAdd = () => {
 					type='submit'
 					style={{ width: 'max-content', padding: '7px 14px' }}
 				>
-					Add Item
+					{lang('addItemText')}
 				</button>
 			</form>
 		</div>

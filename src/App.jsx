@@ -6,6 +6,7 @@ import { Sidebar } from './components';
 import ItemViewPage from './pages/item-view';
 import ItemsPage from './pages/items/items.page';
 import ItemAdd from './pages/item-add/item-add.page';
+import LanguageSelector from './context/language.context';
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				marginBottom: '56px',
 			}}
 		>
+			<LanguageSelector />
 			<Sidebar />
 			<div
 				style={{

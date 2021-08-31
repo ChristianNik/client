@@ -1,0 +1,17 @@
+{
+	"menuItems": "Items",
+	"menuItemsAdd": "Add",
+	"buttonSyncText": "Sync",
+	"removeItemText": "remove",
+	"addItemTitle": "Add Item",
+	"tagsTitle": "Tags",
+	"valuationTitle": "Valuation",
+	"typeTitle": "Type",
+	"nameTitle": "Name",
+	"descriptionTitle": "Description",
+	"convenienceTitle": "Convenience",
+	"appearanceTitle": "Appearance",
+	"cozinessTitle": "Coziness",
+	"addItemText": "Add Item",
+	"backText": "«"
+}

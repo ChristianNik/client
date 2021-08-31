@@ -1,0 +1,17 @@
+{
+	"menuItems": "Gegenstände",
+	"menuItemsAdd": "Hinzufügen",
+	"buttonSyncText": "Neu Laden",
+	"removeItemText": "Entfernen",
+	"addItemTitle": "Gegenstand hinzufügen",
+	"tagsTitle": "Tags",
+	"valuationTitle": "Bewertung",
+	"typeTitle": "Type",
+	"nameTitle": "Name",
+	"descriptionTitle": "Beschreibung",
+	"convenienceTitle": "Bequemlichkeit",
+	"appearanceTitle": "Aussehen",
+	"cozinessTitle": "Gemütlichkeit",
+	"addItemText": "Gegenstand hinzufügen",
+	"backText": "«"
+}

@@ -1,11 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Avatar } from '../../components';
+import { useLanguage } from '../../context/language.context';
 import { useItems } from '../../hooks/use-items';
 import { sync } from '../../utils/server';
 
 const ItemsPage = () => {
-	const { items, removeItem } = useItems();
+	const { lang } = useLanguage();
+	const { items, setItems, removeItem } = useItems();
 	const history = useHistory();
 	return (
 		<div>
@@ -13,11 +15,11 @@ const ItemsPage = () => {
 				onClick={() => {
 					sync(items, (data) => {
 						console.log('data :', data);
-						// setItems(data);
+						setItems(data);
 					});
 				}}
 			>
-				Sync
+				{lang('buttonSyncText')}
 			</button>
 			<ul>
 				{items
@@ -91,7 +93,7 @@ const ItemsPage = () => {
 											// })
 										}}
 									>
-										remove
+										{lang('removeItemText')}
 									</button>
 								</div>
 							</li>
