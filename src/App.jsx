@@ -120,10 +120,15 @@ function SideBar(props) {
 
 function Avatar(props) {
 	const SIZE = {
-		sm: { width: '24px', height: '24px' },
-		md: { width: '40px', height: '40px' },
-		lg: { width: '56px', height: '56px' },
-		xl: { width: '150px', height: '150px' },
+		sm: { width: '24px', minWidth: '24px', height: '24px', minHeight: '24px' },
+		md: { width: '40px', minWidth: '40px', height: '40px', minHeight: '40px' },
+		lg: { width: '56px', minWidth: '56px', height: '56px', minHeight: '56px' },
+		xl: {
+			height: '150px',
+			minHeight: '150px',
+			minWidth: '150px',
+			width: '150px',
+		},
 	};
 
 	const elementStyle = {
@@ -294,9 +299,9 @@ function App() {
 		type: '',
 		name: '',
 		description: '',
-		valuationConvenience: '0',
-		valuationAppearance: '0',
-		valuationComfortableness: '0',
+		valuationConvenience: '1',
+		valuationAppearance: '1',
+		valuationComfortableness: '1',
 		image: '',
 		tags: [],
 	});
@@ -395,6 +400,7 @@ function App() {
 											style={{
 												display: 'flex',
 												alignItems: 'center',
+												overflow: 'hidden',
 											}}
 											onClick={() => {
 												history.push(`/items/${item.id}`);
@@ -407,9 +413,44 @@ function App() {
 												}}
 											/>
 
-											<div>
-												<h3>{item.name}</h3>
-												<p>{item.description}</p>
+											<div
+												style={{
+													overflow: 'auto',
+												}}
+											>
+												{!item.name && !item.description ? (
+													<div
+														style={{
+															overflow: 'hidden',
+															textOverflow: 'ellipsis',
+														}}
+													>
+														{item.id}
+													</div>
+												) : (
+													<div
+														style={{
+															whiteSpace: 'nowrap',
+														}}
+													>
+														<h3
+															style={{
+																overflow: 'hidden',
+																textOverflow: 'ellipsis',
+															}}
+														>
+															{item.name}
+														</h3>
+														<p
+															style={{
+																overflow: 'hidden',
+																textOverflow: 'ellipsis',
+															}}
+														>
+															{item.description}
+														</p>
+													</div>
+												)}
 											</div>
 											<div style={{ marginLeft: 'auto', display: 'grid' }}>
 												<button
