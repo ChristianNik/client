@@ -66,7 +66,7 @@ function Input(props) {
 					type={props.type}
 					value={props.value}
 					onChange={props.onChange}
-					style={{ width: 'max-content', padding: '7px 14px' }}
+					style={{ padding: '7px 14px' }}
 				/>
 			</label>
 			{props.options && (
@@ -89,6 +89,55 @@ function makeId(length = 20) {
 		result += characters.charAt(Math.floor(Math.random() * charactersLength));
 	}
 	return result;
+}
+
+function SideBar(props) {
+	return (
+		<nav
+			style={{
+				display: 'flex',
+				justifyContent: 'space-evenly',
+				alignItems: 'center',
+
+				position: 'absolute',
+				top: 'calc(100% - 56px)',
+
+				width: '100%',
+				minHeight: '56px',
+				backgroundColor: 'hsl(220, 13%, 50%)',
+			}}
+		>
+			<NavLink to='/items'>Items</NavLink>
+			<NavLink to='/items/add'>New</NavLink>
+		</nav>
+	);
+}
+
+function Avatar(props) {
+	return props.src ? (
+		<img
+			{...props}
+			src={props.src}
+			style={{
+				marginRight: '16px',
+				width: '56px',
+				height: '56px',
+				background: 'hsl(220, 13%, 26%)',
+				borderRadius: '50%',
+			}}
+		/>
+	) : (
+		<div
+			{...props}
+			style={{
+				width: '56px',
+				height: '56px',
+				background: 'hsl(220, 13%, 26%)',
+				borderRadius: '50%',
+				...props.style,
+			}}
+		/>
+	);
 }
 
 function App() {
@@ -124,39 +173,49 @@ function App() {
 
 	return (
 		<div className='App'>
-			<nav>
-				<NavLink to='/items'>Items</NavLink>
-				<NavLink to='/items/add'>New</NavLink>
-			</nav>
-			<button
-				onClick={() => {
-					sync(items, (data) => {
-						console.log('data :', data);
-						setItems(data);
-					});
-				}}
-			>
-				Sync
-			</button>
+			<SideBar />
 			<Route exact path='/items'>
+				<button
+					onClick={() => {
+						sync(items, (data) => {
+							console.log('data :', data);
+							setItems(data);
+						});
+					}}
+				>
+					Sync
+				</button>
 				<ul>
 					{items
 						.filter((v) => !v.flag_mark_deleted)
 						.map((item) => {
 							return (
-								<li key={item.id}>
-									<h3>{item.name}</h3>
-									<p>{item.description}</p>
-									<button
-										onClick={() => {
-											removeItem(item.id);
-											// fetch(`${API.itemsRemoveUrl}/${item.id}`, {
-											// 	method: 'DELETE',
-											// })
+								<li
+									key={item.id}
+									style={{
+										display: 'flex',
+									}}
+								>
+									<Avatar
+										src={item.image}
+										style={{
+											marginRight: '16px',
 										}}
-									>
-										remove
-									</button>
+									/>
+									<div>
+										<h3>{item.name}</h3>
+										<p>{item.description}</p>
+										<button
+											onClick={() => {
+												removeItem(item.id);
+												// fetch(`${API.itemsRemoveUrl}/${item.id}`, {
+												// 	method: 'DELETE',
+												// })
+											}}
+										>
+											remove
+										</button>
+									</div>
 								</li>
 							);
 						})}
@@ -168,7 +227,8 @@ function App() {
 					onSubmit={handleAddItem}
 					style={{
 						display: 'grid',
-						gap: '5px',
+						gap: '8px',
+						padding: '16px',
 					}}
 				>
 					<Input
