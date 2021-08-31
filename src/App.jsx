@@ -198,6 +198,9 @@ function ItemView(props) {
 					<strong>{item.type}</strong>
 				</small>
 			</div>
+			<div>
+				{item.tags && item.tags.length > 0 ? `#${item.tags.join(', #')}` : ''}
+			</div>
 			<div>{item.description}</div>
 		</div>
 	);
