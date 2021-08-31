@@ -8,6 +8,14 @@ export async function fetchItems() {
 	return data;
 }
 
+export async function fetchItem(id) {
+	const data = await fetch(`${API.itemsUrl}/${id}`)
+		.then((response) => response.json())
+		.catch(() => []);
+
+	return data;
+}
+
 export async function sync(localItems, callback) {
 	const serverItems = await fetchItems();
 
