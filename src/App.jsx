@@ -289,6 +289,7 @@ function App() {
 											key={item.id}
 											style={{
 												display: 'flex',
+												alignItems: 'center',
 											}}
 											onClick={() => {
 												history.push(`/items/${item.id}`);
