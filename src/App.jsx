@@ -258,7 +258,7 @@ function Hashtags(props) {
 			<div>
 				<input
 					onKeyUp={(e) => {
-						const isSpacePressed = e.code === 'Space' || e.keyCode === 229;
+						const isSpacePressed = e.code === 'Space';
 						if (isSpacePressed) {
 							props.onSubmit && props.onSubmit(e.target.value);
 							e.target.value = '';
