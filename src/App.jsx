@@ -101,7 +101,7 @@ function SideBar(props) {
 				justifyContent: 'space-evenly',
 				alignItems: 'center',
 
-				position: 'absolute',
+				position: 'fixed',
 				top: 'calc(100% - 56px)',
 
 				width: '100%',
@@ -261,7 +261,12 @@ function App() {
 	};
 
 	return (
-		<div className='App'>
+		<div
+			className='App'
+			style={{
+				marginBottom: '56px',
+			}}
+		>
 			<SideBar />
 			<div
 				style={{
