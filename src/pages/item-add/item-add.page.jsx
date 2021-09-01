@@ -28,6 +28,10 @@ const ItemAdd = () => {
 		);
 	}, [items]);
 
+	useEffect(() => {
+		handleSelectImage();
+	}, []);
+
 	return (
 		<div>
 			<h2>{lang('items/add', 'titleLabel')}</h2>
