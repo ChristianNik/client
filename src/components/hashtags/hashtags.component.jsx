@@ -7,6 +7,7 @@ const Hashtags = (props) => {
 			<div>
 				<input
 					style={{
+						width: '100%',
 						outline: 'none',
 						borderRadius: '8px',
 						border: '2px solid hsl(220, 13%, 30%)',
