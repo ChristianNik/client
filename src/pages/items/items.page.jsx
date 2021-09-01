@@ -70,7 +70,7 @@ const ItemsListItem = (props) => {
 						props.onItemRemoveClick && props.onItemRemoveClick(item, e);
 					}}
 				>
-					{lang('removeItemText')}
+					{lang('items/list', 'removeItemLabel')}
 				</button>
 			</div>
 		</li>
@@ -100,7 +100,7 @@ const ItemsPage = () => {
 					});
 				}}
 			>
-				{lang('buttonSyncText')}
+				{lang('items/list', 'syncLabel')}
 			</button>
 			<h2>{lang('items/list', 'itemsTitle')}</h2>
 			<ItemsList

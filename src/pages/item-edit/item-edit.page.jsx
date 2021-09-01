@@ -30,7 +30,7 @@ const ItemEditPage = () => {
 	}
 	return (
 		<div>
-			<h2>{lang('addItemTitle')}</h2>
+			<h2>{lang('items/edit', 'titleLabel')}</h2>
 			<form
 				onAbort={() => {
 					alert('');

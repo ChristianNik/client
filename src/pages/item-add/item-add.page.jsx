@@ -30,7 +30,7 @@ const ItemAdd = () => {
 
 	return (
 		<div>
-			<h2>{lang('addItemTitle')}</h2>
+			<h2>{lang('items/add', 'titleLabel')}</h2>
 			<form
 				onSubmit={handleAddItem}
 				style={{
@@ -59,34 +59,34 @@ const ItemAdd = () => {
 
 				<Input
 					name='type'
-					text={lang('typeTitle')}
+					text={lang('items/add', 'typeCaption')}
 					value={formData.type}
 					onChange={handleInputChange}
 					options={itemTypes}
 				/>
 				<Input
 					name='name'
-					text={lang('nameTitle')}
+					text={lang('items/add', 'nameCaption')}
 					value={formData.name}
 					onChange={handleInputChange}
 				/>
 				<Input
 					name='description'
-					text={lang('descriptionTitle')}
+					text={lang('items/add', 'descriptionCaption')}
 					value={formData.description}
 					onChange={handleInputChange}
 				/>
-				<h3>{lang('tagsTitle')}</h3>
+				<h3>{lang('items/add', 'tagsCaption')}</h3>
 				<Hashtags tags={formData.tags} onSubmit={addTag} onRemove={removeTag} />
 
-				<h3>{lang('valuationTitle')}</h3>
+				<h3>{lang('items/add', 'valuationCaption')}</h3>
 				<Rating
-					text={lang('convenienceTitle')}
+					text={lang('items/add', 'convenienceCaption')}
 					name='valuationConvenience'
 					onChange={handleInputChange}
 				/>
 				<Rating
-					text={lang('appearanceTitle')}
+					text={lang('items/add', 'appearanceCaption')}
 					name='valuationAppearance'
 					onChange={handleInputChange}
 				/>
@@ -95,7 +95,7 @@ const ItemAdd = () => {
 					type='submit'
 					style={{ width: 'max-content', padding: '7px 14px' }}
 				>
-					{lang('addItemText')}
+					{lang('items/add', 'add')}
 				</button>
 			</form>
 		</div>

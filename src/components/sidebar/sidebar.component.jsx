@@ -22,8 +22,8 @@ const Sidebar = (props) => {
 				backgroundColor: 'hsl(220, 13%, 50%)',
 			}}
 		>
-			<NavLink to='/items'>{lang('menuItems')}</NavLink>
-			<NavLink to='/items/add'>{lang('menuItemsAdd')}</NavLink>
+			<NavLink to='/items'>{lang('sidebar', 'itemsLabel')}</NavLink>
+			<NavLink to='/items/add'>{lang('sidebar', 'addLabel')}</NavLink>
 		</nav>
 	);
 };

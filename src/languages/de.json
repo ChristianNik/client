@@ -1,26 +1,30 @@
 {
-	"menuItems": "Gegenstände",
-	"menuItemsAdd": "Hinzufügen",
-	"buttonSyncText": "Synchronisieren",
-	"removeItemText": "Entfernen",
-	"addItemTitle": "Gegenstand hinzufügen",
-	"tagsTitle": "Tags",
-	"valuationTitle": "Bewertung",
-	"typeTitle": "Type",
-	"nameTitle": "Name",
-	"descriptionTitle": "Beschreibung",
-	"convenienceTitle": "Bequemlichkeit",
-	"appearanceTitle": "Aussehen",
-	"addItemText": "Gegenstand hinzufügen",
-	"backText": "«",
+	"sidebar": {
+		"itemsLabel": "Gegenstände",
+		"addLabel": "Hinzufügen"
+	},
 	"items/list": {
 		"itemsTitle": "Gegenstände",
-		"trashTitle": "Mülleimer"
+		"trashTitle": "Mülleimer",
+		"syncLabel": "Synchronisieren",
+		"removeItemLabel": "Entfernen"
 	},
 	"items/view": {
 		"editLabel": "EDIT"
 	},
+	"items/add": {
+		"titleLabel": "Gegenstand hinzufügen",
+		"tagsCaption": "Tags",
+		"valuationCaption": "Bewertung",
+		"typeCaption": "Typ",
+		"nameCaption": "Name",
+		"descriptionCaption": "Beschreibung",
+		"convenienceCaption": "Bequemlichkeit",
+		"appearanceCaption": "Aussehen",
+		"add": "Hinzufügen"
+	},
 	"items/edit": {
+		"titleLabel": "Gegenstand bearbeiten",
 		"cancel": "Abbrechen",
 		"confirm": "Speichern"
 	}

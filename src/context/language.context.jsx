@@ -42,7 +42,10 @@ export const useLanguage = () => {
 	return {
 		lang: (group, property) => {
 			return dictionary[group]
-				? dictionary[group][property] || dictionary[group]
+				? dictionary[group][property] ||
+						(typeof dictionary[group] !== 'object'
+							? dictionary[group]
+							: `no:::${group}/${property}`)
 				: `no:::${group}/${property}`;
 		},
 		userLanguage,

@@ -34,7 +34,7 @@ const ItemViewPage = () => {
 					history.push('/items');
 				}}
 			>
-				{lang('backText')}
+				«
 			</button>
 			<button
 				style={{
