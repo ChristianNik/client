@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Avatar } from '../../components';
+import EmojiButton from '../../components/emojibutton';
 import { useLanguage } from '../../context/language.context';
 import { fetchItem } from '../../utils/server';
 
@@ -22,34 +23,28 @@ const ItemViewPage = () => {
 
 	return (
 		<div>
-			<button
+			<div
 				style={{
-					padding: '16px',
-					borderRadius: '50%',
-					width: '48px',
-					height: '48px',
-					position: 'relative',
-				}}
-				onClick={() => {
-					history.push('/items');
+					display: 'flex',
 				}}
 			>
-				«
-			</button>
-			<button
-				style={{
-					padding: '16px',
-					borderRadius: '50%',
-					minWidth: '48px',
-					height: '48px',
-					position: 'relative',
-				}}
-				onClick={() => {
-					history.push(`/items/${id}/edit`);
-				}}
-			>
-				{lang('items/view', 'editLabel')}
-			</button>
+				<EmojiButton
+					onClick={() => {
+						history.push('/items');
+					}}
+				>
+					🔙
+				</EmojiButton>
+
+				<EmojiButton
+					onClick={() => {
+						history.push(`/items/${id}/edit`);
+					}}
+				>
+					📝
+				</EmojiButton>
+			</div>
+
 			<div
 				style={{
 					textAlign: 'center',

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Avatar } from '../../components';
+import EmojiButton from '../../components/emojibutton';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import { deleteItem, sync } from '../../utils/server';
@@ -64,14 +65,15 @@ const ItemsListItem = (props) => {
 				)}
 			</div>
 			<div style={{ marginLeft: 'auto', display: 'grid' }}>
-				<button
+				<EmojiButton
+					size={'sm'}
 					onClick={(e) => {
 						e.stopPropagation();
 						props.onItemRemoveClick && props.onItemRemoveClick(item, e);
 					}}
 				>
-					{lang('items/list', 'removeItemLabel')}
-				</button>
+					✖️
+				</EmojiButton>
 			</div>
 		</li>
 	);
