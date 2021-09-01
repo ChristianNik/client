@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchItems } from '../utils/server';
+import { fetchItems, uploadItem } from '../utils/server';
 
 const ItemsContext = React.createContext([]);
 
@@ -17,7 +17,9 @@ export function ItemsProvider({ children }) {
 		items,
 		setItems,
 		addItem: async (data) => {
-			setItems((prev) => [...prev, { ...data, created: Date.now() }]);
+			const newItem = { ...data, created: Date.now() };
+			setItems((prev) => [...prev, newItem]);
+			uploadItem(newItem);
 		},
 		removeItem: async (id) => {
 			setItems((prev) =>

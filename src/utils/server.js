@@ -16,6 +16,18 @@ export async function fetchItem(id) {
 	return data;
 }
 
+export async function uploadItem(item) {
+	return await fetch(API.itemsUrl, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(item),
+	})
+		.then((response) => response.json())
+		.catch((err) => err);
+}
+
 export async function sync(localItems, callback) {
 	const serverItems = await fetchItems();
 
@@ -25,13 +37,7 @@ export async function sync(localItems, callback) {
 		const existsOnServer = !!serverItems.find(({ id }) => id == item.id);
 
 		if (existsOnServer) return;
-		fetch(API.itemsUrl, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(item),
-		});
+		uploadItem(item);
 	});
 
 	// remove local items from db
