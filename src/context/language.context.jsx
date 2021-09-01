@@ -40,7 +40,11 @@ export const useLanguage = () => {
 		React.useContext(LanguageContext);
 
 	return {
-		lang: (property) => dictionary[property] || `no__${property}`,
+		lang: (group, property) => {
+			return dictionary[group]
+				? dictionary[group][property] || dictionary[group]
+				: `no__${group}`;
+		},
 		userLanguage,
 		userLanguageChange,
 	};

@@ -12,5 +12,12 @@
 	"convenienceTitle": "Convenience",
 	"appearanceTitle": "Appearance",
 	"addItemText": "Add Item",
-	"backText": "«"
+	"backText": "«",
+	"items/view": {
+		"editLabel": "EDIT"
+	},
+	"items/edit": {
+		"cancel": "Abort",
+		"confirm": "Save changes"
+	}
 }

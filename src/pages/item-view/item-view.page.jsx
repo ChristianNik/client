@@ -40,7 +40,7 @@ const ItemViewPage = () => {
 				style={{
 					padding: '16px',
 					borderRadius: '50%',
-					width: '48px',
+					minWidth: '48px',
 					height: '48px',
 					position: 'relative',
 				}}
@@ -48,7 +48,7 @@ const ItemViewPage = () => {
 					history.push(`/items/${id}/edit`);
 				}}
 			>
-				{lang('editText')}
+				{lang('items/view', 'editLabel')}
 			</button>
 			<div
 				style={{

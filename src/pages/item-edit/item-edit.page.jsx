@@ -13,11 +13,13 @@ const ItemEditPage = () => {
 
 	const history = useHistory();
 
+	const pushToView = () => history.push(`/items/${id}`);
+
 	const handleEditItem = async (e) => {
 		e.preventDefault();
 
 		await updateItem(formData);
-		history.push(`/items/${id}`);
+		pushToView();
 	};
 
 	const item = useMemo(() => items.find((item) => item.id == id), [items]);
@@ -30,6 +32,9 @@ const ItemEditPage = () => {
 		<div>
 			<h2>{lang('addItemTitle')}</h2>
 			<form
+				onAbort={() => {
+					alert('');
+				}}
 				onSubmit={handleEditItem}
 				style={{
 					display: 'grid',
@@ -59,7 +64,13 @@ const ItemEditPage = () => {
 					type='submit'
 					style={{ width: 'max-content', padding: '7px 14px' }}
 				>
-					{lang('editItemConfirmText')}
+					{lang('items/edit', 'confirm')}
+				</button>
+				<button
+					onClick={pushToView}
+					style={{ width: 'max-content', padding: '7px 14px' }}
+				>
+					{lang('items/edit', 'cancel')}
 				</button>
 			</form>
 		</div>

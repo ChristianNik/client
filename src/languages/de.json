@@ -12,5 +12,12 @@
 	"convenienceTitle": "Bequemlichkeit",
 	"appearanceTitle": "Aussehen",
 	"addItemText": "Gegenstand hinzufügen",
-	"backText": "«"
+	"backText": "«",
+	"items/view": {
+		"editLabel": "EDIT"
+	},
+	"items/edit": {
+		"cancel": "Abbrechen",
+		"confirm": "Speichern"
+	}
 }
