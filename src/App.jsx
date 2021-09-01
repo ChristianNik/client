@@ -10,17 +10,13 @@ import LanguageSelector from './context/language.context';
 
 function App() {
 	return (
-		<div
-			className='App'
-			style={{
-				marginBottom: '56px',
-			}}
-		>
+		<div className='App'>
 			<LanguageSelector />
 			<Sidebar />
 			<div
 				style={{
 					padding: '16px',
+					marginBottom: '56px',
 				}}
 			>
 				<Switch>
