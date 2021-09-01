@@ -6,8 +6,8 @@ import { Sidebar } from './components';
 import ItemViewPage from './pages/item-view';
 import ItemsPage from './pages/items/items.page';
 import ItemAdd from './pages/item-add/item-add.page';
-import LanguageSelector from './context/language.context';
 import ItemEditPage from './pages/item-edit';
+import SettingsPage from './pages/settings';
 
 function App() {
 	return (
@@ -19,12 +19,12 @@ function App() {
 					marginBottom: '56px',
 				}}
 			>
-				<LanguageSelector />
 				<Switch>
 					<Route exact path='/items' component={ItemsPage} />
 					<Route exact path='/items/add' component={ItemAdd} />
 					<Route exact path='/items/:id/edit' component={ItemEditPage} />
 					<Route exact path='/items/:id' component={ItemViewPage} />
+					<Route exact path='/settings' component={SettingsPage} />
 				</Switch>
 			</div>
 		</div>

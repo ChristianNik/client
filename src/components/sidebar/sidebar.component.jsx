@@ -40,6 +40,15 @@ const Sidebar = (props) => {
 			>
 				➕
 			</NavLink>
+			<NavLink
+				to='/settings'
+				style={{
+					textDecoration: 'none',
+					fontSize: '24px',
+				}}
+			>
+				⚙️
+			</NavLink>
 		</nav>
 	);
 };
