@@ -62,13 +62,17 @@ const ItemViewPage = () => {
 					/>
 				</div>
 				<h1>{item.name || <small>{item.id}</small>}</h1>
-			</div>
-			<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
-			<div>
+				<div>
+					<small>
+						Created: <strong>{new Date(item.created).toLocaleString()}</strong>
+					</small>
+				</div>
 				<small>
 					<strong>{item.type}</strong>
 				</small>
 			</div>
+			<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
+
 			<div>
 				{item.tags && item.tags.length > 0 ? `#${item.tags.join(', #')}` : ''}
 			</div>

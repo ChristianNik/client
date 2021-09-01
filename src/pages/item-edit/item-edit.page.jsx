@@ -5,6 +5,21 @@ import { useItems } from '../../context/items.context';
 import useAddItem from '../../hooks/use-add-item';
 import { updateItem } from '../../utils/server';
 
+function Placeholder(props) {
+	return (
+		<div
+			style={{
+				backgroundColor: 'hsl(220, 13%, 26%)',
+				color: 'transparent',
+				borderRadius: 'red',
+				display: 'inline-flex',
+				borderRadius: '8px',
+			}}
+			{...props}
+		/>
+	);
+}
+
 const ItemEditPage = () => {
 	const { id } = useParams();
 	const { items } = useItems();
@@ -55,7 +70,21 @@ const ItemEditPage = () => {
 						}}
 					/>
 				</div>
+				<Placeholder>
+					<h1>{formData.name || <small>{formData.id}</small>}</h1>
+				</Placeholder>
+				<div>
+					<small>
+						Created: <strong>{new Date(item.created).toLocaleString()}</strong>
+					</small>
+				</div>
+				<Placeholder>
+					<small>
+						<strong>{item.type}</strong>
+					</small>
+				</Placeholder>
 			</div>
+
 			<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
 		</div>
 	);

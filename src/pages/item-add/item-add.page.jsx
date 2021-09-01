@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Avatar, Hashtags, Input, Rating } from '../../components';
+import { Avatar, EmojiButton, Hashtags, Input, Rating } from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
@@ -34,13 +34,34 @@ const ItemAdd = () => {
 
 	return (
 		<div>
-			<h2>{lang('items/add', 'titleLabel')}</h2>
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+				}}
+			>
+				<EmojiButton
+					onClick={() => {
+						history.push('/items');
+					}}
+				>
+					⬅️
+				</EmojiButton>
+				<h2
+					style={{
+						textAlign: 'center',
+					}}
+				>
+					{lang('items/add', 'titleLabel')}
+				</h2>
+				<EmojiButton onClick={handleAddItem}>📝</EmojiButton>
+			</div>
 			<form
 				onSubmit={handleAddItem}
 				style={{
 					display: 'grid',
 					gap: '8px',
-					padding: '16px',
 				}}
 			>
 				<div

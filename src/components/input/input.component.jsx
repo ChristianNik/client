@@ -10,10 +10,25 @@ const Input = (props) => {
 				style={{
 					display: 'flex',
 					flexDirection: 'column',
+					position: 'relative',
 					...props.labelStyle,
 				}}
 			>
-				{props.text}
+				<span
+					style={{
+						position: 'absolute',
+						// color: '#000',
+						zIndex: 10,
+						top: 0,
+						bottom: 0,
+						left: '12px',
+						display: 'flex',
+						alignItems: 'center',
+						fontWeight: 'bold',
+					}}
+				>
+					{props.text}
+				</span>
 				<input
 					list={props.options && `list-{$props.name}`}
 					id={props.id || props.name}
@@ -24,7 +39,15 @@ const Input = (props) => {
 					min={props.min}
 					max={props.max}
 					step={props.step}
-					style={{ padding: '7px 14px' }}
+					style={{
+						outline: 'none',
+						padding: '12px 16px',
+						borderRadius: '8px',
+						border: '2px solid hsl(220, 13%, 30%)',
+						background: 'hsl(220, 13%, 16%)',
+						color: '#fff',
+						paddingLeft: '130px',
+					}}
 				/>
 			</label>
 			{props.options && (

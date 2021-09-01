@@ -21,7 +21,7 @@ const EmojiButton = (props) => {
 				minWidth: '48px',
 				minHeight: '48px',
 
-				backgroundColor: 'hsl(220, 13%, 16%)',
+				backgroundColor: 'hsl(220, 13%, 50%)',
 				borderRadius: '50%',
 
 				fontSize: SIZE[props.size || 'lg'] || SIZE['lg'],
