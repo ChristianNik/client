@@ -112,7 +112,10 @@ const ItemsPage = () => {
 				</EmojiButton>
 			</div>
 
-			<h2>{lang('items/list', 'itemsTitle')}</h2>
+			<h2>
+				{lang('items/list', 'itemsTitle')} [
+				{items.filter((v) => !v.flag_mark_deleted).length}]
+			</h2>
 			<ItemsList
 				items={items.filter((v) => !v.flag_mark_deleted)}
 				onItemClick={(item) => {
@@ -124,7 +127,10 @@ const ItemsPage = () => {
 			/>
 			{items.filter((v) => v.flag_mark_deleted).length > 0 && (
 				<>
-					<h2>{lang('items/list', 'trashTitle')}</h2>
+					<h2>
+						{lang('items/list', 'trashTitle')} [
+						{items.filter((v) => v.flag_mark_deleted).length}]
+					</h2>
 					<ItemsList
 						items={items.filter((v) => v.flag_mark_deleted)}
 						onItemClick={(item) => {
