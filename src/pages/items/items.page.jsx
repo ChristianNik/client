@@ -81,7 +81,7 @@ const ItemsListItem = (props) => {
 
 const ItemsList = ({ items, ...rest }) => {
 	return (
-		<ul>
+		<ul style={{ display: 'grid', gap: '18px' }}>
 			{(items || []).map((item) => (
 				<ItemsListItem key={item.id} item={item} {...rest} />
 			))}

@@ -26,6 +26,7 @@ const ItemViewPage = () => {
 			<div
 				style={{
 					display: 'flex',
+					justifyContent: 'space-between',
 				}}
 			>
 				<EmojiButton
