@@ -112,16 +112,20 @@ const ItemsPage = () => {
 					removeItem(item.id);
 				}}
 			/>
-			<h2>{lang('items/list', 'trashTitle')}</h2>
-			<ItemsList
-				items={items.filter((v) => v.flag_mark_deleted)}
-				onItemClick={(item) => {
-					history.push(`/items/${item.id}`);
-				}}
-				onItemRemoveClick={(item) => {
-					deleteItem(item.id);
-				}}
-			/>
+			{items.filter((v) => v.flag_mark_deleted).length > 0 && (
+				<>
+					<h2>{lang('items/list', 'trashTitle')}</h2>
+					<ItemsList
+						items={items.filter((v) => v.flag_mark_deleted)}
+						onItemClick={(item) => {
+							history.push(`/items/${item.id}`);
+						}}
+						onItemRemoveClick={(item) => {
+							deleteItem(item.id);
+						}}
+					/>
+				</>
+			)}
 		</div>
 	);
 };
