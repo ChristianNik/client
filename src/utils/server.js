@@ -49,22 +49,7 @@ export async function sync(localItems, callback) {
 		});
 	});
 
-	callback(await fetchItems());
-
-	// const dataIds = new Set([
-	// 	...serverItems.map(({ id }) => id),
-	// 	...localItems.map(({ id }) => id),
-	// ]);
-	// dataIds.forEach((item) => {
-	// 	console.log('item :', item);
-	// });
-	// dataIds.forEach((id) => {
-	// 	console.log('id :', id);
-	// 	const existsOnServer = !!items.find((item) => item.id == id);
-	// 	const existsLocal = !!data.find((item) => item.id == id);
-	// 	console.log('existsOnServer :', existsOnServer);
-	// 	console.log('existsLocal :', existsLocal);
-
-	// 	if (existsOnServer && existsLocal) return;
-	// });
+	setTimeout(async () => {
+		callback(await fetchItems());
+	}, 0);
 }
