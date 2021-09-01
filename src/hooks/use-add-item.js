@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { buildImageSelector, compressImage } from '../utils/image';
 import { makeId } from '../utils/make-id';
 
-const useAddItem = () => {
+const useAddItem = (initialData) => {
 	const [formData, setFormData] = useState({
 		id: makeId(20),
 		type: '',
@@ -14,6 +14,10 @@ const useAddItem = () => {
 		image: '',
 		tags: [],
 	});
+
+	useEffect(() => {
+		initialData && setFormData(initialData);
+	}, [initialData]);
 
 	const addTag = (data) =>
 		setFormData((prev) => ({

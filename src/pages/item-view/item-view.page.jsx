@@ -36,6 +36,20 @@ const ItemViewPage = () => {
 			>
 				{lang('backText')}
 			</button>
+			<button
+				style={{
+					padding: '16px',
+					borderRadius: '50%',
+					width: '48px',
+					height: '48px',
+					position: 'relative',
+				}}
+				onClick={() => {
+					history.push(`/items/${id}/edit`);
+				}}
+			>
+				{lang('editText')}
+			</button>
 			<div
 				style={{
 					textAlign: 'center',

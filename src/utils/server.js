@@ -28,6 +28,18 @@ export async function uploadItem(item) {
 		.catch((err) => err);
 }
 
+export async function updateItem(item) {
+	return await fetch(`${API.itemsUrl}/${item.id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(item),
+	})
+		.then((response) => response.json())
+		.catch((err) => err);
+}
+
 export async function sync(localItems, callback) {
 	const serverItems = await fetchItems();
 
