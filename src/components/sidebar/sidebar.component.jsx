@@ -32,7 +32,7 @@ const Sidebar = (props) => {
 					fontSize: '24px',
 				}}
 			>
-				📦
+				📑
 			</NavLink>
 			<NavLink
 				to='/items/add'
