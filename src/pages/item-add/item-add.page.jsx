@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Avatar, Hashtags, Input, Rating } from '../../components';
 import { useItems } from '../../context/items.context';
@@ -7,7 +7,7 @@ import useAddItem from '../../hooks/use-add-item';
 
 const ItemAdd = () => {
 	const { lang } = useLanguage();
-	const { addItem } = useItems();
+	const { items, addItem } = useItems();
 	const history = useHistory();
 	const { formData, addTag, removeTag, handleInputChange, handleSelectImage } =
 		useAddItem();
@@ -18,6 +18,13 @@ const ItemAdd = () => {
 		await addItem(formData);
 		history.push('/items');
 	};
+
+	const itemTypes = useMemo(() => {
+		return items.reduce(
+			(acc, item) => [...new Set([...acc, item.type])],
+			['shampoo', 't-shirt', 'pants']
+		);
+	}, [items]);
 
 	return (
 		<div>
@@ -55,7 +62,7 @@ const ItemAdd = () => {
 					text={lang('typeTitle')}
 					value={formData.type}
 					onChange={handleInputChange}
-					options={['shampoo', 't-shirt', 'pants']}
+					options={itemTypes}
 				/>
 				<Input
 					name='name'
