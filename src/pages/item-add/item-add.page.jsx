@@ -12,6 +12,8 @@ const ItemAdd = () => {
 	const { formData, addTag, removeTag, handleInputChange, handleSelectImage } =
 		useAddItem();
 
+	useEffect(() => window.scrollTo(0, 0), []);
+
 	const handleAddItem = async (e) => {
 		e.preventDefault();
 
