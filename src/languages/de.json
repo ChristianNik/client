@@ -13,6 +13,10 @@
 	"appearanceTitle": "Aussehen",
 	"addItemText": "Gegenstand hinzufügen",
 	"backText": "«",
+	"items/list": {
+		"itemsTitle": "Gegenstände",
+		"trashTitle": "Mülleimer"
+	},
 	"items/view": {
 		"editLabel": "EDIT"
 	},

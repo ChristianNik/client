@@ -43,7 +43,7 @@ export const useLanguage = () => {
 		lang: (group, property) => {
 			return dictionary[group]
 				? dictionary[group][property] || dictionary[group]
-				: `no__${group}`;
+				: `no:::${group}/${property}`;
 		},
 		userLanguage,
 		userLanguageChange,

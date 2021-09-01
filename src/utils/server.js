@@ -17,7 +17,7 @@ export async function fetchItem(id) {
 }
 
 export async function uploadItem(item) {
-	return await fetch(API.itemsUrl, {
+	return fetch(API.itemsUrl, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -29,12 +29,20 @@ export async function uploadItem(item) {
 }
 
 export async function updateItem(item) {
-	return await fetch(`${API.itemsUrl}/${item.id}`, {
+	return fetch(`${API.itemsUrl}/${item.id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify(item),
+	})
+		.then((response) => response.json())
+		.catch((err) => err);
+}
+
+export async function deleteItem(id) {
+	return fetch(`${API.itemsRemoveUrl}/${id}`, {
+		method: 'DELETE',
 	})
 		.then((response) => response.json())
 		.catch((err) => err);

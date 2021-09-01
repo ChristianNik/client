@@ -13,6 +13,10 @@
 	"appearanceTitle": "Appearance",
 	"addItemText": "Add Item",
 	"backText": "«",
+	"items/list": {
+		"itemsTitle": "Items",
+		"trashTitle": "Trashcan"
+	},
 	"items/view": {
 		"editLabel": "EDIT"
 	},
