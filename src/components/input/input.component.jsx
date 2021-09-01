@@ -10,9 +10,10 @@ const Input = (props) => {
 				style={{
 					display: 'flex',
 					flexDirection: 'column',
+					...props.labelStyle,
 				}}
 			>
-				{props.text ? props.text + ':' : ''}
+				{props.text}
 				<input
 					list={props.options && `list-{$props.name}`}
 					id={props.id || props.name}
