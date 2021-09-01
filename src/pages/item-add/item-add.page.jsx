@@ -42,13 +42,11 @@ const ItemAdd = () => {
 						textAlign: 'center',
 					}}
 				>
-					<div
-						style={{ display: 'flex', justifyContent: 'center' }}
-						onClick={handleSelectImage}
-					>
+					<div style={{ display: 'flex', justifyContent: 'center' }}>
 						<Avatar
 							src={formData.image}
 							size='xl'
+							onClick={handleSelectImage}
 							style={{
 								marginRight: '16px',
 							}}
