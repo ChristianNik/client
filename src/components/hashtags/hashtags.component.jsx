@@ -14,8 +14,10 @@ const Hashtags = (props) => {
 						color: '#fff',
 						padding: '12px 16px',
 					}}
-					onKeyUp={(e) => {
-						const isSpacePressed = e.code === 'Space';
+					onChange={(e) => {
+						const lastChar = e.target.value[e.target.value.length - 1];
+						const isSpacePressed = lastChar === ' ';
+
 						if (isSpacePressed) {
 							props.onSubmit && props.onSubmit(e.target.value);
 							e.target.value = '';
