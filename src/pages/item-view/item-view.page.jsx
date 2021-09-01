@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { Avatar } from '../../components';
 import EmojiButton from '../../components/emojibutton';
-import { useLanguage } from '../../context/language.context';
 import { fetchItem } from '../../utils/server';
 
 const ItemViewPage = () => {
-	const { lang } = useLanguage();
 	const [item, setItem] = useState(null);
 	const { id } = useParams();
 

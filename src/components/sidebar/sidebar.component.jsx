@@ -1,12 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useLanguage } from '../../context/language.context';
-import EmojiButton from '../emojibutton/emojibutton.component';
 import './sidebar.style.css';
 
 const Sidebar = (props) => {
-	const { lang } = useLanguage();
-
 	return (
 		<nav
 			className='Sidebar'
