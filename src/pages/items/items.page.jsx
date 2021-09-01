@@ -8,7 +8,6 @@ import { deleteItem, sync } from '../../utils/server';
 
 const ItemsListItem = (props) => {
 	const { item } = props;
-	const { lang } = useLanguage();
 	return (
 		<li
 			style={{
