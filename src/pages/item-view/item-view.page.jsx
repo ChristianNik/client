@@ -32,7 +32,7 @@ const ItemViewPage = () => {
 						history.push('/items');
 					}}
 				>
-					🔙
+					⬅️
 				</EmojiButton>
 
 				<EmojiButton
