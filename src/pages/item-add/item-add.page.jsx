@@ -90,12 +90,6 @@ const ItemAdd = () => {
 					name='valuationAppearance'
 					onChange={handleInputChange}
 				/>
-				<Rating
-					text='Coziness'
-					text={lang('cozinessTitle')}
-					name='valuationComfortableness'
-					onChange={handleInputChange}
-				/>
 
 				<button
 					type='submit'
