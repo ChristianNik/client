@@ -94,15 +94,24 @@ const ItemsPage = () => {
 	const history = useHistory();
 	return (
 		<div>
-			<button
-				onClick={() => {
-					sync(items, (data) => {
-						setItems(data);
-					});
+			<div
+				style={{
+					display: 'flex',
+					justifyContent: 'flex-end',
 				}}
 			>
-				{lang('items/list', 'syncLabel')}
-			</button>
+				<EmojiButton
+					onClick={() => {
+						sync(items, (data) => {
+							setItems(data);
+						});
+					}}
+					size='md'
+				>
+					🔄
+				</EmojiButton>
+			</div>
+
 			<h2>{lang('items/list', 'itemsTitle')}</h2>
 			<ItemsList
 				items={items.filter((v) => !v.flag_mark_deleted)}
