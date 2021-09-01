@@ -1,26 +1,30 @@
 {
-	"menuItems": "Items",
-	"menuItemsAdd": "Add",
-	"buttonSyncText": "Sync",
-	"removeItemText": "remove",
-	"addItemTitle": "Add Item",
-	"tagsTitle": "Tags",
-	"valuationTitle": "Valuation",
-	"typeTitle": "Type",
-	"nameTitle": "Name",
-	"descriptionTitle": "Description",
-	"convenienceTitle": "Convenience",
-	"appearanceTitle": "Appearance",
-	"addItemText": "Add Item",
-	"backText": "«",
+	"sidebar": {
+		"itemsLabel": "Items",
+		"addLabel": "Add"
+	},
 	"items/list": {
 		"itemsTitle": "Items",
-		"trashTitle": "Trashcan"
+		"trashTitle": "Trashcan",
+		"syncLabel": "Sync",
+		"removeItemLabel": "remove"
 	},
 	"items/view": {
 		"editLabel": "EDIT"
 	},
+	"items/add": {
+		"titleLabel": "Add Item",
+		"tagsCaption": "Tags",
+		"valuationCaption": "Valuation",
+		"typeCaption": "Type",
+		"nameCaption": "Name",
+		"descriptionCaption": "Description",
+		"convenienceCaption": "Convenience",
+		"appearanceCaption": "Appearance",
+		"add": "Add Item"
+	},
 	"items/edit": {
+		"titleLabel": "Edit Item",
 		"cancel": "Abort",
 		"confirm": "Save changes"
 	}
