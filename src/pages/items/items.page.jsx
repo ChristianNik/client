@@ -1,13 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Avatar } from '../../components';
+import EmojiButton from '../../components/emojibutton';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import { deleteItem, sync } from '../../utils/server';
 
 const ItemsListItem = (props) => {
 	const { item } = props;
-	const { lang } = useLanguage();
 	return (
 		<li
 			style={{
@@ -64,14 +64,15 @@ const ItemsListItem = (props) => {
 				)}
 			</div>
 			<div style={{ marginLeft: 'auto', display: 'grid' }}>
-				<button
+				<EmojiButton
+					size={'sm'}
 					onClick={(e) => {
 						e.stopPropagation();
 						props.onItemRemoveClick && props.onItemRemoveClick(item, e);
 					}}
 				>
-					{lang('items/list', 'removeItemLabel')}
-				</button>
+					✖️
+				</EmojiButton>
 			</div>
 		</li>
 	);
@@ -79,7 +80,7 @@ const ItemsListItem = (props) => {
 
 const ItemsList = ({ items, ...rest }) => {
 	return (
-		<ul>
+		<ul style={{ display: 'grid', gap: '18px' }}>
 			{(items || []).map((item) => (
 				<ItemsListItem key={item.id} item={item} {...rest} />
 			))}

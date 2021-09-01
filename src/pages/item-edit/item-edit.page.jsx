@@ -1,14 +1,12 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Avatar } from '../../components';
+import { Avatar, EmojiButton } from '../../components';
 import { useItems } from '../../context/items.context';
-import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
 import { updateItem } from '../../utils/server';
 
 const ItemEditPage = () => {
 	const { id } = useParams();
-	const { lang } = useLanguage();
 	const { items } = useItems();
 
 	const history = useHistory();
@@ -30,49 +28,33 @@ const ItemEditPage = () => {
 	}
 	return (
 		<div>
-			<h2>{lang('items/edit', 'titleLabel')}</h2>
-			<form
-				onAbort={() => {
-					alert('');
-				}}
-				onSubmit={handleEditItem}
+			<div
 				style={{
-					display: 'grid',
-					gap: '8px',
-					padding: '16px',
+					display: 'flex',
+					justifyContent: 'space-between',
 				}}
 			>
-				<div
-					style={{
-						textAlign: 'center',
-					}}
-				>
-					<div style={{ display: 'flex', justifyContent: 'center' }}>
-						<Avatar
-							src={formData.image}
-							size='xl'
-							onClick={handleSelectImage}
-							style={{
-								marginRight: '16px',
-							}}
-						/>
-					</div>
-				</div>
-				<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
+				<EmojiButton onClick={pushToView}>❌</EmojiButton>
+				<EmojiButton onClick={handleEditItem}>💾</EmojiButton>
+			</div>
 
-				<button
-					type='submit'
-					style={{ width: 'max-content', padding: '7px 14px' }}
-				>
-					{lang('items/edit', 'confirm')}
-				</button>
-				<button
-					onClick={pushToView}
-					style={{ width: 'max-content', padding: '7px 14px' }}
-				>
-					{lang('items/edit', 'cancel')}
-				</button>
-			</form>
+			<div
+				style={{
+					textAlign: 'center',
+				}}
+			>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<Avatar
+						src={formData.image}
+						size='xl'
+						onClick={handleSelectImage}
+						style={{
+							marginRight: '16px',
+						}}
+					/>
+				</div>
+			</div>
+			<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
 		</div>
 	);
 };
