@@ -97,9 +97,11 @@ const ItemsPage = () => {
 			<div
 				style={{
 					display: 'flex',
-					justifyContent: 'flex-end',
+					justifyContent: 'space-between',
+					alignItems: 'center',
 				}}
 			>
+				<h2>Verwaltung</h2>
 				<EmojiButton
 					onClick={() => {
 						sync(items, (data) => {

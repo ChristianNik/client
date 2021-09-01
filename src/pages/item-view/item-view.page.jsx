@@ -27,6 +27,7 @@ const ItemViewPage = () => {
 				style={{
 					display: 'flex',
 					justifyContent: 'space-between',
+					alignItems: 'center',
 				}}
 			>
 				<EmojiButton
@@ -36,7 +37,7 @@ const ItemViewPage = () => {
 				>
 					⬅️
 				</EmojiButton>
-
+				<h2>View</h2>
 				<EmojiButton
 					onClick={() => {
 						history.push(`/items/${id}/edit`);

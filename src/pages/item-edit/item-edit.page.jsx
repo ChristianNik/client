@@ -32,9 +32,11 @@ const ItemEditPage = () => {
 				style={{
 					display: 'flex',
 					justifyContent: 'space-between',
+					alignItems: 'center',
 				}}
 			>
 				<EmojiButton onClick={pushToView}>❌</EmojiButton>
+				<h2>Edit</h2>
 				<EmojiButton onClick={handleEditItem}>💾</EmojiButton>
 			</div>
 
