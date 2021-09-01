@@ -11,7 +11,6 @@ import LanguageSelector from './context/language.context';
 function App() {
 	return (
 		<div className='App'>
-			<LanguageSelector />
 			<Sidebar />
 			<div
 				style={{
@@ -19,6 +18,7 @@ function App() {
 					marginBottom: '56px',
 				}}
 			>
+				<LanguageSelector />
 				<Switch>
 					<Route exact path='/items' component={ItemsPage} />
 					<Route exact path='/items/add' component={ItemAdd} />
