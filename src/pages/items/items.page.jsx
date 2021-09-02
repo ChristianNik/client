@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { Avatar } from '../../components';
+import { Avatar, Input } from '../../components';
 import EmojiButton from '../../components/emojibutton';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
@@ -158,8 +158,16 @@ const ItemsPage = () => {
 	const history = useHistory();
 
 	const location = useLocation();
-
 	const { view } = queryString.parse(location.search);
+
+	const [filterText, setFilterText] = useState('');
+	const filteredItems = items.filter((item) => {
+		if (!filterText) return true;
+		return (
+			item.tags?.some((t) => t.trim() === filterText) ||
+			item.type?.includes(filterText)
+		);
+	});
 
 	return (
 		<div>
@@ -205,14 +213,20 @@ const ItemsPage = () => {
 					🔄
 				</EmojiButton>
 			</div>
+			<Input
+				text='Search'
+				value={filterText}
+				onChange={(e) => setFilterText(e.target.value)}
+			/>
 
 			<h2>
 				{lang('items/list', 'itemsTitle')} [
+				{filteredItems.filter((v) => !v.flag_mark_deleted).length}/
 				{items.filter((v) => !v.flag_mark_deleted).length}]
 			</h2>
 			{view === 'gallery' && (
 				<CompactItemsList
-					items={items.filter((v) => !v.flag_mark_deleted)}
+					items={filteredItems.filter((v) => !v.flag_mark_deleted)}
 					onItemClick={(item) => {
 						history.push(`/items/${item.id}`);
 					}}
@@ -223,7 +237,7 @@ const ItemsPage = () => {
 			)}
 			{(view === 'list' || !view) && (
 				<ItemsList
-					items={items.filter((v) => !v.flag_mark_deleted)}
+					items={filteredItems.filter((v) => !v.flag_mark_deleted)}
 					onItemClick={(item) => {
 						history.push(`/items/${item.id}`);
 					}}
@@ -232,10 +246,11 @@ const ItemsPage = () => {
 					}}
 				/>
 			)}
-			{items.filter((v) => v.flag_mark_deleted).length > 0 && (
+			{filteredItems.filter((v) => v.flag_mark_deleted).length > 0 && (
 				<>
 					<h2>
 						{lang('items/list', 'trashTitle')} [
+						{filteredItems.filter((v) => v.flag_mark_deleted).length}/
 						{items.filter((v) => v.flag_mark_deleted).length}]
 					</h2>
 					<ItemsList
