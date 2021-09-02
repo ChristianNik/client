@@ -9,9 +9,10 @@ const Dashboard = () => {
 	const history = useHistory();
 
 	const tagUsage = items.reduce((acc, item) => {
-		item.tags?.forEach((tag) => {
-			acc[tag] = (acc[tag] || 0) + 1;
-		});
+		item.tags &&
+			item.tags.forEach((tag) => {
+				acc[tag] = (acc[tag] || 0) + 1;
+			});
 
 		return acc;
 	}, {});

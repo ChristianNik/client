@@ -165,13 +165,15 @@ const ItemsPage = () => {
 		if (!filterText) return true;
 		const regex = new RegExp(filterText, 'gi');
 		return (
-			item.name?.toLowerCase().includes(filterText.toLowerCase()) ||
-			item.description?.toLowerCase().includes(filterText.toLowerCase()) ||
-			item.tags?.some((t) => t.trim().match(regex)) ||
-			item.type?.toLowerCase().includes(filterText.toLowerCase())
+			(item.name &&
+				item.name.toLowerCase().includes(filterText.toLowerCase())) ||
+			(item.description &&
+				item.description.toLowerCase().includes(filterText.toLowerCase())) ||
+			(item.tags && item.tags.some((t) => t.trim().match(regex))) ||
+			(item.type && item.type.toLowerCase().includes(filterText.toLowerCase()))
 		);
 	});
-
+	// return <div>dsa</div>;
 	return (
 		<div>
 			<div
