@@ -2,8 +2,10 @@ import Compress from 'react-image-file-resizer';
 
 export async function compressImage(file) {
 	return new Promise((resolve, reject) => {
+		const resizer =
+			Compress.imageFileResizer || Compress.default.imageFileResizer;
 		try {
-			Compress.default.imageFileResizer(
+			resizer(
 				file, // the file from input
 				500, // width
 				500, // height
