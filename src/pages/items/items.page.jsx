@@ -163,9 +163,12 @@ const ItemsPage = () => {
 	const [filterText, setFilterText] = useState('');
 	const filteredItems = items.filter((item) => {
 		if (!filterText) return true;
+		const regex = new RegExp(filterText, 'gi');
 		return (
-			item.tags?.some((t) => t.trim() === filterText) ||
-			item.type?.includes(filterText)
+			item.name?.toLowerCase().includes(filterText.toLowerCase()) ||
+			item.description?.toLowerCase().includes(filterText.toLowerCase()) ||
+			item.tags?.some((t) => t.trim().match(regex)) ||
+			item.type?.toLowerCase().includes(filterText.toLowerCase())
 		);
 	});
 
