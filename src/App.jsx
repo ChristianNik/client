@@ -8,6 +8,7 @@ import ItemsPage from './pages/items/items.page';
 import ItemAdd from './pages/item-add/item-add.page';
 import ItemEditPage from './pages/item-edit';
 import SettingsPage from './pages/settings';
+import Dashboard from './pages/dashboard';
 
 function App() {
 	return (
@@ -20,6 +21,7 @@ function App() {
 				}}
 			>
 				<Switch>
+					<Route exact path='/' component={Dashboard} />
 					<Route exact path='/items' component={ItemsPage} />
 					<Route exact path='/items/add' component={ItemAdd} />
 					<Route exact path='/items/:id/edit' component={ItemEditPage} />

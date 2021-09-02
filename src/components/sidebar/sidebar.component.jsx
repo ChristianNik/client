@@ -22,6 +22,15 @@ const Sidebar = (props) => {
 			}}
 		>
 			<NavLink
+				to='/'
+				style={{
+					textDecoration: 'none',
+					fontSize: '24px',
+				}}
+			>
+				📊
+			</NavLink>
+			<NavLink
 				to='/items'
 				style={{
 					textDecoration: 'none',
