@@ -11,7 +11,6 @@ function Placeholder(props) {
 			style={{
 				backgroundColor: 'hsl(220, 13%, 26%)',
 				color: 'transparent',
-				borderRadius: 'red',
 				display: 'inline-flex',
 				borderRadius: '8px',
 			}}
