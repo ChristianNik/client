@@ -19,6 +19,7 @@ const Avatar = (props) => {
 		marginRight: '16px',
 		background: 'hsl(220, 13%, 26%)',
 		borderRadius: '50%',
+		objectFit: 'cover',
 		...props.style,
 	};
 
