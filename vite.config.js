@@ -4,10 +4,13 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	publicDir: './public',
 	plugins: [
 		reactRefresh(),
 		VitePWA({
-			manifest: require('./src/pwa/manifest.json'),
+			manifest: require('./public/manifest.json'),
+			mode: 'development',
+			injectRegister: 'script',
 		}),
 	],
 	server: {
