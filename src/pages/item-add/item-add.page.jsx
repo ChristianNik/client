@@ -54,6 +54,15 @@ const ItemAdd = () => {
 	const { formData, addTag, removeTag, handleInputChange, handleSelectImage } =
 		useAddItem();
 
+	const handleTypeChange = (value) => {
+		handleInputChange({
+			target: {
+				name: 'type',
+				value: value,
+			},
+		});
+	};
+
 	useEffect(() => window.scrollTo(0, 0), []);
 
 	const handleAddItem = async (e) => {
@@ -82,8 +91,6 @@ const ItemAdd = () => {
 	const prevPage = () => {
 		history.goBack();
 	};
-
-	const [selectedType, setSelectedType] = useState('');
 
 	return createPortal(
 		<div
@@ -196,15 +203,15 @@ const ItemAdd = () => {
 													textAlign: 'center',
 													textTransform: 'uppercase',
 													color: 'hsl(220, 13%, 50%)',
-													...(selectedType === type && {
+													...(formData.type === type && {
 														color: '#fff',
 													}),
 												}}
 												onClick={() => {
-													setSelectedType(type);
+													handleTypeChange(type);
 												}}
 												onDoubleClick={() => {
-													setSelectedType(type);
+													handleTypeChange(type);
 													history.push(`/items/add/details`);
 												}}
 											>
