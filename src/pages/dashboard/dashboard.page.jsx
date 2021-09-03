@@ -54,13 +54,16 @@ const Dashboard = () => {
 							<div
 								key={key}
 								style={{
-									marginRight: '6px',
+									margin: '2px',
+									backgroundColor: 'hsl(220, 13%, 50%)',
+									padding: '4px',
+									borderRadius: '4px',
 								}}
 								onClick={() => {
 									history.push(`/items?key=${key}`);
 								}}
 							>
-								({tagUsage[key]}x) {key},
+								{tagUsage[key]}x {key}
 							</div>
 						))}
 				</div>
