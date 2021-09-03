@@ -27,8 +27,8 @@ function App() {
 				<Switch>
 					<Route exact path='/' component={Dashboard} />
 					<Route exact path='/items' component={ItemsPage} />
-					<Route exact path='/items/add' component={ItemAdd} />
-					<Route exact path='/items/:id/edit' component={ItemEditPage} />
+					<Route path='/items/add' component={ItemAdd} />
+					<Route exact path='/items/:type/edit' component={ItemEditPage} />
 					<Route exact path='/items/:id' component={ItemViewPage} />
 					<Route exact path='/settings' component={SettingsPage} />
 				</Switch>
