@@ -25,7 +25,12 @@ const Dashboard = () => {
 					alignItems: 'center',
 				}}
 			>
-				<h1>{lang('dashboard', 'pageTitle')}</h1>
+				<div
+					style={{ display: 'flex', flexDirection: 'column', margin: '24px 0' }}
+				>
+					<small>Hallo Christian,</small>
+					<h2>Dashboard</h2>
+				</div>
 			</div>
 			<div
 				style={{
