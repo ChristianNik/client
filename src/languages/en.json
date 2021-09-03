@@ -12,6 +12,9 @@
 	"ui/dashboard/tags": {
 		"defaultLabel": "Tag usage"
 	},
+	"ui/dashboard/types": {
+		"defaultLabel": "Type usage"
+	},
 	"ui/items/add": {
 		"add": "Add Item",
 		"appearanceCaption": "Appearance",

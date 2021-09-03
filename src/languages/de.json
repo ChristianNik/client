@@ -12,6 +12,9 @@
 	"ui/dashboard/tags": {
 		"defaultLabel": "Hashtags"
 	},
+	"ui/dashboard/types": {
+		"defaultLabel": "Typen"
+	},
 	"ui/items/add": {
 		"add": "Hinzufügen",
 		"appearanceCaption": "Aussehen",
