@@ -1,7 +1,9 @@
 {
-	"sidebar": {
+	"ui/sidebar/navigation": {
+		"homeLabel": "Home",
 		"itemsLabel": "Gegenstände",
-		"addLabel": "Hinzufügen"
+		"addLabel": "Add",
+		"settingsLabel": "Einstellungen"
 	},
 	"dashboard": {
 		"pageTitle": "Dashboard",
