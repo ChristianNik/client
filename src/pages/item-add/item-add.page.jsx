@@ -47,6 +47,9 @@ const ItemAdd = () => {
 
 	const [pageIndex, setPageIndex] = useState(0);
 
+	const prevPage = () => setPageIndex(pageIndex - 1);
+	const nextPage = () => setPageIndex(pageIndex + 1);
+
 	const [selectedType, setSelectedType] = useState('');
 
 	return createPortal(
@@ -62,7 +65,12 @@ const ItemAdd = () => {
 		>
 			<MobileLayout
 				top={
-					<div>
+					<div
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+						}}
+					>
 						{pageIndex === 0 ? (
 							<div
 								style={{
@@ -93,7 +101,7 @@ const ItemAdd = () => {
 									borderRadius: '50%',
 									margin: '16px',
 								}}
-								onClick={() => setPageIndex(pageIndex - 1)}
+								onClick={prevPage}
 							>
 								<FontAwesomeIcon icon={faChevronLeft} color='gray' size='sm' />
 							</div>
@@ -145,7 +153,7 @@ const ItemAdd = () => {
 									borderRadius: '4px',
 								}}
 								disabled={!selectedType || pageIndex > 1}
-								onClick={() => setPageIndex(pageIndex + 1)}
+								onClick={nextPage}
 							>
 								NEXT
 							</button>
@@ -192,6 +200,10 @@ const ItemAdd = () => {
 													}),
 												}}
 												onClick={() => setSelectedType(type)}
+												onDoubleClick={() => {
+													setSelectedType(type);
+													nextPage();
+												}}
 											>
 												{type}
 											</li>
@@ -252,19 +264,6 @@ const ItemAdd = () => {
 					</form>
 				</div>
 			</MobileLayout>
-
-			{/* <button
-				disabled={pageIndex < 1}
-				onClick={() => setPageIndex(pageIndex - 1)}
-			>
-				Back
-			</button>
-			<button
-				disabled={pageIndex > 1}
-				onClick={() => setPageIndex(pageIndex + 1)}
-			>
-				Next
-			</button> */}
 		</div>,
 		document.getElementById('modal-root')
 	);
