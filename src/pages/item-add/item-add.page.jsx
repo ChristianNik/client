@@ -2,12 +2,50 @@ import { faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Link, Route, useHistory, useParams } from 'react-router-dom';
+import { Route, useHistory } from 'react-router-dom';
 import { Avatar, EmojiButton, Hashtags, Input, Rating } from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
 import MobileLayout from '../../layouts/mobile.layout';
+
+function IconButton({ onClick, icon }) {
+	return (
+		<div
+			style={{
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				width: '32px',
+				height: '32px',
+				border: '2px solid gray',
+				borderRadius: '50%',
+				margin: '16px',
+			}}
+			onClick={onClick}
+		>
+			<FontAwesomeIcon icon={icon} color='gray' size='sm' />
+		</div>
+	);
+}
+
+function FullWidthButton({ children, onClick }) {
+	return (
+		<button
+			type='button'
+			style={{
+				fontSize: '14px',
+				padding: '8px 32px',
+				width: '100%',
+				border: 'none',
+				borderRadius: '4px',
+			}}
+			onClick={onClick}
+		>
+			{children}
+		</button>
+	);
+}
 
 const ItemAdd = () => {
 	const { lang } = useLanguage();
@@ -41,27 +79,8 @@ const ItemAdd = () => {
 		return types.sort((a, b) => (typeCounts[b] || 0) - (typeCounts[a] || 0));
 	}, [items]);
 
-	const [pageIndex, setPageIndex] = useState(0);
-
 	const prevPage = () => {
-		setPageIndex(pageIndex - 1);
 		history.goBack();
-	};
-	const nextPage = () => {
-		setPageIndex(pageIndex + 1);
-
-		switch (pageIndex) {
-			case 0: {
-				history.push(`/items/add/details`);
-				return;
-			}
-			case 1: {
-				history.push(`/items/add/valuation`);
-				return;
-			}
-			default: {
-			}
-		}
 	};
 
 	const [selectedType, setSelectedType] = useState('');
@@ -85,41 +104,17 @@ const ItemAdd = () => {
 							alignItems: 'center',
 						}}
 					>
-						{pageIndex === 0 ? (
-							<div
-								style={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									width: '32px',
-									height: '32px',
-									border: '2px solid gray',
-									borderRadius: '50%',
-									margin: '16px',
-								}}
+						<Route exact path='/items/add'>
+							<IconButton
+								icon={faTimes}
 								onClick={() => {
 									history.push('/items');
 								}}
-							>
-								<FontAwesomeIcon icon={faTimes} color='gray' size='sm' />
-							</div>
-						) : (
-							<div
-								style={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									width: '32px',
-									height: '32px',
-									border: '2px solid gray',
-									borderRadius: '50%',
-									margin: '16px',
-								}}
-								onClick={prevPage}
-							>
-								<FontAwesomeIcon icon={faChevronLeft} color='gray' size='sm' />
-							</div>
-						)}
+							/>
+						</Route>
+						<Route exact path={['/items/add/details', '/items/add/valuation']}>
+							<IconButton icon={faChevronLeft} onClick={prevPage} />
+						</Route>
 
 						<h2
 							style={{
@@ -127,13 +122,15 @@ const ItemAdd = () => {
 								margin: '24px 0',
 							}}
 						>
-							{pageIndex === 0
-								? lang('ui/items/add', 'typeTabTitle')
-								: pageIndex === 1
-								? lang('ui/items/add', 'detailsTabTitle')
-								: pageIndex === 2
-								? lang('ui/items/add', 'valuationTabTitle')
-								: ''}
+							<Route exact path='/items/add'>
+								{lang('ui/items/add', 'typeTabTitle')}
+							</Route>
+							<Route exact path='/items/add/details'>
+								{lang('ui/items/add', 'detailsTabTitle')}
+							</Route>
+							<Route exact path='/items/add/valuation'>
+								{lang('ui/items/add', 'valuationTabTitle')}
+							</Route>
 						</h2>
 					</div>
 				}
@@ -143,35 +140,25 @@ const ItemAdd = () => {
 							padding: '16px',
 						}}
 					>
-						{pageIndex > 1 ? (
-							<button
-								onClick={handleAddItem}
-								style={{
-									fontSize: '14px',
-									padding: '8px 32px',
-									width: '100%',
-									border: 'none',
-									borderRadius: '4px',
-								}}
-							>
-								{lang('ui/items/add', 'add')}
-							</button>
-						) : (
-							<button
-								type='button'
-								style={{
-									fontSize: '14px',
-									padding: '8px 32px',
-									width: '100%',
-									border: 'none',
-									borderRadius: '4px',
-								}}
-								disabled={!selectedType || pageIndex > 1}
-								onClick={nextPage}
+						<Route exact path='/items/add'>
+							<FullWidthButton
+								onClick={() => history.push(`/items/add/details`)}
 							>
 								{lang('ui/items/add', 'nextLabel')}
-							</button>
-						)}
+							</FullWidthButton>
+						</Route>
+						<Route exact path='/items/add/details'>
+							<FullWidthButton
+								onClick={() => history.push(`/items/add/valuation`)}
+							>
+								{lang('ui/items/add', 'nextLabel')}
+							</FullWidthButton>
+						</Route>
+						<Route exact path='/items/add/valuation'>
+							<FullWidthButton onClick={handleAddItem}>
+								{lang('ui/items/add', 'add')}
+							</FullWidthButton>
+						</Route>
 					</div>
 				}
 			>
@@ -218,7 +205,7 @@ const ItemAdd = () => {
 												}}
 												onDoubleClick={() => {
 													setSelectedType(type);
-													nextPage();
+													history.push(`/items/add/details`);
 												}}
 											>
 												{type}
