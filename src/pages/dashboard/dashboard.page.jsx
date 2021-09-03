@@ -28,8 +28,10 @@ const Dashboard = () => {
 				<div
 					style={{ display: 'flex', flexDirection: 'column', margin: '24px 0' }}
 				>
-					<small>Hallo Christian,</small>
-					<h2>Dashboard</h2>
+					<small>
+						{lang('ui/dashboard/title', 'defaultLabel', ['Christian'])}
+					</small>
+					<h2>{lang('ui/dashboard/title', 'pageTitle')}</h2>
 				</div>
 			</div>
 			<div
@@ -39,7 +41,7 @@ const Dashboard = () => {
 					borderRadius: '8px',
 				}}
 			>
-				<h2>{lang('dashboard', 'tagUsageCaption')}</h2>
+				<h2>{lang('ui/dashboard/tags', 'defaultLabel')}</h2>
 				<div
 					style={{
 						display: 'flex',

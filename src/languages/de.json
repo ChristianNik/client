@@ -5,9 +5,12 @@
 		"addLabel": "Add",
 		"settingsLabel": "Einstellungen"
 	},
-	"dashboard": {
-		"pageTitle": "Dashboard",
-		"tagUsageCaption": "Tag-Nutzung"
+	"ui/dashboard/title": {
+		"defaultLabel": "Hallo {0},",
+		"pageTitle": "Dashboard"
+	},
+	"ui/dashboard/tags": {
+		"defaultLabel": "Hashtags"
 	},
 	"items/list": {
 		"itemsTitle": "Gegenstände",
