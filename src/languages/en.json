@@ -12,29 +12,31 @@
 	"ui/dashboard/tags": {
 		"defaultLabel": "Tag usage"
 	},
+	"ui/items/add": {
+		"add": "Add Item",
+		"appearanceCaption": "Appearance",
+		"convenienceCaption": "Convenience",
+		"descriptionCaption": "Description",
+		"detailsTabTitle": "Details",
+		"nextLabel": "NEXT",
+		"tagsCaption": "Tags",
+		"typeTabTitle": "Select Type",
+		"valuationCaption": "Valuation",
+		"valuationTabTitle": "Valuation"
+	},
 	"items/list": {
 		"itemsTitle": "Items",
-		"trashTitle": "Trashcan",
+		"removeItemLabel": "remove",
 		"syncLabel": "Sync",
-		"removeItemLabel": "remove"
+		"trashTitle": "Trashcan"
 	},
 	"items/view": {
 		"editLabel": "EDIT"
 	},
-	"items/add": {
-		"titleLabel": "Add Item",
-		"tagsCaption": "Tags",
-		"valuationCaption": "Valuation",
-		"typeCaption": "Type",
-		"nameCaption": "Name",
-		"descriptionCaption": "Description",
-		"convenienceCaption": "Convenience",
-		"appearanceCaption": "Appearance",
-		"add": "Add Item"
-	},
+
 	"items/edit": {
-		"titleLabel": "Edit Item",
 		"cancel": "Abort",
-		"confirm": "Save changes"
+		"confirm": "Save changes",
+		"titleLabel": "Edit Item"
 	}
 }

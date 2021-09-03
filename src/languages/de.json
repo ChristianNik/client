@@ -1,8 +1,8 @@
 {
 	"ui/sidebar/navigation": {
+		"addLabel": "Add",
 		"homeLabel": "Home",
 		"itemsLabel": "Gegenstände",
-		"addLabel": "Add",
 		"settingsLabel": "Einstellungen"
 	},
 	"ui/dashboard/title": {
@@ -12,6 +12,17 @@
 	"ui/dashboard/tags": {
 		"defaultLabel": "Hashtags"
 	},
+	"ui/items/add": {
+		"add": "Hinzufügen",
+		"appearanceCaption": "Aussehen",
+		"convenienceCaption": "Bequemlichkeit",
+		"descriptionCaption": "Beschreibung",
+		"detailsTabTitle": "Details",
+		"nextLabel": "WEITER",
+		"tagsCaption": "Hashtags",
+		"typeTabTitle": "Typ auswählen",
+		"valuationTabTitle": "Bewertung"
+	},
 	"items/list": {
 		"itemsTitle": "Gegenstände",
 		"trashTitle": "Mülleimer",
@@ -20,17 +31,6 @@
 	},
 	"items/view": {
 		"editLabel": "EDIT"
-	},
-	"items/add": {
-		"titleLabel": "Gegenstand hinzufügen",
-		"tagsCaption": "Tags",
-		"valuationCaption": "Bewertung",
-		"typeCaption": "Typ",
-		"nameCaption": "Name",
-		"descriptionCaption": "Beschreibung",
-		"convenienceCaption": "Bequemlichkeit",
-		"appearanceCaption": "Aussehen",
-		"add": "Hinzufügen"
 	},
 	"items/edit": {
 		"titleLabel": "Gegenstand bearbeiten",

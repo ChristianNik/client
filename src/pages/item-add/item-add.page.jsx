@@ -128,11 +128,11 @@ const ItemAdd = () => {
 							}}
 						>
 							{pageIndex === 0
-								? 'Select Type'
+								? lang('ui/items/add', 'typeTabTitle')
 								: pageIndex === 1
-								? 'Details'
+								? lang('ui/items/add', 'detailsTabTitle')
 								: pageIndex === 2
-								? 'Valuation'
+								? lang('ui/items/add', 'valuationTabTitle')
 								: ''}
 						</h2>
 					</div>
@@ -154,7 +154,7 @@ const ItemAdd = () => {
 									borderRadius: '4px',
 								}}
 							>
-								{lang('items/add', 'add')}
+								{lang('ui/items/add', 'add')}
 							</button>
 						) : (
 							<button
@@ -169,7 +169,7 @@ const ItemAdd = () => {
 								disabled={!selectedType || pageIndex > 1}
 								onClick={nextPage}
 							>
-								NEXT
+								{lang('ui/items/add', 'nextLabel')}
 							</button>
 						)}
 					</div>
@@ -247,7 +247,7 @@ const ItemAdd = () => {
 										borderColor: 'hsl(220, 13%, 50%)',
 									}}
 								/>
-								<h3>{lang('items/add', 'tagsCaption')}</h3>
+								<h3>{lang('ui/items/add', 'tagsCaption')}</h3>
 								<Hashtags
 									tags={formData.tags}
 									onSubmit={addTag}
@@ -255,7 +255,7 @@ const ItemAdd = () => {
 								/>
 								<Input
 									name='description'
-									text={lang('items/add', 'descriptionCaption')}
+									text={lang('ui/items/add', 'descriptionCaption')}
 									value={formData.description}
 									onChange={handleInputChange}
 								/>
@@ -263,14 +263,13 @@ const ItemAdd = () => {
 						</Route>
 
 						<Route exact path='/items/add/valuation'>
-							<h3>{lang('items/add', 'valuationCaption')}</h3>
 							<Rating
-								text={lang('items/add', 'convenienceCaption')}
+								text={lang('ui/items/add', 'convenienceCaption')}
 								name='valuationConvenience'
 								onChange={handleInputChange}
 							/>
 							<Rating
-								text={lang('items/add', 'appearanceCaption')}
+								text={lang('ui/items/add', 'appearanceCaption')}
 								name='valuationAppearance'
 								onChange={handleInputChange}
 							/>
