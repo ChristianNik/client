@@ -41,14 +41,28 @@ const ItemAdd = () => {
 		return types.sort((a, b) => (typeCounts[b] || 0) - (typeCounts[a] || 0));
 	}, [items]);
 
-	// useEffect(() => {
-	// 	handleSelectImage();
-	// }, []);
-
 	const [pageIndex, setPageIndex] = useState(0);
 
-	const prevPage = () => setPageIndex(pageIndex - 1);
-	const nextPage = () => setPageIndex(pageIndex + 1);
+	const prevPage = () => {
+		setPageIndex(pageIndex - 1);
+		history.goBack();
+	};
+	const nextPage = () => {
+		setPageIndex(pageIndex + 1);
+
+		switch (pageIndex) {
+			case 0: {
+				history.push(`/items/add/details`);
+				return;
+			}
+			case 1: {
+				history.push(`/items/add/valuation`);
+				return;
+			}
+			default: {
+			}
+		}
+	};
 
 	const [selectedType, setSelectedType] = useState('');
 
@@ -168,7 +182,7 @@ const ItemAdd = () => {
 					}}
 				>
 					<form onSubmit={handleAddItem}>
-						{pageIndex === 0 && (
+						<Route exact path='/items/add'>
 							<div
 								style={{
 									overflow: 'hidden',
@@ -199,7 +213,9 @@ const ItemAdd = () => {
 														color: '#fff',
 													}),
 												}}
-												onClick={() => setSelectedType(type)}
+												onClick={() => {
+													setSelectedType(type);
+												}}
 												onDoubleClick={() => {
 													setSelectedType(type);
 													nextPage();
@@ -211,9 +227,9 @@ const ItemAdd = () => {
 									})}
 								</ul>
 							</div>
-						)}
+						</Route>
 
-						{pageIndex === 1 && (
+						<Route exact path='/items/add/details'>
 							<>
 								<div style={{ display: 'flex', justifyContent: 'center' }}>
 									<Avatar
@@ -244,23 +260,21 @@ const ItemAdd = () => {
 									onChange={handleInputChange}
 								/>
 							</>
-						)}
+						</Route>
 
-						{pageIndex === 2 && (
-							<>
-								<h3>{lang('items/add', 'valuationCaption')}</h3>
-								<Rating
-									text={lang('items/add', 'convenienceCaption')}
-									name='valuationConvenience'
-									onChange={handleInputChange}
-								/>
-								<Rating
-									text={lang('items/add', 'appearanceCaption')}
-									name='valuationAppearance'
-									onChange={handleInputChange}
-								/>
-							</>
-						)}
+						<Route exact path='/items/add/valuation'>
+							<h3>{lang('items/add', 'valuationCaption')}</h3>
+							<Rating
+								text={lang('items/add', 'convenienceCaption')}
+								name='valuationConvenience'
+								onChange={handleInputChange}
+							/>
+							<Rating
+								text={lang('items/add', 'appearanceCaption')}
+								name='valuationAppearance'
+								onChange={handleInputChange}
+							/>
+						</Route>
 					</form>
 				</div>
 			</MobileLayout>
