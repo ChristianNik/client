@@ -35,18 +35,33 @@ export function LanguageProvider({ children }) {
 	);
 }
 
+function escapeRegex(string) {
+	return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
 export const useLanguage = () => {
 	const { userLanguage, dictionary, userLanguageChange } =
 		React.useContext(LanguageContext);
 
 	return {
-		lang: (group, property) => {
-			return dictionary[group]
-				? dictionary[group][property] ||
-						(typeof dictionary[group] !== 'object'
-							? dictionary[group]
-							: `no:::${group}/${property}`)
-				: `no:::${group}/${property}`;
+		lang: (group, property, replace) => {
+			const category = dictionary[group];
+			const notFoundText = `no:::${group}/${property}`;
+
+			let text = category
+				? category[property] ||
+				  (typeof category !== 'object' ? category : notFoundText)
+				: notFoundText;
+
+			if (replace) {
+				Object.keys(replace).map((key) => {
+					const value = replace[key];
+					const regex = new RegExp(escapeRegex(`{${key}}`), 'g');
+					text = text.replace(regex, value);
+				});
+			}
+
+			return text;
 		},
 		userLanguage,
 		userLanguageChange,
