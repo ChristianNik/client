@@ -11,9 +11,6 @@ const Sidebar = (props) => {
 				justifyContent: 'space-evenly',
 				alignItems: 'center',
 
-				position: 'fixed',
-				top: 'calc(100% - 56px)',
-
 				width: '100%',
 				minHeight: '56px',
 				backgroundColor: 'hsl(220, 13%, 50%)',

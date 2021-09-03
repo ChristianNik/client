@@ -9,15 +9,19 @@ import ItemAdd from './pages/item-add/item-add.page';
 import ItemEditPage from './pages/item-edit';
 import SettingsPage from './pages/settings';
 import Dashboard from './pages/dashboard';
+import MobileLayout from './layouts/mobile.layout';
+import useTotalHeight from './hooks/use-total-height';
 
 function App() {
+	useTotalHeight();
+
 	return (
-		<div className='App'>
-			<Sidebar />
+		<MobileLayout bottom={<Sidebar />}>
 			<div
 				style={{
 					padding: '16px',
 					marginBottom: '56px',
+					overflow: 'auto',
 				}}
 			>
 				<Switch>
@@ -29,7 +33,7 @@ function App() {
 					<Route exact path='/settings' component={SettingsPage} />
 				</Switch>
 			</div>
-		</div>
+		</MobileLayout>
 	);
 }
 

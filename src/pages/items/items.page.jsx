@@ -173,7 +173,7 @@ const ItemsPage = () => {
 			(item.type && item.type.toLowerCase().includes(filterText.toLowerCase()))
 		);
 	});
-	// return <div>dsa</div>;
+
 	return (
 		<div>
 			<div
