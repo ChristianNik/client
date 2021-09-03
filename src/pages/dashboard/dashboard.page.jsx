@@ -45,6 +45,7 @@ const Dashboard = () => {
 						.sort((a, b) => tagUsage[b] - tagUsage[a])
 						.map((key) => (
 							<div
+								key={key}
 								style={{
 									marginRight: '6px',
 								}}
