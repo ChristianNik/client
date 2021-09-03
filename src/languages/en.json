@@ -3,6 +3,10 @@
 		"itemsLabel": "Items",
 		"addLabel": "Add"
 	},
+	"dashboard": {
+		"pageTitle": "Dashboard",
+		"tagUsageCaption": "Tag usage"
+	},
 	"items/list": {
 		"itemsTitle": "Items",
 		"trashTitle": "Trashcan",

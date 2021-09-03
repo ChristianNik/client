@@ -3,6 +3,10 @@
 		"itemsLabel": "Gegenstände",
 		"addLabel": "Hinzufügen"
 	},
+	"dashboard": {
+		"pageTitle": "Dashboard",
+		"tagUsageCaption": "Tag-Nutzung"
+	},
 	"items/list": {
 		"itemsTitle": "Gegenstände",
 		"trashTitle": "Mülleimer",

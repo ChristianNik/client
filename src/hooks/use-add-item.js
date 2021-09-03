@@ -22,7 +22,7 @@ const useAddItem = (initialData) => {
 	const addTag = (data) =>
 		setFormData((prev) => ({
 			...prev,
-			tags: [...new Set([...prev.tags, data])],
+			tags: [...new Set([...prev.tags, data.toLowerCase()])],
 		}));
 
 	const removeTag = (data) => {
