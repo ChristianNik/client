@@ -18,7 +18,7 @@ const ItemEditPage = () => {
 
 	const history = useHistory();
 
-	const pushToView = () => history.push(`/items/${id}`);
+	const pushToView = () => history.goBack();
 
 	const handleEditItem = async (e) => {
 		e.preventDefault();
@@ -54,9 +54,7 @@ const ItemEditPage = () => {
 					>
 						<IconButton
 							icon={faChevronLeft}
-							onClick={() => {
-								history.push('/items');
-							}}
+							onClick={pushToView}
 							style={{
 								justifySelf: 'start',
 							}}
@@ -114,8 +112,15 @@ const ItemEditPage = () => {
 							<strong>{item.type}</strong>
 						</small>
 					</div>
-
-					<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
+					<div
+						style={{
+							margin: '16px',
+						}}
+					>
+						<hr
+							style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }}
+						/>
+					</div>
 				</div>
 			</MobileLayout>
 		</Dialog>
