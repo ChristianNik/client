@@ -1,23 +1,16 @@
+import {
+	faChevronLeft,
+	faSave,
+	faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import React, { useMemo } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Avatar, EmojiButton } from '../../components';
-import { useItems } from '../../context/items.context';
-import useAddItem from '../../hooks/use-add-item';
-import { updateItem } from '../../utils/server';
 
-function Placeholder(props) {
-	return (
-		<div
-			style={{
-				backgroundColor: 'hsl(220, 13%, 26%)',
-				color: 'transparent',
-				display: 'inline-flex',
-				borderRadius: '8px',
-			}}
-			{...props}
-		/>
-	);
-}
+import MobileLayout from '../../layouts/mobile.layout';
+import useAddItem from '../../hooks/use-add-item';
+import { Avatar, Dialog, IconButton } from '../../components';
+import { deleteItem, updateItem } from '../../utils/server';
+import { useItems } from '../../context/items.context';
 
 const ItemEditPage = () => {
 	const { id } = useParams();
@@ -41,51 +34,91 @@ const ItemEditPage = () => {
 		return null;
 	}
 	return (
-		<div>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
-				}}
-			>
-				<EmojiButton onClick={pushToView}>❌</EmojiButton>
-				<h2>Edit</h2>
-				<EmojiButton onClick={handleEditItem}>💾</EmojiButton>
-			</div>
-
-			<div
-				style={{
-					textAlign: 'center',
-				}}
-			>
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<Avatar
-						src={formData.image}
-						size='xl'
-						onClick={handleSelectImage}
+		<Dialog>
+			<MobileLayout>
+				<div
+					style={{
+						margin: '0 auto',
+						maxWidth: '600px',
+						overflow: 'auto',
+						height: '100%',
+					}}
+				>
+					<div
 						style={{
-							marginRight: '16px',
+							display: 'grid',
+							gridTemplateColumns: 'repeat(3, 1fr)',
+							justifyItems: 'center',
+							alignItems: 'center',
 						}}
-					/>
-				</div>
-				<Placeholder>
-					<h1>{formData.name || <small>{formData.id}</small>}</h1>
-				</Placeholder>
-				<div>
-					<small>
-						Created: <strong>{new Date(item.created).toLocaleString()}</strong>
-					</small>
-				</div>
-				<Placeholder>
-					<small>
-						<strong>{item.type}</strong>
-					</small>
-				</Placeholder>
-			</div>
+					>
+						<IconButton
+							icon={faChevronLeft}
+							onClick={() => {
+								history.push('/items');
+							}}
+							style={{
+								justifySelf: 'start',
+							}}
+						/>
 
-			<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
-		</div>
+						<h2>Edit</h2>
+						<div
+							style={{
+								display: 'flex',
+								justifySelf: 'end',
+							}}
+						>
+							<IconButton
+								icon={faSave}
+								noBorder
+								size='lg'
+								onClick={handleEditItem}
+							/>
+							<IconButton
+								icon={faTrash}
+								noBorder
+								size='lg'
+								onClick={() => {
+									deleteItem(id).then(() => {
+										history.push(`/items`);
+									});
+								}}
+							/>
+						</div>
+					</div>
+
+					<div
+						style={{
+							textAlign: 'center',
+						}}
+					>
+						<div style={{ display: 'flex', justifyContent: 'center' }}>
+							<Avatar
+								src={formData.image}
+								size='xl'
+								onClick={handleSelectImage}
+								style={{
+									marginRight: '16px',
+								}}
+							/>
+						</div>
+						<h1>{formData.name || <small>{formData.id}</small>}</h1>
+						<div>
+							<small>
+								Created:{' '}
+								<strong>{new Date(item.created).toLocaleString()}</strong>
+							</small>
+						</div>
+						<small>
+							<strong>{item.type}</strong>
+						</small>
+					</div>
+
+					<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
+				</div>
+			</MobileLayout>
+		</Dialog>
 	);
 };
 
