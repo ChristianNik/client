@@ -42,9 +42,11 @@ function App() {
 						</div>
 					}
 				>
-					<Route path='/items/add' component={ItemAddDialog} />
-					<Route path='/items/:id' component={ItemViewDialog} />
-					<Route exact path='/items/:id/edit' component={ItemEditDialog} />
+					<Switch>
+						<Route path='/items/add' component={ItemAddDialog} />
+						<Route exact path='/items/:id/edit' component={ItemEditDialog} />
+						<Route exact path='/items/:id' component={ItemViewDialog} />
+					</Switch>
 
 					<Switch>
 						<Route exact path='/' component={DashboardPage} />
