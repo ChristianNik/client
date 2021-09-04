@@ -1,11 +1,37 @@
 {
-	"sidebar": {
+	"ui/sidebar/navigation": {
+		"addLabel": "Add",
+		"homeLabel": "Home",
 		"itemsLabel": "Gegenstände",
-		"addLabel": "Hinzufügen"
+		"settingsLabel": "Einstellungen"
 	},
-	"dashboard": {
-		"pageTitle": "Dashboard",
-		"tagUsageCaption": "Tag-Nutzung"
+	"ui/dashboard/title": {
+		"defaultLabel": "Hallo {0},",
+		"pageTitle": "Dashboard"
+	},
+	"ui/dashboard/tags": {
+		"defaultLabel": "Hashtags"
+	},
+	"ui/dashboard/types": {
+		"defaultLabel": "Typen"
+	},
+	"ui/items/add": {
+		"add": "Hinzufügen",
+		"appearanceCaption": "Aussehen",
+		"convenienceCaption": "Bequemlichkeit",
+		"descriptionCaption": "Beschreibung",
+		"detailsTabTitle": "Details",
+		"nextLabel": "WEITER",
+		"tagsCaption": "Hashtags",
+		"typeTabTitle": "Typ auswählen",
+		"valuationTabTitle": "Bewertung"
+	},
+	"ui/items/page": {
+		"pageTitle": "Verwaltung"
+	},
+	"ui/items/list": {
+		"itemsTitle": "Gegenstände",
+		"trashTitle": "Trashcan"
 	},
 	"items/list": {
 		"itemsTitle": "Gegenstände",
@@ -15,17 +41,6 @@
 	},
 	"items/view": {
 		"editLabel": "EDIT"
-	},
-	"items/add": {
-		"titleLabel": "Gegenstand hinzufügen",
-		"tagsCaption": "Tags",
-		"valuationCaption": "Bewertung",
-		"typeCaption": "Typ",
-		"nameCaption": "Name",
-		"descriptionCaption": "Beschreibung",
-		"convenienceCaption": "Bequemlichkeit",
-		"appearanceCaption": "Aussehen",
-		"add": "Hinzufügen"
 	},
 	"items/edit": {
 		"titleLabel": "Gegenstand bearbeiten",
