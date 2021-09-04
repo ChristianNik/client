@@ -20,7 +20,6 @@ function App() {
 			<div
 				style={{
 					margin: '0 auto',
-					marginBottom: '56px',
 					padding: '16px',
 					maxWidth: '600px',
 					overflow: 'auto',
