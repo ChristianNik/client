@@ -16,7 +16,6 @@ const ItemsImage = (props) => {
 
 	const elementStyle = {
 		...SIZE[props.size || 'lg'],
-		marginRight: '16px',
 		background: 'hsl(220, 13%, 26%)',
 		borderRadius: '16px',
 		objectFit: 'cover',
