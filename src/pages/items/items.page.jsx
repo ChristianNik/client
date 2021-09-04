@@ -6,13 +6,12 @@ import { useLanguage } from '../../context/language.context';
 import { deleteItem } from '../../utils/server';
 import queryString from 'query-string';
 import ItemsList from './components/items-list.component';
-import CompactItemsList from './components/items-list-compact.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faThLarge } from '@fortawesome/free-solid-svg-icons';
 
 const ItemsPage = () => {
 	const { lang } = useLanguage();
-	const { items, setItems, removeItem } = useItems();
+	const { items, removeItem } = useItems();
 	const history = useHistory();
 
 	const location = useLocation();
@@ -113,7 +112,7 @@ const ItemsPage = () => {
 			</h2>
 
 			{view === 'gallery' ? (
-				<CompactItemsList {...itemsListProps} />
+				<ItemsList {...itemsListProps} compact />
 			) : view === 'list' ? (
 				<ItemsList {...itemsListProps} />
 			) : (

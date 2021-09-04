@@ -1,17 +1,9 @@
 import React from 'react';
-import ItemsImage from './items-image';
+import ItemsImage from '../../pages/items/components/items-image';
+import './itemslistitemskeleton.style.css';
 
-const ItemsListItem = (props) => {
-	const { item, compact } = props;
-
-	const creationDate =
-		window.innerWidth > 600 &&
-		new Date(item.created)
-			.toISOString()
-			.split('T')[0]
-			.split('-')
-			.reverse()
-			.join('/');
+const ItemsListItemSkeleton = ({ compact }) => {
+	const creationDate = window.innerWidth > 600;
 
 	return (
 		<li
@@ -26,10 +18,8 @@ const ItemsListItem = (props) => {
 					borderRadius: '8px',
 				}),
 			}}
-			onClick={(e) => props.onItemClick && props.onItemClick(item, e)}
 		>
 			<ItemsImage
-				src={item.image}
 				style={{
 					...(compact && {
 						objectFit: 'cover',
@@ -46,33 +36,34 @@ const ItemsListItem = (props) => {
 				<>
 					<div
 						style={{
+							marginRight: '16px',
+							width: '100%',
 							overflow: 'auto',
 							whiteSpace: 'nowrap',
 						}}
 					>
 						<div
+							className='skeleton-animation skeleton-text'
 							style={{
 								overflow: 'hidden',
 								textOverflow: 'ellipsis',
+								width: '70%',
 							}}
-						>
-							{item.name || item.description ? '' : item.id}
-						</div>
-						{item.description && (
-							<p
-								style={{
-									overflow: 'hidden',
-									textOverflow: 'ellipsis',
-								}}
-							>
-								{item.description}
-							</p>
-						)}
+						/>
+						<p
+							className='skeleton-animation skeleton-text'
+							style={{
+								marginTop: '4px',
+								overflow: 'hidden',
+								textOverflow: 'ellipsis',
+							}}
+						/>
 					</div>
 					{creationDate && (
-						<div style={{ marginLeft: 'auto', display: 'grid' }}>
-							{creationDate}
-						</div>
+						<div
+							className='skeleton-animation skeleton-text'
+							style={{ marginLeft: 'auto', display: 'grid', width: '130px' }}
+						/>
 					)}
 				</>
 			)}
@@ -80,4 +71,4 @@ const ItemsListItem = (props) => {
 	);
 };
 
-export default ItemsListItem;
+export default ItemsListItemSkeleton;
