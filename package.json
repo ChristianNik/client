@@ -4,7 +4,10 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"serve": "vite preview"
+		"serve": "vite preview",
+		"dockerBuild": "docker build . -t chnikel/item-manager",
+		"dockerStart": "docker run -p 3002:3002 -d chnikel/item-manager",
+		"dockerPush": "docker push chnikel/item-manager:latest"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.36",
@@ -13,6 +16,7 @@
 		"@fortawesome/free-solid-svg-icons": "^5.15.4",
 		"@fortawesome/react-fontawesome": "^0.1.15",
 		"@types/react-router-dom": "^5.1.8",
+		"express": "^4.17.1",
 		"query-string": "^7.0.1",
 		"react": "^17.0.0",
 		"react-dom": "^17.0.0",
