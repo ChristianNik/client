@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
-import { Avatar, Input } from '../../components';
-import EmojiButton from '../../components/emojibutton';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
+import { Input } from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
-import { deleteItem, sync } from '../../utils/server';
+import { deleteItem } from '../../utils/server';
 import queryString from 'query-string';
 import ItemsList from './components/items-list.component';
 import CompactItemsList from './components/items-list-compact.component';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList, faThLarge } from '@fortawesome/free-solid-svg-icons';
 
 const ItemsPage = () => {
 	const { lang } = useLanguage();
@@ -31,6 +32,23 @@ const ItemsPage = () => {
 		);
 	});
 
+	const itemsListProps = {
+		items: filteredItems.filter((v) => !v.flag_mark_deleted),
+		onItemClick: (item) => {
+			history.push(`/items/${item.id}`);
+		},
+		onItemRemoveClick: (item) => {
+			removeItem(item.id);
+		},
+		items: filteredItems.filter((v) => !v.flag_mark_deleted),
+		onItemClick: (item) => {
+			history.push(`/items/${item.id}`);
+		},
+		onItemRemoveClick: (item) => {
+			removeItem(item.id);
+		},
+	};
+
 	return (
 		<div>
 			<div
@@ -40,40 +58,50 @@ const ItemsPage = () => {
 					alignItems: 'center',
 				}}
 			>
-				<h2>Verwaltung</h2>
+				<h2
+					style={{
+						margin: '24px 0',
+					}}
+				>
+					{lang('ui/items/page', 'pageTitle')}
+				</h2>
 				<div
 					style={{
 						display: 'flex',
 						textDecoration: 'none',
+						color: 'hsl(220, 13%, 50%)',
 					}}
 				>
-					<Link
+					<NavLink
 						style={{
 							textDecoration: 'none',
+							color: 'inherit',
+							padding: '8px',
 						}}
+						activeStyle={{
+							color: '#fff',
+						}}
+						isActive={() => !view || view === 'list'}
 						to='/items?view=list'
 					>
-						📄
-					</Link>
-					<Link
+						<FontAwesomeIcon icon={faList} size='lg' />
+					</NavLink>
+					<NavLink
 						style={{
 							textDecoration: 'none',
+							color: 'inherit',
+							padding: '8px',
 						}}
+						exact
+						activeStyle={{
+							color: '#fff',
+						}}
+						isActive={() => view === 'gallery'}
 						to='/items?view=gallery'
 					>
-						🖼️
-					</Link>
+						<FontAwesomeIcon icon={faThLarge} size='lg' />
+					</NavLink>
 				</div>
-				<EmojiButton
-					onClick={() => {
-						sync(items, (data) => {
-							setItems(data);
-						});
-					}}
-					size='md'
-				>
-					🔄
-				</EmojiButton>
 			</div>
 			<Input
 				text='Search'
@@ -81,37 +109,28 @@ const ItemsPage = () => {
 				onChange={(e) => setFilterText(e.target.value)}
 			/>
 
-			<h2>
-				{lang('items/list', 'itemsTitle')} [
+			<h2
+				style={{
+					margin: '24px 0',
+				}}
+			>
+				{lang('ui/items/list', 'itemsTitle')} [
 				{filteredItems.filter((v) => !v.flag_mark_deleted).length}/
 				{items.filter((v) => !v.flag_mark_deleted).length}]
 			</h2>
-			{view === 'gallery' && (
-				<CompactItemsList
-					items={filteredItems.filter((v) => !v.flag_mark_deleted)}
-					onItemClick={(item) => {
-						history.push(`/items/${item.id}`);
-					}}
-					onItemRemoveClick={(item) => {
-						removeItem(item.id);
-					}}
-				/>
+
+			{view === 'gallery' ? (
+				<CompactItemsList {...itemsListProps} />
+			) : view === 'list' ? (
+				<ItemsList {...itemsListProps} />
+			) : (
+				<ItemsList {...itemsListProps} />
 			)}
-			{(view === 'list' || !view) && (
-				<ItemsList
-					items={filteredItems.filter((v) => !v.flag_mark_deleted)}
-					onItemClick={(item) => {
-						history.push(`/items/${item.id}`);
-					}}
-					onItemRemoveClick={(item) => {
-						removeItem(item.id);
-					}}
-				/>
-			)}
+
 			{filteredItems.filter((v) => v.flag_mark_deleted).length > 0 && (
 				<>
 					<h2>
-						{lang('items/list', 'trashTitle')} [
+						{lang('ui/items/list', 'trashTitle')} [
 						{filteredItems.filter((v) => v.flag_mark_deleted).length}/
 						{items.filter((v) => v.flag_mark_deleted).length}]
 					</h2>

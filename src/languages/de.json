@@ -26,6 +26,13 @@
 		"typeTabTitle": "Typ auswählen",
 		"valuationTabTitle": "Bewertung"
 	},
+	"ui/items/page": {
+		"pageTitle": "Verwaltung"
+	},
+	"ui/items/list": {
+		"itemsTitle": "Gegenstände",
+		"trashTitle": "Trashcan"
+	},
 	"items/list": {
 		"itemsTitle": "Gegenstände",
 		"trashTitle": "Mülleimer",
