@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
-const port = process.env.port || 3002;
+const port = process.env.port || 3001;
 const path = require('path');
+
+const WORK_DIR = process.env.PWD;
 
 app.use(express.static('./dist'));
 app.get('/*', (req, res) => {
-	res.sendFile(path.join('./dist', 'index.html'));
+	res.sendFile(path.join(WORK_DIR, 'dist/index.html'));
 });
 
 app.listen(port, () => {

@@ -1,10 +1,15 @@
-FROM node:14-alpine
-ENV NODE_ENV=production
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+FROM node:14
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
 COPY . .
-EXPOSE 3002
-RUN chown -R node /usr/src/app
-USER node
-CMD ["node", "server/main.js"]
+
+ENV port=3001
+
+EXPOSE 3001
+
+CMD [ "node", "server/main.js" ]
