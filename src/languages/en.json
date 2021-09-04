@@ -27,16 +27,16 @@
 		"valuationCaption": "Valuation",
 		"valuationTabTitle": "Valuation"
 	},
-	"items/list": {
+	"ui/items/page": {
+		"pageTitle": "Management"
+	},
+	"ui/items/list": {
 		"itemsTitle": "Items",
-		"removeItemLabel": "remove",
-		"syncLabel": "Sync",
 		"trashTitle": "Trashcan"
 	},
 	"items/view": {
 		"editLabel": "EDIT"
 	},
-
 	"items/edit": {
 		"cancel": "Abort",
 		"confirm": "Save changes",

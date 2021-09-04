@@ -30,6 +30,7 @@ const CompactItemsList = ({ items, ...rest }) => {
 					</div>
 				) : (
 					<div
+						key={item.id}
 						style={{
 							backgroundColor: `hsl(220, 13%, ${
 								Math.random() * (26 - 0) + 26

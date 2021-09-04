@@ -1,8 +1,17 @@
 import React from 'react';
-import { Avatar, EmojiButton } from '../../../components';
+import ItemsImage from './items-image';
 
 const ItemsListItem = (props) => {
 	const { item } = props;
+
+	const creationDate =
+		window.innerWidth > 600 &&
+		new Date(item.created)
+			.toISOString()
+			.split('T')[0]
+			.split('-')
+			.reverse()
+			.join('/');
 
 	return (
 		<li
@@ -10,10 +19,13 @@ const ItemsListItem = (props) => {
 				display: 'flex',
 				alignItems: 'center',
 				overflow: 'hidden',
+				background: 'hsl(220, 13%, 16%)',
+				padding: '14px',
+				borderRadius: '8px',
 			}}
 			onClick={(e) => props.onItemClick && props.onItemClick(item, e)}
 		>
-			<Avatar
+			<ItemsImage
 				src={item.image}
 				style={{
 					marginRight: '16px',
@@ -23,53 +35,33 @@ const ItemsListItem = (props) => {
 			<div
 				style={{
 					overflow: 'auto',
+					whiteSpace: 'nowrap',
 				}}
 			>
-				{!item.name && !item.description ? (
-					<div
+				<div
+					style={{
+						overflow: 'hidden',
+						textOverflow: 'ellipsis',
+					}}
+				>
+					{item.name || item.description ? '' : item.id}
+				</div>
+				{item.description && (
+					<p
 						style={{
 							overflow: 'hidden',
 							textOverflow: 'ellipsis',
 						}}
 					>
-						{item.id}
-					</div>
-				) : (
-					<div
-						style={{
-							whiteSpace: 'nowrap',
-						}}
-					>
-						<h3
-							style={{
-								overflow: 'hidden',
-								textOverflow: 'ellipsis',
-							}}
-						>
-							{item.name}
-						</h3>
-						<p
-							style={{
-								overflow: 'hidden',
-								textOverflow: 'ellipsis',
-							}}
-						>
-							{item.description}
-						</p>
-					</div>
+						{item.description}
+					</p>
 				)}
 			</div>
-			<div style={{ marginLeft: 'auto', display: 'grid' }}>
-				<EmojiButton
-					size={'sm'}
-					onClick={(e) => {
-						e.stopPropagation();
-						props.onItemRemoveClick && props.onItemRemoveClick(item, e);
-					}}
-				>
-					✖️
-				</EmojiButton>
-			</div>
+			{creationDate && (
+				<div style={{ marginLeft: 'auto', display: 'grid' }}>
+					{creationDate}
+				</div>
+			)}
 		</li>
 	);
 };
