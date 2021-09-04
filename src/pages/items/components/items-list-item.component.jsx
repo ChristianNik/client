@@ -42,28 +42,32 @@ const ItemsListItem = (props) => {
 					}),
 				}}
 			>
-				<div
-					style={{
-						padding: '8px',
-						height: '100%',
-						width: '100%',
-						display: 'flex',
-						flexWrap: 'wrap',
-						justifyContent: 'center',
-						alignItems: 'center',
-						backgroundColor: `hsl(220, 13%, ${Math.random() * (26 - 0) + 26}%)`,
-					}}
-				>
+				{compact && (
 					<div
 						style={{
-							overflow: 'hidden',
-							textOverflow: 'ellipsis',
-							textAlign: 'center',
+							padding: '8px',
+							height: '100%',
+							width: '100%',
+							display: 'flex',
+							flexWrap: 'wrap',
+							justifyContent: 'center',
+							alignItems: 'center',
+							backgroundColor: `hsl(220, 13%, ${
+								Math.random() * (26 - 0) + 26
+							}%)`,
 						}}
 					>
-						{item.name || item.description ? '' : item.id}
+						<div
+							style={{
+								overflow: 'hidden',
+								textOverflow: 'ellipsis',
+								textAlign: 'center',
+							}}
+						>
+							{item.name || item.description ? '' : item.id}
+						</div>
 					</div>
-				</div>
+				)}
 			</ItemsImage>
 			{!compact && (
 				<>
