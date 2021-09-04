@@ -5,6 +5,9 @@ import de from '../languages/de.json';
 export const dictionaryList = { en, de };
 
 export const languageOptions = {
+	...(process.env.NODE_ENV === 'development' && {
+		'': 'Dev',
+	}),
 	en: 'English',
 	de: 'Deutsch',
 };
@@ -45,8 +48,11 @@ export const useLanguage = () => {
 
 	return {
 		lang: (group, property, replace) => {
-			const category = dictionary[group];
 			const notFoundText = `no:::${group}/${property}`;
+			if (!dictionary) {
+				return notFoundText;
+			}
+			const category = dictionary[group];
 
 			let text = category
 				? category[property] ||
