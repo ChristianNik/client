@@ -19,8 +19,10 @@ function App() {
 		<MobileLayout bottom={<Sidebar />}>
 			<div
 				style={{
-					padding: '16px',
+					margin: '0 auto',
 					marginBottom: '56px',
+					padding: '16px',
+					maxWidth: '600px',
 					overflow: 'auto',
 				}}
 			>

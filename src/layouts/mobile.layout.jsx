@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MobileLayout = ({ children, bottom, top, ...rest }) => {
+const MobileLayout = ({ children, bottom, top, style, ...rest }) => {
 	return (
 		<div
 			className='App'
@@ -9,6 +9,7 @@ const MobileLayout = ({ children, bottom, top, ...rest }) => {
 				gridTemplateRows: `${top ? 'min-content' : ''} 1fr min-content`,
 				height: '100%',
 				overflow: 'auto',
+				...style,
 			}}
 			{...rest}
 		>
