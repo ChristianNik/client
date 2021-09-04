@@ -1,4 +1,5 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const ItemsImage = (props) => {
 	const SIZE = {
@@ -23,7 +24,7 @@ const ItemsImage = (props) => {
 	};
 
 	return props.src ? (
-		<img className='Avatar' {...props} src={props.src} style={elementStyle} />
+		<LazyLoadImage {...props} src={props.src} style={elementStyle} />
 	) : (
 		<div className='Avatar' {...props} style={elementStyle} />
 	);

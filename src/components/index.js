@@ -1,4 +1,5 @@
 // Don't edit manually
+import ItemsListItemSkeleton from "./itemslistitemskeleton";
 import IconButton from './iconbutton';
 import Dialog from './dialog';
 import EmojiButton from './emojibutton';
@@ -9,6 +10,7 @@ import Sidebar from './sidebar';
 import Input from './input';
 
 export {
+    ItemsListItemSkeleton,
 	Input,
 	Avatar,
 	Sidebar,
