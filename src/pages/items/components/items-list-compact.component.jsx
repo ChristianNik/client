@@ -1,4 +1,22 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
+const ImagePlaceHolder = (props) => (
+	<div
+		style={{
+			backgroundColor: `hsl(220, 13%, ${Math.random() * (26 - 0) + 26}%)`,
+			width: 'minmax(100px, 150px)',
+			height: '100px',
+			display: 'flex',
+			justifyContent: 'center',
+			alignItems: 'center',
+			overflow: 'hidden',
+			textOverflow: 'ellipsis',
+			padding: '8px',
+		}}
+		{...props}
+	/>
+);
 
 const CompactItemsList = ({ items, ...rest }) => {
 	return (
@@ -18,7 +36,8 @@ const CompactItemsList = ({ items, ...rest }) => {
 							height: '100px',
 						}}
 					>
-						<img
+						<LazyLoadImage
+							placeholder={<ImagePlaceHolder />}
 							style={{
 								objectFit: 'cover',
 								width: '100%',
@@ -29,21 +48,8 @@ const CompactItemsList = ({ items, ...rest }) => {
 						/>
 					</div>
 				) : (
-					<div
+					<ImagePlaceHolder
 						key={item.id}
-						style={{
-							backgroundColor: `hsl(220, 13%, ${
-								Math.random() * (26 - 0) + 26
-							}%)`,
-							width: 'minmax(100px, 150px)',
-							height: '100px',
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							overflow: 'hidden',
-							textOverflow: 'ellipsis',
-							padding: '8px',
-						}}
 						onClick={(e) => rest.onItemClick && rest.onItemClick(item, e)}
 						onContextMenu={(e) => {
 							e.preventDefault();
@@ -58,7 +64,7 @@ const CompactItemsList = ({ items, ...rest }) => {
 						>
 							{item.name || item.description || item.id}
 						</div>
-					</div>
+					</ImagePlaceHolder>
 				)
 			)}
 		</div>
