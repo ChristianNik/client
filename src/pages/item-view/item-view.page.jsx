@@ -1,7 +1,8 @@
+import { faChevronLeft, faEdit } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Avatar } from '../../components';
-import EmojiButton from '../../components/emojibutton';
+import { Avatar, Dialog, IconButton } from '../../components';
+import MobileLayout from '../../layouts/mobile.layout';
 import { fetchItem } from '../../utils/server';
 
 const ItemViewPage = () => {
@@ -22,62 +23,94 @@ const ItemViewPage = () => {
 	if (!item) return null;
 
 	return (
-		<div>
-			<div
-				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
-				}}
-			>
-				<EmojiButton
-					onClick={() => {
-						history.push('/items');
+		<Dialog>
+			<MobileLayout>
+				<div
+					style={{
+						margin: '0 auto',
+						maxWidth: '600px',
+						overflow: 'auto',
+						height: '100%',
 					}}
 				>
-					⬅️
-				</EmojiButton>
-				<h2>View</h2>
-				<EmojiButton
-					onClick={() => {
-						history.push(`/items/${id}/edit`);
-					}}
-				>
-					📝
-				</EmojiButton>
-			</div>
-
-			<div
-				style={{
-					textAlign: 'center',
-				}}
-			>
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<Avatar
-						src={item.image}
-						size='xl'
+					<div
 						style={{
-							marginRight: '16px',
+							display: 'flex',
+							justifyContent: 'space-between',
+							alignItems: 'center',
+							maxWidth: '600px',
+							margin: '0 auto',
 						}}
-					/>
-				</div>
-				<h1>{item.name || <small>{item.id}</small>}</h1>
-				<div>
-					<small>
-						Created: <strong>{new Date(item.created).toLocaleString()}</strong>
-					</small>
-				</div>
-				<small>
-					<strong>{item.type}</strong>
-				</small>
-			</div>
-			<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
+					>
+						<IconButton
+							icon={faChevronLeft}
+							onClick={() => {
+								history.push('/items');
+							}}
+						/>
 
-			<div>
-				{item.tags && item.tags.length > 0 ? `#${item.tags.join(', #')}` : ''}
-			</div>
-			<div>{item.description}</div>
-		</div>
+						<h2>View</h2>
+						<IconButton
+							icon={faEdit}
+							noBorder
+							size='lg'
+							onClick={() => {
+								history.push(`/items/${id}/edit`);
+							}}
+						/>
+					</div>
+
+					<div
+						style={{
+							textAlign: 'center',
+						}}
+					>
+						<div style={{ display: 'flex', justifyContent: 'center' }}>
+							<Avatar
+								src={item.image}
+								size='xl'
+								style={{
+									marginRight: '16px',
+								}}
+							/>
+						</div>
+						<h1
+							style={{
+								overflow: 'hidden',
+								textOverflow: 'ellipsis',
+							}}
+						>
+							{item.name || <small>{item.id}</small>}
+						</h1>
+						<div>
+							<small>
+								Created:{' '}
+								<strong>{new Date(item.created).toLocaleString()}</strong>
+							</small>
+						</div>
+						<small>
+							<strong>{item.type}</strong>
+						</small>
+					</div>
+					<div
+						style={{
+							margin: '16px',
+						}}
+					>
+						<hr
+							style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }}
+						/>
+
+						<div>
+							{item.tags && item.tags.length > 0
+								? `#${item.tags.join(', #')}`
+								: ''}
+						</div>
+						<div>{item.description}</div>
+					</div>
+				</div>
+			</MobileLayout>
+		</Dialog>
 	);
 };
 
