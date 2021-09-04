@@ -50,7 +50,7 @@ const ItemsListItemSkeleton = (props) => {
 			{creationDate && (
 				<div
 					className='skeleton-animation skeleton-text'
-					style={{ marginLeft: 'auto', display: 'grid', width: '90px' }}
+					style={{ marginLeft: 'auto', display: 'grid', width: '130px' }}
 				/>
 			)}
 		</li>
