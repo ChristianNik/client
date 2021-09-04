@@ -40,13 +40,6 @@ const ItemsPage = () => {
 		onItemRemoveClick: (item) => {
 			removeItem(item.id);
 		},
-		items: filteredItems.filter((v) => !v.flag_mark_deleted),
-		onItemClick: (item) => {
-			history.push(`/items/${item.id}`);
-		},
-		onItemRemoveClick: (item) => {
-			removeItem(item.id);
-		},
 	};
 
 	return (
