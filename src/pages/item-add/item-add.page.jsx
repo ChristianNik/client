@@ -3,7 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Route, useHistory } from 'react-router-dom';
-import { Avatar, EmojiButton, Hashtags, Input, Rating } from '../../components';
+import {
+	Avatar,
+	Dialog,
+	EmojiButton,
+	Hashtags,
+	Input,
+	Rating,
+} from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
@@ -92,17 +99,8 @@ const ItemAdd = () => {
 		history.goBack();
 	};
 
-	return createPortal(
-		<div
-			style={{
-				position: 'absolute',
-				width: '100%',
-				height: '100%',
-				overflow: 'auto',
-				zIndex: 200,
-				backgroundColor: 'hsl(220, 13%, 26%)',
-			}}
-		>
+	return (
+		<Dialog>
 			<MobileLayout
 				top={
 					<div
@@ -271,8 +269,7 @@ const ItemAdd = () => {
 					</form>
 				</div>
 			</MobileLayout>
-		</div>,
-		document.getElementById('modal-root')
+		</Dialog>
 	);
 };
 
