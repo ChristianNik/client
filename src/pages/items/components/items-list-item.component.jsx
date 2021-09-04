@@ -41,7 +41,30 @@ const ItemsListItem = (props) => {
 						marginRight: '16px',
 					}),
 				}}
-			/>
+			>
+				<div
+					style={{
+						padding: '8px',
+						height: '100%',
+						width: '100%',
+						display: 'flex',
+						flexWrap: 'wrap',
+						justifyContent: 'center',
+						alignItems: 'center',
+						backgroundColor: `hsl(220, 13%, ${Math.random() * (26 - 0) + 26}%)`,
+					}}
+				>
+					<div
+						style={{
+							overflow: 'hidden',
+							textOverflow: 'ellipsis',
+							textAlign: 'center',
+						}}
+					>
+						{item.name || item.description ? '' : item.id}
+					</div>
+				</div>
+			</ItemsImage>
 			{!compact && (
 				<>
 					<div
