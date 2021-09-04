@@ -8,11 +8,11 @@ import useTotalHeight from './hooks/use-total-height';
 import { GridLoader } from 'react-spinners';
 
 const DashboardPage = React.lazy(() => import('./pages/dashboard'));
-const ItemAddPage = React.lazy(() => import('./pages/item-add'));
-const ItemEditPage = React.lazy(() => import('./pages/item-edit'));
-const ItemViewPage = React.lazy(() => import('./pages/item-view'));
 const ItemsPage = React.lazy(() => import('./pages/items/items.page'));
 const SettingsPage = React.lazy(() => import('./pages/settings'));
+const ItemAddDialog = React.lazy(() => import('./pages/item-add'));
+const ItemEditDialog = React.lazy(() => import('./pages/item-edit'));
+const ItemViewDialog = React.lazy(() => import('./pages/item-view'));
 
 function App() {
 	useTotalHeight();
@@ -42,12 +42,13 @@ function App() {
 						</div>
 					}
 				>
+					<Route path='/items/add' component={ItemAddDialog} />
+					<Route path='/items/:id' component={ItemViewDialog} />
+					<Route exact path='/items/:id/edit' component={ItemEditDialog} />
+
 					<Switch>
 						<Route exact path='/' component={DashboardPage} />
 						<Route exact path='/items' component={ItemsPage} />
-						<Route exact path='/items/:id/edit' component={ItemEditPage} />
-						<Route path='/items/add' component={ItemAddPage} />
-						<Route path='/items/:id' component={ItemViewPage} />
 						<Route exact path='/settings' component={SettingsPage} />
 					</Switch>
 				</Suspense>
