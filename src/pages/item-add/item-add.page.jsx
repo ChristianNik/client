@@ -1,13 +1,11 @@
 import { faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useMemo, useState } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useEffect, useMemo } from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import {
 	Avatar,
 	Dialog,
-	EmojiButton,
 	Hashtags,
+	IconButton,
 	Input,
 	Rating,
 } from '../../components';
@@ -15,26 +13,6 @@ import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
 import MobileLayout from '../../layouts/mobile.layout';
-
-function IconButton({ onClick, icon }) {
-	return (
-		<div
-			style={{
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				width: '32px',
-				height: '32px',
-				border: '2px solid gray',
-				borderRadius: '50%',
-				margin: '16px',
-			}}
-			onClick={onClick}
-		>
-			<FontAwesomeIcon icon={icon} color='gray' size='sm' />
-		</div>
-	);
-}
 
 function FullWidthButton({ children, onClick }) {
 	return (
