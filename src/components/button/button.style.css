@@ -1,0 +1,24 @@
+.Button {
+	--btn-bg: #fff;
+	--btn-bg-disabled: #ccc;
+	--btn-border-color: transparent;
+	--btn-fg: #000;
+	--btn-fg-disabled: #eee;
+
+	width: 100%;
+	background-color: var(--btn-bg);
+	padding: 8px 32px;
+	font-size: 14px;
+	border: none;
+	border: 2px solid var(--btn-border-color);
+	border-radius: 4px;
+	color: var(--btn-fg);
+	font-weight: bold;
+	text-transform: uppercase;
+	outline: none;
+}
+
+.Button:disabled {
+	background-color: var(--btn-bg-disabled);
+	color: var(--btn-fg-disabled);
+}
