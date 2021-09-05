@@ -56,15 +56,15 @@
 	--gray-400: hsl(0, 0%, 50%);
 	--gray-300: hsl(0, 0%, 64%);
 	--gray-200: hsl(0, 0%, 73%);
-	--gray-100: hsl(0, 0%, 82%);
+	--gray-100: hsl(0, 0%, 85%);
 	--gray-50: hsl(0, 0%, 93%);
 
-	--primary: var(--blue-400);
-	--background: var(--gray-50);
-	--background-variant: var(--gray-50);
+	--primary: hsl(209, 100%, 54%);
+	--background: hsl(0, 0%, 93%);
+	--background-variant: hsl(209, 10%, 85%);
 	--background-app: hsl(202, 8%, 85%);
-	--surface: var(--white);
-	--inactive: var(--gray-200);
+	--surface: hsl(0, 0%, 100%);
+	--inactive: hsl(0, 0%, 73%);
 
 	/* font */
 	--on-primary: #000;
