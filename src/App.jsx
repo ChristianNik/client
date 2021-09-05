@@ -6,6 +6,7 @@ import { Sidebar } from './components';
 import MobileLayout from './layouts/mobile.layout';
 import useTotalHeight from './hooks/use-total-height';
 import { GridLoader } from 'react-spinners';
+import { useThemeAutoSwitcher } from './hooks/use-theme';
 
 const DashboardPage = React.lazy(() => import('./pages/dashboard'));
 const ItemsPage = React.lazy(() => import('./pages/items/items.page'));
@@ -16,6 +17,7 @@ const ItemViewDialog = React.lazy(() => import('./pages/item-view'));
 
 function App() {
 	useTotalHeight();
+	useThemeAutoSwitcher();
 
 	return (
 		<MobileLayout

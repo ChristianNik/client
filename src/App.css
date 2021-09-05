@@ -76,8 +76,39 @@
 
 	--on-inactive: #000;
 	--on-disabled: hsl(0, 0%, 85%);
+}
 
-	--border-color: hsl(308, 100%, 50%);
+@media (prefers-color-scheme: light) {
+	:root {
+		color-scheme: light;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		color-scheme: dark;
+	}
+}
+
+[color-scheme='dark'] {
+	color-scheme: dark;
+	--primary: hsl(220, 30%, 50%);
+	--background: hsl(220, 13%, 18%);
+	--background-variant: hsl(209, 10%, 15%);
+	--background-app: hsl(202, 8%, 25%);
+	--surface: hsl(218, 14%, 16%);
+	--inactive: hsl(0, 0%, 64%);
+	--disabled: hsl(0, 0%, 85%);
+
+	/* font */
+	--on-primary: #fff;
+	--on-background: #fff;
+	--on-background-variant: #fff;
+	--on-background-app: #fff;
+	--on-surface: #fff;
+
+	--on-inactive: #fff;
+	--on-disabled: hsl(0, 0%, 85%);
 }
 
 #root {
