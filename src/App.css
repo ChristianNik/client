@@ -75,6 +75,8 @@
 
 	--on-inactive: #000;
 	--on-disabled: hsl(0, 0%, 85%);
+
+	--app-max-mobile-width: 450px;
 }
 
 @media (prefers-color-scheme: light) {

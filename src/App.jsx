@@ -37,7 +37,7 @@ function App() {
 			>
 				<div
 					style={{
-						maxWidth: '600px',
+						maxWidth: 'var(--app-max-mobile-width)',
 						margin: '0 auto',
 					}}
 				>
