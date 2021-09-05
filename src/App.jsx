@@ -39,6 +39,7 @@ function App() {
 					style={{
 						maxWidth: 'var(--app-max-mobile-width, 600px)',
 						margin: '0 auto',
+						height: '100%',
 					}}
 				>
 					<Suspense
