@@ -26,7 +26,7 @@ Dialog.Header = ({ style, ...rest }) => {
 			style={{
 				width: '100%',
 				margin: '0 auto',
-				maxWidth: '600px',
+				maxWidth: 'var(--app-max-mobile-width, 600px)',
 				overflow: 'auto',
 				height: '100%',
 				background: 'var(--background)',
@@ -43,7 +43,7 @@ Dialog.Content = ({ style, ...rest }) => {
 		<div
 			style={{
 				margin: '0 auto',
-				maxWidth: '600px',
+				maxWidth: 'var(--app-max-mobile-width, 600px)',
 				overflow: 'auto',
 				height: '100%',
 				background: 'var(--background)',
