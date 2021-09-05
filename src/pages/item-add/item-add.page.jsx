@@ -37,7 +37,7 @@ const ItemAdd = () => {
 		e.preventDefault();
 
 		await addItem(formData);
-		history.pushvar(--app-max-mobile-width)ems');
+		history.push('/items');
 	};
 
 	const itemTypes = useMemo(() => {

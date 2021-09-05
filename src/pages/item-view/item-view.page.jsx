@@ -28,7 +28,7 @@ const ItemViewPage = () => {
 				style={{
 					background: 'var(--background)',
 				}}
-				top={var(--app-max-mobile-width)
+				top={
 					<Dialog.Header
 						style={{
 							display: 'grid',
@@ -38,7 +38,7 @@ const ItemViewPage = () => {
 							background: 'var(--surface)',
 							color: 'var(--on-surface)',
 						}}
-					>var(--app-max-mobile-width)
+					>
 						<IconButton
 							icon={faChevronLeft}
 							style={{

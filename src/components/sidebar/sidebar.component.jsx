@@ -54,7 +54,7 @@ const Sidebar = (props) => {
 					margin: '0 auto',
 
 					width: '100%',
-					maxWidth: 'var(--app-max-mobile-width)',
+					maxWidth: '600px',
 					minHeight: '56px',
 				}}
 			>

@@ -39,7 +39,7 @@ const ItemEditPage = () => {
 				style={{
 					background: 'var(--background)',
 				}}
-				top={var(--app-max-mobile-width)
+				top={
 					<Dialog.Header
 						style={{
 							display: 'grid',
