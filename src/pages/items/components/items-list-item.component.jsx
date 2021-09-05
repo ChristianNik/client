@@ -5,13 +5,14 @@ const ItemsListItem = (props) => {
 	const { item, compact } = props;
 
 	const creationDate =
-		window.innerWidth > 600 &&
-		new Date(item.created)
-			.toISOString()
-			.split('T')[0]
-			.split('-')
-			.reverse()
-			.join('/');
+		window.innerWidth > 600 && item.created
+			? new Date(item.created)
+					.toISOString()
+					.split('T')[0]
+					.split('-')
+					.reverse()
+					.join('/')
+			: '';
 
 	return (
 		<li
