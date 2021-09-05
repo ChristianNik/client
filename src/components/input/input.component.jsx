@@ -11,13 +11,14 @@ const Input = (props) => {
 					display: 'flex',
 					flexDirection: 'column',
 					position: 'relative',
+					color: 'var(--on-surface)',
 					...props.labelStyle,
 				}}
 			>
 				<span
 					style={{
 						position: 'absolute',
-						// color: '#000',
+						color: 'inherit',
 						zIndex: 10,
 						top: 0,
 						bottom: 0,
@@ -43,9 +44,9 @@ const Input = (props) => {
 						outline: 'none',
 						padding: '12px 16px',
 						borderRadius: '8px',
-						border: '2px solid var(--border-color)',
+						border: '2px solid transparent',
 						background: 'var(--surface)',
-						color: '#fff',
+						color: 'inherit',
 						paddingLeft: '130px',
 					}}
 				/>
