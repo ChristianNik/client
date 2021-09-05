@@ -12,7 +12,6 @@ const Dialog = ({ style, ...rest }) => {
 				height: '100%',
 				overflow: 'auto',
 				zIndex: 200,
-				backgroundColor: 'hsl(220, 13%, 26%)',
 				...style,
 			}}
 			{...rest}

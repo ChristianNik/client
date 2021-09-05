@@ -16,7 +16,7 @@ const ItemsImage = ({ children, ...rest }) => {
 
 	const elementStyle = {
 		...SIZE[rest.size || 'lg'],
-		background: 'hsl(220, 13%, 26%)',
+		background: 'var(--background-variant)',
 		borderRadius: '16px',
 		objectFit: 'cover',
 		...rest.style,

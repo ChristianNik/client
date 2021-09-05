@@ -41,7 +41,7 @@ const Sidebar = (props) => {
 		<nav
 			className='Sidebar'
 			style={{
-				backgroundColor: 'hsl(220, 13%, 50%)',
+				backgroundColor: 'var(--primary)',
 				zIndex: 100,
 			}}
 		>

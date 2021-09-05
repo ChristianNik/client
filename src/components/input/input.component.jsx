@@ -43,8 +43,8 @@ const Input = (props) => {
 						outline: 'none',
 						padding: '12px 16px',
 						borderRadius: '8px',
-						border: '2px solid hsl(220, 13%, 30%)',
-						background: 'hsl(220, 13%, 16%)',
+						border: '2px solid var(--border-color)',
+						background: 'var(--surface)',
 						color: '#fff',
 						paddingLeft: '130px',
 					}}

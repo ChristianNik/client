@@ -12,7 +12,7 @@ const ItemsListItemSkeleton = ({ compact }) => {
 				display: 'flex',
 				alignItems: 'center',
 				overflow: 'hidden',
-				background: 'hsl(220, 13%, 16%)',
+				background: 'var(--surface)',
 				...(!compact && {
 					padding: '14px',
 					borderRadius: '8px',

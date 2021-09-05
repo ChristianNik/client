@@ -40,6 +40,7 @@ const Wrapper = (props) => (
 			maxWidth: '600px',
 			overflow: 'auto',
 			height: '100%',
+			background: 'var(--background)',
 		}}
 		{...props}
 	/>
@@ -93,6 +94,9 @@ const ItemAdd = () => {
 	return (
 		<Dialog>
 			<MobileLayout
+				style={{
+					background: 'var(--background-app)',
+				}}
 				top={
 					<Wrapper>
 						<div
@@ -199,7 +203,7 @@ const ItemAdd = () => {
 														textDecoration: 'none',
 														textAlign: 'center',
 														textTransform: 'uppercase',
-														color: 'hsl(220, 13%, 50%)',
+														color: 'var(--surface-1-color)',
 														...(formData.type === type && {
 															color: '#fff',
 														}),
@@ -235,7 +239,7 @@ const ItemAdd = () => {
 									<hr
 										style={{
 											margin: '16px 0',
-											borderColor: 'hsl(220, 13%, 50%)',
+											borderColor: 'var(--surface-1-color)',
 										}}
 									/>
 									<h3>{lang('ui/items/add', 'tagsCaption')}</h3>

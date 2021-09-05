@@ -18,7 +18,12 @@ function App() {
 	useTotalHeight();
 
 	return (
-		<MobileLayout bottom={<Sidebar />}>
+		<MobileLayout
+			style={{
+				background: 'var(--background-app)',
+			}}
+			bottom={<Sidebar />}
+		>
 			<div
 				style={{
 					margin: '0 auto',
@@ -26,6 +31,7 @@ function App() {
 					maxWidth: '600px',
 					overflow: 'auto',
 					height: '100%',
+					background: 'var(--background)',
 				}}
 			>
 				<Suspense
@@ -38,7 +44,7 @@ function App() {
 								alignItems: 'center',
 							}}
 						>
-							<GridLoader color='hsl(220, 13%, 50%)' />
+							<GridLoader color='var(--primary)' />
 						</div>
 					}
 				>
