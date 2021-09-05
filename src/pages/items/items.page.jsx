@@ -42,7 +42,11 @@ const ItemsPage = () => {
 	};
 
 	return (
-		<div>
+		<div
+			style={{
+				color: 'var(--on-background)',
+			}}
+		>
 			<div
 				style={{
 					display: 'flex',
