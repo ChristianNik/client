@@ -62,7 +62,8 @@ const Dashboard = () => {
 									key={key}
 									style={{
 										margin: '2px',
-										backgroundColor: 'var(--primary)',
+										backgroundColor: 'var(--background)',
+										color: 'var(--on-background)',
 										padding: '4px',
 										borderRadius: '4px',
 									}}
@@ -96,7 +97,8 @@ const Dashboard = () => {
 									key={key}
 									style={{
 										margin: '2px',
-										backgroundColor: 'var(--primary)',
+										backgroundColor: 'var(--background)',
+										color: 'var(--on-background)',
 										padding: '4px',
 										borderRadius: '4px',
 									}}
