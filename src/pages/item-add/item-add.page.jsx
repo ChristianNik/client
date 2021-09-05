@@ -203,7 +203,7 @@ const ItemAdd = () => {
 														textDecoration: 'none',
 														textAlign: 'center',
 														textTransform: 'uppercase',
-														color: 'var(--surface-1-color)',
+														color: 'red',
 														...(formData.type === type && {
 															color: '#fff',
 														}),
@@ -239,7 +239,7 @@ const ItemAdd = () => {
 									<hr
 										style={{
 											margin: '16px 0',
-											borderColor: 'var(--surface-1-color)',
+											borderColor: 'red',
 										}}
 									/>
 									<h3>{lang('ui/items/add', 'tagsCaption')}</h3>

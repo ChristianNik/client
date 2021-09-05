@@ -14,7 +14,10 @@ const IconButton = ({ onClick, icon, noBorder, size, style, color }) => {
 				margin: '16px',
 				...(!noBorder && {
 					borderRadius: '50%',
-					border: '2px solid gray',
+					border: '2px solid var(--inactive)',
+				}),
+				...(onClick && {
+					cursor: 'pointer',
 				}),
 				...style,
 			}}
@@ -22,7 +25,7 @@ const IconButton = ({ onClick, icon, noBorder, size, style, color }) => {
 		>
 			<FontAwesomeIcon
 				icon={icon}
-				color={color || 'gray'}
+				color={color || 'var(--inactive)'}
 				size={size || 'sm'}
 			/>
 		</div>

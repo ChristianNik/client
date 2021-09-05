@@ -47,6 +47,7 @@ const ItemEditPage = () => {
 						overflow: 'auto',
 						height: '100%',
 						background: 'var(--background)',
+						color: 'var(--on-background)',
 					}}
 				>
 					<div
@@ -125,7 +126,7 @@ const ItemEditPage = () => {
 						<hr
 							style={{
 								margin: '16px 0',
-								borderColor: 'var(--primary)',
+								borderColor: 'var(--inactive)',
 							}}
 						/>
 					</div>
