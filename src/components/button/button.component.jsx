@@ -7,6 +7,9 @@ const Button = ({ onClick, children, style, ...rest }) => {
 			className='Button'
 			type='button'
 			style={{
+				...(onClick && {
+					cursor: 'pointer',
+				}),
 				...style,
 			}}
 			onClick={onClick}
