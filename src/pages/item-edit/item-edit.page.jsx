@@ -39,23 +39,15 @@ const ItemEditPage = () => {
 				style={{
 					background: 'var(--background-app)',
 				}}
-			>
-				<div
-					style={{
-						margin: '0 auto',
-						maxWidth: '600px',
-						overflow: 'auto',
-						height: '100%',
-						background: 'var(--background)',
-						color: 'var(--on-background)',
-					}}
-				>
-					<div
+				top={
+					<Dialog.Header
 						style={{
 							display: 'grid',
 							gridTemplateColumns: 'repeat(3, 1fr)',
 							justifyItems: 'center',
 							alignItems: 'center',
+							background: 'var(--surface)',
+							color: 'var(--on-surface)',
 						}}
 					>
 						<IconButton
@@ -65,8 +57,14 @@ const ItemEditPage = () => {
 								justifySelf: 'start',
 							}}
 						/>
-
-						<h2>Edit</h2>
+						<h2
+							style={{
+								textAlign: 'center',
+								margin: '24px 0',
+							}}
+						>
+							Edit
+						</h2>
 						<div
 							style={{
 								display: 'flex',
@@ -90,11 +88,14 @@ const ItemEditPage = () => {
 								}}
 							/>
 						</div>
-					</div>
-
+					</Dialog.Header>
+				}
+			>
+				<Dialog.Content>
 					<div
 						style={{
 							textAlign: 'center',
+							marginTop: '26px',
 						}}
 					>
 						<div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -130,7 +131,7 @@ const ItemEditPage = () => {
 							}}
 						/>
 					</div>
-				</div>
+				</Dialog.Content>
 			</MobileLayout>
 		</Dialog>
 	);

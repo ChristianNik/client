@@ -28,47 +28,54 @@ const ItemViewPage = () => {
 				style={{
 					background: 'var(--background-app)',
 				}}
-			>
-				<div
-					style={{
-						margin: '0 auto',
-						maxWidth: '600px',
-						overflow: 'auto',
-						height: '100%',
-						background: 'var(--background)',
-						color: 'var(--on-background)',
-					}}
-				>
-					<div
+				top={
+					<Dialog.Header
 						style={{
-							display: 'flex',
-							justifyContent: 'space-between',
+							display: 'grid',
+							gridTemplateColumns: 'repeat(3, 1fr)',
+							justifyItems: 'center',
 							alignItems: 'center',
-							maxWidth: '600px',
-							margin: '0 auto',
+							background: 'var(--surface)',
+							color: 'var(--on-surface)',
 						}}
 					>
 						<IconButton
 							icon={faChevronLeft}
+							style={{
+								justifySelf: 'start',
+							}}
 							onClick={() => {
 								history.push('/items');
 							}}
 						/>
 
-						<h2>View</h2>
+						<h2
+							style={{
+								textAlign: 'center',
+								margin: '24px 0',
+							}}
+						>
+							View
+						</h2>
 						<IconButton
 							icon={faEdit}
+							style={{
+								justifySelf: 'end',
+							}}
 							noBorder
 							size='lg'
 							onClick={() => {
 								history.push(`/items/${id}/edit`);
 							}}
 						/>
-					</div>
-
+					</Dialog.Header>
+				}
+			>
+				<Dialog.Content>
 					<div
 						style={{
 							textAlign: 'center',
+							marginTop: '26px',
 						}}
 					>
 						<div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -117,7 +124,7 @@ const ItemViewPage = () => {
 						</div>
 						<div>{item.description}</div>
 					</div>
-				</div>
+				</Dialog.Content>
 			</MobileLayout>
 		</Dialog>
 	);
