@@ -26,7 +26,7 @@ const ItemViewPage = () => {
 		<Dialog>
 			<MobileLayout
 				style={{
-					background: 'var(--background-app)',
+					background: 'var(--background)',
 				}}
 				top={
 					<Dialog.Header

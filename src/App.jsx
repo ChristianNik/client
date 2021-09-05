@@ -22,7 +22,7 @@ function App() {
 	return (
 		<MobileLayout
 			style={{
-				background: 'var(--background-app)',
+				background: 'var(--background)',
 			}}
 			bottom={<Sidebar />}
 		>

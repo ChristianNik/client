@@ -62,7 +62,6 @@
 	--primary: hsl(209, 100%, 54%);
 	--background: hsl(0, 0%, 93%);
 	--background-variant: hsl(209, 10%, 85%);
-	--background-app: hsl(202, 8%, 85%);
 	--surface: hsl(0, 0%, 100%);
 	--inactive: hsl(0, 0%, 64%);
 	--disabled: hsl(0, 0%, 85%);
@@ -95,7 +94,6 @@
 	--primary: hsl(220, 30%, 50%);
 	--background: hsl(220, 13%, 18%);
 	--background-variant: hsl(209, 10%, 15%);
-	--background-app: hsl(202, 8%, 25%);
 	--surface: hsl(218, 14%, 16%);
 	--inactive: hsl(0, 0%, 64%);
 	--disabled: hsl(0, 0%, 85%);
