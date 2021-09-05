@@ -52,7 +52,7 @@ function App() {
 									alignItems: 'center',
 								}}
 							>
-								<GridLoader color='hsl(220, 13%, 50%)' />
+								<GridLoader color='var(--inactive)' />
 							</div>
 						}
 					>
