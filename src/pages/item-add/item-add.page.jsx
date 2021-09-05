@@ -87,6 +87,8 @@ const ItemAdd = () => {
 							style={{
 								display: 'flex',
 								alignItems: 'center',
+								background: 'var(--surface)',
+								color: 'var(--on-surface)',
 							}}
 						>
 							<Route exact path='/items/add'>
@@ -145,12 +147,24 @@ const ItemAdd = () => {
 								</Button>
 							</Route>
 							<Route exact path='/items/add/details'>
-								<Button onClick={() => history.push(`/items/add/valuation`)}>
+								<Button
+									style={{
+										'--btn-bg': 'var(--primary)',
+										'--btn-fg': 'var(--on-primary)',
+									}}
+									onClick={() => history.push(`/items/add/valuation`)}
+								>
 									{lang('ui/items/add', 'nextLabel')}
 								</Button>
 							</Route>
 							<Route exact path='/items/add/valuation'>
-								<Button onClick={handleAddItem}>
+								<Button
+									style={{
+										'--btn-bg': 'var(--primary)',
+										'--btn-fg': 'var(--on-primary)',
+									}}
+									onClick={handleAddItem}
+								>
 									{lang('ui/items/add', 'add')}
 								</Button>
 							</Route>
@@ -165,7 +179,13 @@ const ItemAdd = () => {
 							overflow: 'auto',
 						}}
 					>
-						<form onSubmit={handleAddItem}>
+						<form
+							onSubmit={handleAddItem}
+							style={{
+								display: 'grid',
+								gap: '8px',
+							}}
+						>
 							<Route exact path='/items/add'>
 								<div
 									style={{
@@ -178,7 +198,7 @@ const ItemAdd = () => {
 											display: 'grid',
 											gap: '8px',
 											overflow: 'hidden',
-											color: 'var(--inactive)',
+											color: 'inherit',
 										}}
 									>
 										{itemTypes.map((type) => {
@@ -186,7 +206,8 @@ const ItemAdd = () => {
 												<li key={type}>
 													<Button
 														style={{
-															'--btn-border-color': 'gray',
+															'--btn-fg': 'var(--inactive)',
+															'--btn-border-color': 'currentcolor',
 															'--btn-bg': 'transparent',
 															...(formData.type === type && {
 																'--btn-border-color': 'var(--primary)',
@@ -226,15 +247,16 @@ const ItemAdd = () => {
 									<hr
 										style={{
 											margin: '16px 0',
-											borderColor: 'red',
+											borderColor: 'var(--inactive)',
 										}}
 									/>
-									<h3>{lang('ui/items/add', 'tagsCaption')}</h3>
 									<Hashtags
+										text={lang('ui/items/add', 'tagsCaption')}
 										tags={formData.tags}
 										onSubmit={addTag}
 										onRemove={removeTag}
 									/>
+
 									<Input
 										name='description'
 										text={lang('ui/items/add', 'descriptionCaption')}

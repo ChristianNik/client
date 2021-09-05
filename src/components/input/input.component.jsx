@@ -1,18 +1,18 @@
 import React from 'react';
 import './input.style.css';
 
-const Input = (props) => {
+const Input = ({ id, name, labelStyle, text, options, style, ...rest }) => {
 	return (
 		<>
 			<label
 				className='Input'
-				htmlFor={props.id || props.name}
+				htmlFor={id || name}
 				style={{
 					display: 'flex',
 					flexDirection: 'column',
 					position: 'relative',
 					color: 'var(--on-surface)',
-					...props.labelStyle,
+					...labelStyle,
 				}}
 			>
 				<span
@@ -28,18 +28,12 @@ const Input = (props) => {
 						fontWeight: 'bold',
 					}}
 				>
-					{props.text}
+					{text}
 				</span>
 				<input
-					list={props.options && `list-{$props.name}`}
-					id={props.id || props.name}
-					name={props.name}
-					type={props.type}
-					value={props.value}
-					onChange={props.onChange}
-					min={props.min}
-					max={props.max}
-					step={props.step}
+					list={options && `list-{$rest.name}`}
+					id={rest.id || rest.name}
+					{...rest}
 					style={{
 						outline: 'none',
 						padding: '12px 16px',
@@ -48,12 +42,13 @@ const Input = (props) => {
 						background: 'var(--surface)',
 						color: 'inherit',
 						paddingLeft: '130px',
+						...style,
 					}}
 				/>
 			</label>
-			{props.options && (
-				<datalist id={`list-{$props.name}`}>
-					{props.options.map((option) => (
+			{options && (
+				<datalist id={`list-{$rest.name}`}>
+					{options.map((option) => (
 						<option key={option} value={option} />
 					))}
 				</datalist>

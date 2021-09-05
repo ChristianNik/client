@@ -17,7 +17,7 @@ const Avatar = (props) => {
 	const elementStyle = {
 		...SIZE[props.size || 'lg'],
 		marginRight: '16px',
-		background: 'var(--background-variant)',
+		background: 'var(--inactive)',
 		borderRadius: '50%',
 		objectFit: 'cover',
 		...props.style,
