@@ -64,14 +64,18 @@
 	--background-variant: hsl(209, 10%, 85%);
 	--background-app: hsl(202, 8%, 85%);
 	--surface: hsl(0, 0%, 100%);
-	--inactive: hsl(0, 0%, 73%);
+	--inactive: hsl(0, 0%, 64%);
+	--disabled: hsl(0, 0%, 85%);
 
 	/* font */
-	--on-primary: #000;
+	--on-primary: #fff;
 	--on-background: #000;
 	--on-background-variant: #000;
 	--on-background-app: #000;
 	--on-surface: #000;
+
+	--on-inactive: #000;
+	--on-disabled: hsl(0, 0%, 85%);
 
 	--border-color: hsl(308, 100%, 50%);
 }

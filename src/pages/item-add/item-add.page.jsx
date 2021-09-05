@@ -9,28 +9,11 @@ import {
 	Input,
 	Rating,
 } from '../../components';
+import Button from '../../components/button/button.component';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
 import MobileLayout from '../../layouts/mobile.layout';
-
-function FullWidthButton({ children, onClick }) {
-	return (
-		<button
-			type='button'
-			style={{
-				fontSize: '14px',
-				padding: '8px 32px',
-				width: '100%',
-				border: 'none',
-				borderRadius: '4px',
-			}}
-			onClick={onClick}
-		>
-			{children}
-		</button>
-	);
-}
 
 const Wrapper = (props) => (
 	<div
@@ -41,6 +24,7 @@ const Wrapper = (props) => (
 			overflow: 'auto',
 			height: '100%',
 			background: 'var(--background)',
+			color: 'var(--on-background)',
 		}}
 		{...props}
 	/>
@@ -147,23 +131,28 @@ const ItemAdd = () => {
 							}}
 						>
 							<Route exact path='/items/add'>
-								<FullWidthButton
+								<Button
+									style={{
+										...(formData.type && {
+											'--btn-bg': 'var(--primary)',
+											'--btn-fg': 'var(--on-primary)',
+										}),
+									}}
+									disabled={!formData.type}
 									onClick={() => history.push(`/items/add/details`)}
 								>
 									{lang('ui/items/add', 'nextLabel')}
-								</FullWidthButton>
+								</Button>
 							</Route>
 							<Route exact path='/items/add/details'>
-								<FullWidthButton
-									onClick={() => history.push(`/items/add/valuation`)}
-								>
+								<Button onClick={() => history.push(`/items/add/valuation`)}>
 									{lang('ui/items/add', 'nextLabel')}
-								</FullWidthButton>
+								</Button>
 							</Route>
 							<Route exact path='/items/add/valuation'>
-								<FullWidthButton onClick={handleAddItem}>
+								<Button onClick={handleAddItem}>
 									{lang('ui/items/add', 'add')}
-								</FullWidthButton>
+								</Button>
 							</Route>
 						</div>
 					</Wrapper>
@@ -189,34 +178,32 @@ const ItemAdd = () => {
 											display: 'grid',
 											gap: '8px',
 											overflow: 'hidden',
+											color: 'var(--inactive)',
 										}}
 									>
 										{itemTypes.map((type) => {
 											return (
-												<li
-													key={type}
-													style={{
-														display: 'block',
-														padding: '8px 16px',
-														border: '2px solid currentColor',
-														borderRadius: '4px',
-														textDecoration: 'none',
-														textAlign: 'center',
-														textTransform: 'uppercase',
-														color: 'red',
-														...(formData.type === type && {
-															color: '#fff',
-														}),
-													}}
-													onClick={() => {
-														handleTypeChange(type);
-													}}
-													onDoubleClick={() => {
-														handleTypeChange(type);
-														history.push(`/items/add/details`);
-													}}
-												>
-													{type}
+												<li key={type}>
+													<Button
+														style={{
+															'--btn-border-color': 'gray',
+															'--btn-bg': 'transparent',
+															...(formData.type === type && {
+																'--btn-border-color': 'var(--primary)',
+																'--btn-fg': 'var(--on-primary)',
+																'--btn-bg': 'var(--primary)',
+															}),
+														}}
+														onClick={() => {
+															handleTypeChange(type);
+														}}
+														onDoubleClick={() => {
+															handleTypeChange(type);
+															history.push(`/items/add/details`);
+														}}
+													>
+														{type}
+													</Button>
 												</li>
 											);
 										})}
