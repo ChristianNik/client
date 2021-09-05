@@ -23,37 +23,43 @@ function App() {
 				style={{
 					margin: '0 auto',
 					padding: '16px',
-					maxWidth: '600px',
 					overflow: 'auto',
 					height: '100%',
 				}}
 			>
-				<Suspense
-					fallback={
-						<div
-							style={{
-								display: 'flex',
-								height: '100%',
-								justifyContent: 'center',
-								alignItems: 'center',
-							}}
-						>
-							<GridLoader color='hsl(220, 13%, 50%)' />
-						</div>
-					}
+				<div
+					style={{
+						maxWidth: '600px',
+						margin: '0 auto',
+					}}
 				>
-					<Switch>
-						<Route path='/items/add' component={ItemAddDialog} />
-						<Route exact path='/items/:id/edit' component={ItemEditDialog} />
-						<Route exact path='/items/:id' component={ItemViewDialog} />
-					</Switch>
+					<Suspense
+						fallback={
+							<div
+								style={{
+									display: 'flex',
+									height: '100%',
+									justifyContent: 'center',
+									alignItems: 'center',
+								}}
+							>
+								<GridLoader color='hsl(220, 13%, 50%)' />
+							</div>
+						}
+					>
+						<Switch>
+							<Route path='/items/add' component={ItemAddDialog} />
+							<Route exact path='/items/:id/edit' component={ItemEditDialog} />
+							<Route exact path='/items/:id' component={ItemViewDialog} />
+						</Switch>
 
-					<Switch>
-						<Route exact path='/' component={DashboardPage} />
-						<Route exact path='/items' component={ItemsPage} />
-						<Route exact path='/settings' component={SettingsPage} />
-					</Switch>
-				</Suspense>
+						<Switch>
+							<Route exact path='/' component={DashboardPage} />
+							<Route exact path='/items' component={ItemsPage} />
+							<Route exact path='/settings' component={SettingsPage} />
+						</Switch>
+					</Suspense>
+				</div>
 			</div>
 		</MobileLayout>
 	);
