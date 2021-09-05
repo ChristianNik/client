@@ -53,9 +53,6 @@ const ItemsListItem = (props) => {
 							flexWrap: 'wrap',
 							justifyContent: 'center',
 							alignItems: 'center',
-							backgroundColor: `hsl(220, 13%, ${
-								Math.random() * (26 - 0) + 26
-							}%)`,
 						}}
 					>
 						<div
