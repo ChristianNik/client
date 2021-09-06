@@ -15,6 +15,9 @@
 	"ui/dashboard/types": {
 		"defaultLabel": "Type usage"
 	},
+	"ui/dashboard/analytics/convenience.most": {
+		"defaultTitle": "Maximum convenience"
+	},
 	"ui/items/add": {
 		"add": "Add Item",
 		"appearanceCaption": "Appearance",

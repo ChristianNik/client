@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
+import ItemsListItem from '../items/components/items-list-item.component';
+import ItemsList from '../items/components/items-list.component';
 
 const Dashboard = () => {
 	const { lang } = useLanguage();
@@ -22,6 +24,15 @@ const Dashboard = () => {
 		return acc;
 	}, {});
 
+	const [mostConvenienceItems, setMostConvenienceItems] = useState([]);
+
+	useEffect(() => {
+		import('../../utils/analysis/items')
+			.then((module) => module.mostConvenienceItems(items, 3))
+			.then(setMostConvenienceItems)
+			.catch(console.error);
+	}, [items]);
+
 	return (
 		<div>
 			<div
@@ -41,6 +52,21 @@ const Dashboard = () => {
 				</div>
 			</div>
 			<div style={{ display: 'grid', gap: '16px' }}>
+				<div
+					style={{
+						backgroundColor: 'hsl(220, 13%, 26%)',
+						padding: '16px',
+						borderRadius: '8px',
+					}}
+				>
+					<h2>
+						{lang('ui/dashboard/analytics/convenience.most', 'defaultTitle')}
+					</h2>
+					<div style={{}}>
+						<ItemsList items={mostConvenienceItems} />
+					</div>
+				</div>
+
 				<div
 					style={{
 						backgroundColor: 'hsl(220, 13%, 26%)',
