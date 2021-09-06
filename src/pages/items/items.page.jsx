@@ -42,7 +42,11 @@ const ItemsPage = () => {
 	};
 
 	return (
-		<div>
+		<div
+			style={{
+				color: 'var(--on-background)',
+			}}
+		>
 			<div
 				style={{
 					display: 'flex',
@@ -61,18 +65,17 @@ const ItemsPage = () => {
 					style={{
 						display: 'flex',
 						textDecoration: 'none',
-						color: 'hsl(220, 13%, 50%)',
+						color: 'var(--primary)',
 					}}
 				>
 					<NavLink
 						style={{
 							textDecoration: 'none',
-							color: 'inherit',
+							color: 'var(--inactive, #fff)',
 							padding: '8px',
 						}}
-						activeStyle={{
-							color: '#fff',
-						}}
+						exact
+						activeStyle={{ color: 'inherit' }}
 						isActive={() => !view || view === 'list'}
 						to='/items?view=list'
 					>
@@ -81,13 +84,11 @@ const ItemsPage = () => {
 					<NavLink
 						style={{
 							textDecoration: 'none',
-							color: 'inherit',
+							color: 'var(--inactive, #fff)',
 							padding: '8px',
 						}}
 						exact
-						activeStyle={{
-							color: '#fff',
-						}}
+						activeStyle={{ color: 'inherit' }}
 						isActive={() => view === 'gallery'}
 						to='/items?view=gallery'
 					>

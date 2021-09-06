@@ -21,7 +21,7 @@ const ItemsListItem = (props) => {
 				display: 'flex',
 				alignItems: 'center',
 				overflow: 'hidden',
-				background: 'hsl(220, 13%, 16%)',
+				background: 'var(--surface)',
 				...(!compact && {
 					padding: '14px',
 					borderRadius: '8px',
@@ -53,9 +53,6 @@ const ItemsListItem = (props) => {
 							flexWrap: 'wrap',
 							justifyContent: 'center',
 							alignItems: 'center',
-							backgroundColor: `hsl(220, 13%, ${
-								Math.random() * (26 - 0) + 26
-							}%)`,
 						}}
 					>
 						<div

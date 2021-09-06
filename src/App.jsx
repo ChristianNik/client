@@ -6,6 +6,7 @@ import { Sidebar } from './components';
 import MobileLayout from './layouts/mobile.layout';
 import useTotalHeight from './hooks/use-total-height';
 import { GridLoader } from 'react-spinners';
+import { useThemeAutoSwitcher } from './hooks/use-theme';
 
 const DashboardPage = React.lazy(() => import('./pages/dashboard'));
 const ItemsPage = React.lazy(() => import('./pages/items/items.page'));
@@ -16,21 +17,29 @@ const ItemViewDialog = React.lazy(() => import('./pages/item-view'));
 
 function App() {
 	useTotalHeight();
+	useThemeAutoSwitcher();
 
 	return (
-		<MobileLayout bottom={<Sidebar />}>
+		<MobileLayout
+			style={{
+				background: 'var(--background)',
+			}}
+			bottom={<Sidebar />}
+		>
 			<div
 				style={{
 					margin: '0 auto',
 					padding: '16px',
 					overflow: 'auto',
 					height: '100%',
+					background: 'var(--background)',
 				}}
 			>
 				<div
 					style={{
-						maxWidth: '600px',
+						maxWidth: 'var(--app-max-mobile-width, 600px)',
 						margin: '0 auto',
+						height: '100%',
 					}}
 				>
 					<Suspense
@@ -43,7 +52,7 @@ function App() {
 									alignItems: 'center',
 								}}
 							>
-								<GridLoader color='hsl(220, 13%, 50%)' />
+								<GridLoader color='var(--inactive)' />
 							</div>
 						}
 					>
