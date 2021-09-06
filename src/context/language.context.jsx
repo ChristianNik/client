@@ -5,6 +5,9 @@ import de from '../languages/de.json';
 export const dictionaryList = { en, de };
 
 export const languageOptions = {
+	...(process.env.NODE_ENV === 'development' && {
+		'': 'Dev',
+	}),
 	en: 'English',
 	de: 'Deutsch',
 };
@@ -35,18 +38,36 @@ export function LanguageProvider({ children }) {
 	);
 }
 
+function escapeRegex(string) {
+	return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
 export const useLanguage = () => {
 	const { userLanguage, dictionary, userLanguageChange } =
 		React.useContext(LanguageContext);
 
 	return {
-		lang: (group, property) => {
-			return dictionary[group]
-				? dictionary[group][property] ||
-						(typeof dictionary[group] !== 'object'
-							? dictionary[group]
-							: `no:::${group}/${property}`)
-				: `no:::${group}/${property}`;
+		lang: (group, property, replace) => {
+			const notFoundText = `no:::${group}/${property}`;
+			if (!dictionary) {
+				return notFoundText;
+			}
+			const category = dictionary[group];
+
+			let text = category
+				? category[property] ||
+				  (typeof category !== 'object' ? category : notFoundText)
+				: notFoundText;
+
+			if (replace) {
+				Object.keys(replace).map((key) => {
+					const value = replace[key];
+					const regex = new RegExp(escapeRegex(`{${key}}`), 'g');
+					text = text.replace(regex, value);
+				});
+			}
+
+			return text;
 		},
 		userLanguage,
 		userLanguageChange,

@@ -1,7 +1,8 @@
+import { faChevronLeft, faEdit } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Avatar } from '../../components';
-import EmojiButton from '../../components/emojibutton';
+import { Avatar, Dialog, IconButton } from '../../components';
+import MobileLayout from '../../layouts/mobile.layout';
 import { fetchItem } from '../../utils/server';
 
 const ItemViewPage = () => {
@@ -22,62 +23,110 @@ const ItemViewPage = () => {
 	if (!item) return null;
 
 	return (
-		<div>
-			<div
+		<Dialog>
+			<MobileLayout
 				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
+					background: 'var(--background)',
 				}}
-			>
-				<EmojiButton
-					onClick={() => {
-						history.push('/items');
-					}}
-				>
-					⬅️
-				</EmojiButton>
-				<h2>View</h2>
-				<EmojiButton
-					onClick={() => {
-						history.push(`/items/${id}/edit`);
-					}}
-				>
-					📝
-				</EmojiButton>
-			</div>
-
-			<div
-				style={{
-					textAlign: 'center',
-				}}
-			>
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<Avatar
-						src={item.image}
-						size='xl'
+				top={
+					<Dialog.Header
 						style={{
-							marginRight: '16px',
+							display: 'grid',
+							gridTemplateColumns: 'repeat(3, 1fr)',
+							justifyItems: 'center',
+							alignItems: 'center',
+							background: 'var(--surface)',
+							color: 'var(--on-surface)',
 						}}
-					/>
-				</div>
-				<h1>{item.name || <small>{item.id}</small>}</h1>
-				<div>
-					<small>
-						Created: <strong>{new Date(item.created).toLocaleString()}</strong>
-					</small>
-				</div>
-				<small>
-					<strong>{item.type}</strong>
-				</small>
-			</div>
-			<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
+					>
+						<IconButton
+							icon={faChevronLeft}
+							style={{
+								justifySelf: 'start',
+							}}
+							onClick={() => {
+								history.push('/items');
+							}}
+						/>
 
-			<div>
-				{item.tags && item.tags.length > 0 ? `#${item.tags.join(', #')}` : ''}
-			</div>
-			<div>{item.description}</div>
-		</div>
+						<h2
+							style={{
+								textAlign: 'center',
+								margin: '24px 0',
+							}}
+						>
+							View
+						</h2>
+						<IconButton
+							icon={faEdit}
+							style={{
+								justifySelf: 'end',
+							}}
+							noBorder
+							size='lg'
+							onClick={() => {
+								history.push(`/items/${id}/edit`);
+							}}
+						/>
+					</Dialog.Header>
+				}
+			>
+				<Dialog.Content>
+					<div
+						style={{
+							textAlign: 'center',
+							marginTop: '26px',
+						}}
+					>
+						<div style={{ display: 'flex', justifyContent: 'center' }}>
+							<Avatar
+								src={item.image}
+								size='xl'
+								style={{
+									marginRight: '16px',
+								}}
+							/>
+						</div>
+						<h1
+							style={{
+								overflow: 'hidden',
+								textOverflow: 'ellipsis',
+							}}
+						>
+							{item.name || <small>{item.id}</small>}
+						</h1>
+						<div>
+							<small>
+								Created:{' '}
+								<strong>{new Date(item.created).toLocaleString()}</strong>
+							</small>
+						</div>
+						<small>
+							<strong>{item.type}</strong>
+						</small>
+					</div>
+					<div
+						style={{
+							margin: '16px',
+						}}
+					>
+						<hr
+							style={{
+								margin: '16px 0',
+								borderColor: 'var(--inactive)',
+							}}
+						/>
+
+						<div>
+							{item.tags && item.tags.length > 0
+								? `#${item.tags.join(', #')}`
+								: ''}
+						</div>
+						<div>{item.description}</div>
+					</div>
+				</Dialog.Content>
+			</MobileLayout>
+		</Dialog>
 	);
 };
 

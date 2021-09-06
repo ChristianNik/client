@@ -1,35 +1,45 @@
 {
-	"sidebar": {
+	"ui/sidebar/navigation": {
+		"homeLabel": "Home",
 		"itemsLabel": "Items",
-		"addLabel": "Add"
+		"addLabel": "Add",
+		"settingsLabel": "Settings"
 	},
-	"dashboard": {
-		"pageTitle": "Dashboard",
-		"tagUsageCaption": "Tag usage"
+	"ui/dashboard/title": {
+		"defaultLabel": "Hello {0},",
+		"pageTitle": "Dashboard"
 	},
-	"items/list": {
+	"ui/dashboard/tags": {
+		"defaultLabel": "Tag usage"
+	},
+	"ui/dashboard/types": {
+		"defaultLabel": "Type usage"
+	},
+	"ui/items/add": {
+		"add": "Add Item",
+		"appearanceCaption": "Appearance",
+		"convenienceCaption": "Convenience",
+		"descriptionCaption": "Description",
+		"detailsTabTitle": "Details",
+		"nextLabel": "NEXT",
+		"tagsCaption": "Tags",
+		"typeTabTitle": "Select Type",
+		"valuationCaption": "Valuation",
+		"valuationTabTitle": "Valuation"
+	},
+	"ui/items/page": {
+		"pageTitle": "Management"
+	},
+	"ui/items/list": {
 		"itemsTitle": "Items",
-		"trashTitle": "Trashcan",
-		"syncLabel": "Sync",
-		"removeItemLabel": "remove"
+		"trashTitle": "Trashcan"
 	},
 	"items/view": {
 		"editLabel": "EDIT"
 	},
-	"items/add": {
-		"titleLabel": "Add Item",
-		"tagsCaption": "Tags",
-		"valuationCaption": "Valuation",
-		"typeCaption": "Type",
-		"nameCaption": "Name",
-		"descriptionCaption": "Description",
-		"convenienceCaption": "Convenience",
-		"appearanceCaption": "Appearance",
-		"add": "Add Item"
-	},
 	"items/edit": {
-		"titleLabel": "Edit Item",
 		"cancel": "Abort",
-		"confirm": "Save changes"
+		"confirm": "Save changes",
+		"titleLabel": "Edit Item"
 	}
 }
