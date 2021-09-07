@@ -5,9 +5,9 @@
 		"dev": "vite",
 		"build": "vite build",
 		"serve": "vite preview",
-		"dockerBuild": "docker build . -t chnikel/item-manager",
-		"dockerStart": "docker run -p 3002:3002 -d chnikel/item-manager",
-		"dockerPush": "docker push chnikel/item-manager:latest"
+		"dockerBuild": "docker build . -t chnikel/item-manager-client",
+		"dockerStart": "docker run -p 3002:3002 -d chnikel/item-manager-client",
+		"dockerPush": "docker push chnikel/item-manager-client:latest"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^1.2.36",
