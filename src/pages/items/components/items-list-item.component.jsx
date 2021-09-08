@@ -17,6 +17,7 @@ const ItemsListItem = (props) => {
 	return (
 		<li
 			style={{
+				cursor: 'pointer',
 				transition: 'all 300ms',
 				display: 'flex',
 				alignItems: 'center',
