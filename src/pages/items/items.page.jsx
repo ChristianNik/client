@@ -8,6 +8,7 @@ import ItemsList from './components/items-list.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faThLarge } from '@fortawesome/free-solid-svg-icons';
 import useScrollTop from '../../hooks/use-scroll-top';
+import Title from '../../components/title/title.component';
 
 const ItemsPage = () => {
 	useScrollTop();
@@ -103,13 +104,7 @@ const ItemsPage = () => {
 					alignItems: 'center',
 				}}
 			>
-				<h2
-					style={{
-						margin: '24px 0',
-					}}
-				>
-					{lang('ui/items/page', 'pageTitle')}
-				</h2>
+				<Title>{lang('ui/items/page', 'pageTitle')}</Title>
 				<div
 					style={{
 						display: 'flex',
@@ -151,15 +146,11 @@ const ItemsPage = () => {
 				onChange={(e) => setFilterText(e.target.value)}
 			/>
 
-			<h2
-				style={{
-					margin: '24px 0',
-				}}
-			>
+			<Title>
 				{lang('ui/items/list', 'itemsTitle')} [
 				{filteredItems.filter((v) => !v.flag_mark_deleted).length}/
 				{items.filter((v) => !v.flag_mark_deleted).length}]
-			</h2>
+			</Title>
 
 			{view === 'gallery' ? (
 				<ItemsList {...itemsListProps} compact />
