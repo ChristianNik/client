@@ -8,7 +8,12 @@ import { useHistory, useParams } from 'react-router-dom';
 
 import MobileLayout from '../../layouts/mobile.layout';
 import useAddItem from '../../hooks/use-add-item';
-import { Avatar, Dialog, IconButton } from '../../components';
+import {
+	Avatar,
+	Dialog,
+	IconButton,
+	RouteAnimationWrapper,
+} from '../../components';
 import { deleteItem, updateItem } from '../../utils/server';
 import { useItems } from '../../context/items.context';
 
@@ -35,104 +40,106 @@ const ItemEditPage = () => {
 	}
 	return (
 		<Dialog>
-			<MobileLayout
-				style={{
-					background: 'var(--background)',
-				}}
-				top={
-					<Dialog.Header
-						style={{
-							display: 'grid',
-							gridTemplateColumns: 'repeat(3, 1fr)',
-							justifyItems: 'center',
-							alignItems: 'center',
-							background: 'var(--surface)',
-							color: 'var(--on-surface)',
-						}}
-					>
-						<IconButton
-							icon={faChevronLeft}
-							onClick={pushToView}
+			<RouteAnimationWrapper>
+				<MobileLayout
+					style={{
+						background: 'var(--background)',
+					}}
+					top={
+						<Dialog.Header
 							style={{
-								justifySelf: 'start',
-							}}
-						/>
-						<h2
-							style={{
-								textAlign: 'center',
-								margin: '24px 0',
+								display: 'grid',
+								gridTemplateColumns: 'repeat(3, 1fr)',
+								justifyItems: 'center',
+								alignItems: 'center',
+								background: 'var(--surface)',
+								color: 'var(--on-surface)',
 							}}
 						>
-							Edit
-						</h2>
+							<IconButton
+								icon={faChevronLeft}
+								onClick={pushToView}
+								style={{
+									justifySelf: 'start',
+								}}
+							/>
+							<h2
+								style={{
+									textAlign: 'center',
+									margin: '24px 0',
+								}}
+							>
+								Edit
+							</h2>
+							<div
+								style={{
+									display: 'flex',
+									justifySelf: 'end',
+								}}
+							>
+								<IconButton
+									icon={faSave}
+									noBorder
+									size='lg'
+									onClick={handleEditItem}
+								/>
+								<IconButton
+									icon={faTrash}
+									noBorder
+									size='lg'
+									onClick={() => {
+										deleteItem(id).then(() => {
+											history.push(`/items`);
+										});
+									}}
+								/>
+							</div>
+						</Dialog.Header>
+					}
+				>
+					<Dialog.Content>
 						<div
 							style={{
-								display: 'flex',
-								justifySelf: 'end',
+								textAlign: 'center',
+								marginTop: '26px',
 							}}
 						>
-							<IconButton
-								icon={faSave}
-								noBorder
-								size='lg'
-								onClick={handleEditItem}
-							/>
-							<IconButton
-								icon={faTrash}
-								noBorder
-								size='lg'
-								onClick={() => {
-									deleteItem(id).then(() => {
-										history.push(`/items`);
-									});
-								}}
-							/>
-						</div>
-					</Dialog.Header>
-				}
-			>
-				<Dialog.Content>
-					<div
-						style={{
-							textAlign: 'center',
-							marginTop: '26px',
-						}}
-					>
-						<div style={{ display: 'flex', justifyContent: 'center' }}>
-							<Avatar
-								src={formData.image}
-								size='xl'
-								onClick={handleSelectImage}
-								style={{
-									marginRight: '16px',
-								}}
-							/>
-						</div>
-						<h1>{formData.name || <small>{formData.id}</small>}</h1>
-						<div>
+							<div style={{ display: 'flex', justifyContent: 'center' }}>
+								<Avatar
+									src={formData.image}
+									size='xl'
+									onClick={handleSelectImage}
+									style={{
+										marginRight: '16px',
+									}}
+								/>
+							</div>
+							<h1>{formData.name || <small>{formData.id}</small>}</h1>
+							<div>
+								<small>
+									Created:{' '}
+									<strong>{new Date(item.created).toLocaleString()}</strong>
+								</small>
+							</div>
 							<small>
-								Created:{' '}
-								<strong>{new Date(item.created).toLocaleString()}</strong>
+								<strong>{item.type}</strong>
 							</small>
 						</div>
-						<small>
-							<strong>{item.type}</strong>
-						</small>
-					</div>
-					<div
-						style={{
-							margin: '16px',
-						}}
-					>
-						<hr
+						<div
 							style={{
-								margin: '16px 0',
-								borderColor: 'var(--inactive)',
+								margin: '16px',
 							}}
-						/>
-					</div>
-				</Dialog.Content>
-			</MobileLayout>
+						>
+							<hr
+								style={{
+									margin: '16px 0',
+									borderColor: 'var(--inactive)',
+								}}
+							/>
+						</div>
+					</Dialog.Content>
+				</MobileLayout>
+			</RouteAnimationWrapper>
 		</Dialog>
 	);
 };

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import './App.css';
 
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 import { Sidebar } from './components';
 import MobileLayout from './layouts/mobile.layout';
 import useTotalHeight from './hooks/use-total-height';
@@ -15,10 +15,13 @@ const ItemAddDialog = React.lazy(() => import('./pages/item-add'));
 const ItemEditDialog = React.lazy(() => import('./pages/item-edit'));
 const ItemViewDialog = React.lazy(() => import('./pages/item-view'));
 
+import { AnimatePresence } from 'framer-motion';
+
 function App() {
 	useTotalHeight();
 	useThemeAutoSwitcher();
 
+	const location = useLocation();
 	return (
 		<MobileLayout
 			style={{
@@ -56,17 +59,23 @@ function App() {
 							</div>
 						}
 					>
-						<Switch>
-							<Route path='/items/add' component={ItemAddDialog} />
-							<Route exact path='/items/:id/edit' component={ItemEditDialog} />
-							<Route exact path='/items/:id' component={ItemViewDialog} />
-						</Switch>
+						<AnimatePresence>
+							<Switch location={location} key={location.pathname}>
+								<Route path='/items/add' component={ItemAddDialog} />
+								<Route
+									exact
+									path='/items/:id/edit'
+									component={ItemEditDialog}
+								/>
+								<Route exact path='/items/:id' component={ItemViewDialog} />
+							</Switch>
 
-						<Switch>
-							<Route exact path='/' component={DashboardPage} />
-							<Route exact path='/items' component={ItemsPage} />
-							<Route exact path='/settings' component={SettingsPage} />
-						</Switch>
+							<Switch>
+								<Route exact path='/' component={DashboardPage} />
+								<Route exact path='/items' component={ItemsPage} />
+								<Route exact path='/settings' component={SettingsPage} />
+							</Switch>
+						</AnimatePresence>
 					</Suspense>
 				</div>
 			</div>

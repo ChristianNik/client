@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import { Input } from '../../components';
+import { Input, RouteAnimationWrapper } from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import { deleteItem } from '../../utils/server';
@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faThLarge } from '@fortawesome/free-solid-svg-icons';
 
 const ItemsPage = () => {
+	useEffect(() => window.scrollTo(0, 0), []);
 	const { lang } = useLanguage();
 	const { items, removeItem } = useItems();
 	const history = useHistory();
@@ -42,7 +43,7 @@ const ItemsPage = () => {
 	};
 
 	return (
-		<div
+		<RouteAnimationWrapper
 			style={{
 				color: 'var(--on-background)',
 			}}
@@ -138,7 +139,7 @@ const ItemsPage = () => {
 					/>
 				</>
 			)}
-		</div>
+		</RouteAnimationWrapper>
 	);
 };
 
