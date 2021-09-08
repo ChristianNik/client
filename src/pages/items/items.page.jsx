@@ -96,60 +96,77 @@ const ItemsPage = () => {
 					</ul>
 				</div>
 			)}
-
-			<div
+			<Title
+				h2
 				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
+					textAlign: 'center',
 				}}
 			>
-				<Title>{lang('ui/items/page', 'pageTitle')}</Title>
-				<div
-					style={{
-						display: 'flex',
-						textDecoration: 'none',
-						color: 'var(--primary)',
-					}}
-				>
-					<NavLink
-						style={{
-							textDecoration: 'none',
-							color: 'var(--inactive, #fff)',
-							padding: '8px',
-						}}
-						exact
-						activeStyle={{ color: 'inherit' }}
-						isActive={() => !view || view === 'list'}
-						to='/items?view=list'
-					>
-						<FontAwesomeIcon icon={faList} size='lg' />
-					</NavLink>
-					<NavLink
-						style={{
-							textDecoration: 'none',
-							color: 'var(--inactive, #fff)',
-							padding: '8px',
-						}}
-						exact
-						activeStyle={{ color: 'inherit' }}
-						isActive={() => view === 'gallery'}
-						to='/items?view=gallery'
-					>
-						<FontAwesomeIcon icon={faThLarge} size='lg' />
-					</NavLink>
-				</div>
-			</div>
+				{lang('ui/items/page', 'pageTitle')}
+			</Title>
+
+			<Title>Search</Title>
 			<Input
-				text='Search'
 				value={filterText}
 				onChange={(e) => setFilterText(e.target.value)}
 			/>
 
-			<Title>
-				{lang('ui/items/list', 'itemsTitle')} [
-				{filteredItems.filter((v) => !v.flag_mark_deleted).length}/
-				{items.filter((v) => !v.flag_mark_deleted).length}]
+			<Title
+				style={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'flex-end',
+				}}
+			>
+				<div>
+					{lang('ui/items/list', 'itemsTitle')} [
+					{filteredItems.filter((v) => !v.flag_mark_deleted).length}/
+					{items.filter((v) => !v.flag_mark_deleted).length}]
+				</div>
+				<div
+					style={{
+						display: 'flex',
+						justifyContent: 'space-between',
+						alignItems: 'center',
+						fontSize: '16px',
+					}}
+				>
+					<div
+						style={{
+							display: 'flex',
+							textDecoration: 'none',
+							color: 'var(--primary)',
+							marginLeft: 'auto',
+						}}
+					>
+						<NavLink
+							style={{
+								textDecoration: 'none',
+								color: 'var(--inactive, #fff)',
+								padding: '8px',
+							}}
+							exact
+							activeStyle={{ color: 'inherit' }}
+							isActive={() => !view || view === 'list'}
+							to='/items?view=list'
+						>
+							<FontAwesomeIcon icon={faList} size='lg' />
+						</NavLink>
+						<NavLink
+							style={{
+								textDecoration: 'none',
+								color: 'var(--inactive, #fff)',
+								padding: '8px',
+							}}
+							exact
+							activeStyle={{ color: 'inherit' }}
+							isActive={() => view === 'gallery'}
+							to='/items?view=gallery'
+						>
+							<FontAwesomeIcon icon={faThLarge} size='lg' />
+						</NavLink>
+					</div>
+				</div>
 			</Title>
 
 			{view === 'gallery' ? (

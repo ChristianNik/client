@@ -15,21 +15,23 @@ const Input = ({ id, name, labelStyle, text, options, style, ...rest }) => {
 					...labelStyle,
 				}}
 			>
-				<span
-					style={{
-						position: 'absolute',
-						color: 'inherit',
-						zIndex: 10,
-						top: 0,
-						bottom: 0,
-						left: '12px',
-						display: 'flex',
-						alignItems: 'center',
-						fontWeight: 'bold',
-					}}
-				>
-					{text}
-				</span>
+				{text && (
+					<span
+						style={{
+							position: 'absolute',
+							color: 'inherit',
+							zIndex: 10,
+							top: 0,
+							bottom: 0,
+							left: '12px',
+							display: 'flex',
+							alignItems: 'center',
+							fontWeight: 'bold',
+						}}
+					>
+						{text}
+					</span>
+				)}
 				<input
 					list={options && `list-{$rest.name}`}
 					id={rest.id || rest.name}
@@ -42,8 +44,10 @@ const Input = ({ id, name, labelStyle, text, options, style, ...rest }) => {
 						border: '2px solid transparent',
 						background: 'var(--surface)',
 						color: 'inherit',
-						paddingLeft: '130px',
 						...style,
+						...(text && {
+							paddingLeft: '130px',
+						}),
 					}}
 				/>
 			</label>
