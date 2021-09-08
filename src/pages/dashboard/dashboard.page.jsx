@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { RouteAnimationWrapper } from '../../components';
+import { RouteAnimationWrapper, Title } from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 
@@ -30,35 +30,23 @@ const Dashboard = () => {
 				color: 'var(--on-background)',
 			}}
 		>
-			<div
+			<Title
+				h2
 				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
+					textAlign: 'center',
 				}}
 			>
+				{lang('ui/dashboard/title', 'pageTitle')}
+			</Title>
+			<div style={{ display: 'grid' }}>
+				<Title>{lang('ui/dashboard/tags', 'defaultLabel')}</Title>
 				<div
 					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						margin: '24px 0',
-					}}
-				>
-					<small>
-						{lang('ui/dashboard/title', 'defaultLabel', ['Christian'])}
-					</small>
-					<h2>{lang('ui/dashboard/title', 'pageTitle')}</h2>
-				</div>
-			</div>
-			<div style={{ display: 'grid', gap: '16px' }}>
-				<div
-					style={{
-						backgroundColor: 'var(--background-variant)',
+						backgroundColor: 'var(--surface)',
 						padding: '16px',
 						borderRadius: '8px',
 					}}
 				>
-					<h2>{lang('ui/dashboard/tags', 'defaultLabel')}</h2>
 					<div
 						style={{
 							display: 'flex',
@@ -86,14 +74,15 @@ const Dashboard = () => {
 							))}
 					</div>
 				</div>
+
+				<Title>{lang('ui/dashboard/types', 'defaultLabel')}</Title>
 				<div
 					style={{
-						backgroundColor: 'var(--background-variant)',
+						backgroundColor: 'var(--surface)',
 						padding: '16px',
 						borderRadius: '8px',
 					}}
 				>
-					<h2>{lang('ui/dashboard/types', 'defaultLabel')}</h2>
 					<div
 						style={{
 							display: 'flex',
