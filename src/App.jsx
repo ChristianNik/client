@@ -50,7 +50,6 @@ function App() {
 			<div
 				style={{
 					margin: '0 auto',
-					padding: '16px',
 					overflow: 'auto',
 					height: '100%',
 					background: 'var(--background)',

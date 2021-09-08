@@ -46,6 +46,7 @@ const ItemsPage = () => {
 	return (
 		<RouteAnimationWrapper
 			style={{
+				padding: '16px',
 				color: 'var(--on-background)',
 			}}
 		>
