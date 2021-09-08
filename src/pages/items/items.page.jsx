@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { Input, RouteAnimationWrapper } from '../../components';
 import { useItems } from '../../context/items.context';
@@ -20,18 +20,32 @@ const ItemsPage = () => {
 	const { view } = queryString.parse(location.search);
 
 	const [filterText, setFilterText] = useState('');
-	const filteredItems = items.filter((item) => {
-		if (!filterText) return true;
-		const regex = new RegExp(filterText, 'gi');
-		return (
-			(item.name &&
-				item.name.toLowerCase().includes(filterText.toLowerCase())) ||
-			(item.description &&
-				item.description.toLowerCase().includes(filterText.toLowerCase())) ||
-			(item.tags && item.tags.some((t) => t.trim().match(regex))) ||
-			(item.type && item.type.toLowerCase().includes(filterText.toLowerCase()))
-		);
-	});
+	const filteredItems = useMemo(() => {
+		return items.filter((item) => {
+			if (!filterText) return true;
+			if (filterText === '::noimage') {
+				return !item.image;
+			}
+			if (filterText === '::noname') {
+				return !item.name;
+			}
+			if (filterText === '::nodesc') {
+				return !item.description;
+			}
+
+			const regex = new RegExp(filterText, 'gi');
+
+			return (
+				(item.name &&
+					item.name.toLowerCase().includes(filterText.toLowerCase())) ||
+				(item.description &&
+					item.description.toLowerCase().includes(filterText.toLowerCase())) ||
+				(item.tags && item.tags.some((t) => t.trim().match(regex))) ||
+				(item.type &&
+					item.type.toLowerCase().includes(filterText.toLowerCase()))
+			);
+		});
+	}, [items, filterText]);
 
 	const itemsListProps = {
 		items: filteredItems.filter((v) => !v.flag_mark_deleted),

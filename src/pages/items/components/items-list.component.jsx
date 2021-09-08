@@ -52,6 +52,7 @@ const ItemsList = ({ items, compact, ...rest }) => {
 						}}
 						variants={itemVariants}
 						key={item.id}
+						layout
 						style={{
 							width: '100%',
 						}}
