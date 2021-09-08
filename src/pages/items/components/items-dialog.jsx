@@ -23,11 +23,9 @@ const ItemDialog = () => {
 
 	return (
 		<Dialog>
-			<RouteAnimationWrapper>
-				<Route path='/items/add' component={ItemAdd} />
-				<Route exact path='/items/:id/edit' component={ItemEditPage} />
-				<Route exact path='/items/:id' component={ItemViewPage} />
-			</RouteAnimationWrapper>
+			<Route path='/items/add' component={ItemAdd} />
+			<Route exact path='/items/:id/edit' component={ItemEditPage} />
+			<Route exact path='/items/:id' component={ItemViewPage} />
 		</Dialog>
 	);
 };
