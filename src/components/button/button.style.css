@@ -5,7 +5,7 @@
 	/* --btn-fg: #000; */
 	--btn-fg-disabled: #eee;
 	--btn-hover: var(--gray-100);
-	--btn-hover-fg: gray;
+	--btn-fg-hover: gray;
 	--animation-duration: 100ms;
 
 	width: 100%;
@@ -19,15 +19,16 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	outline: none;
-	transition: color var(--animation-duration),
-		background-color var(--animation-duration);
+	transition: all var(--animation-duration);
+	transition-property: color, background-color, border;
+
 	cursor: pointer;
 }
 
 .Button:hover:not(.active):not(:disabled) {
 	background-color: var(--btn-hover);
-	color: var(--btn-hover-fg);
-	border: 2px solid var(--gray-100);
+	color: var(--btn-fg-hover);
+	border: 2px solid var(--btn-hover);
 }
 
 .Button:disabled {

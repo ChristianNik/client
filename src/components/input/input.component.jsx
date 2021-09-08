@@ -33,6 +33,7 @@ const Input = ({ id, name, labelStyle, text, options, style, ...rest }) => {
 				<input
 					list={options && `list-{$rest.name}`}
 					id={rest.id || rest.name}
+					name={name}
 					{...rest}
 					style={{
 						outline: 'none',

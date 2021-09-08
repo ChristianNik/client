@@ -19,6 +19,9 @@ const useAddItem = (initialData) => {
 		initialData && setFormData(initialData);
 	}, [initialData]);
 
+	useEffect(() => {
+		console.log(formData);
+	}, [formData]);
 	const addTag = (data) =>
 		setFormData((prev) => ({
 			...prev,

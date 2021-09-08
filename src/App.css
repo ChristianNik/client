@@ -60,6 +60,7 @@
 	--gray-50: hsl(0, 0%, 93%);
 
 	--primary: hsl(209, 100%, 54%);
+	--primary-variant: hsl(209, 100%, 34%);
 	--background: hsl(0, 0%, 93%);
 	--background-variant: hsl(209, 10%, 85%);
 	--surface: hsl(0, 0%, 100%);

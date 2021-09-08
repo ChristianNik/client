@@ -10,8 +10,10 @@ import MobileLayout from '../../layouts/mobile.layout';
 import useAddItem from '../../hooks/use-add-item';
 import {
 	Avatar,
+	Button,
 	Dialog,
 	IconButton,
+	Input,
 	RouteAnimationWrapper,
 } from '../../components';
 import { deleteItem, updateItem } from '../../utils/server';
@@ -33,7 +35,7 @@ const ItemEditPage = () => {
 	};
 
 	const item = useMemo(() => items.find((item) => item.id == id), [items]);
-	const { formData, handleSelectImage } = useAddItem(item);
+	const { formData, handleSelectImage, handleInputChange } = useAddItem(item);
 
 	if (!item) {
 		return null;
@@ -78,12 +80,6 @@ const ItemEditPage = () => {
 								}}
 							>
 								<IconButton
-									icon={faSave}
-									noBorder
-									size='lg'
-									onClick={handleEditItem}
-								/>
-								<IconButton
 									icon={faTrash}
 									noBorder
 									size='lg'
@@ -94,6 +90,21 @@ const ItemEditPage = () => {
 									}}
 								/>
 							</div>
+						</Dialog.Header>
+					}
+					bottom={
+						<Dialog.Header
+							style={{
+								padding: '16px',
+								display: 'grid',
+								gridAutoFlow: 'column',
+								gap: '8px',
+							}}
+						>
+							<Button onClick={pushToView}>Cancel</Button>
+							<Button primary onClick={handleEditItem}>
+								Save
+							</Button>
 						</Dialog.Header>
 					}
 				>
@@ -128,13 +139,26 @@ const ItemEditPage = () => {
 						<div
 							style={{
 								margin: '16px',
+								display: 'grid',
+								gap: '8px',
 							}}
 						>
 							<hr
 								style={{
-									margin: '16px 0',
 									borderColor: 'var(--inactive)',
 								}}
+							/>
+							<Input
+								value={formData.name}
+								onChange={handleInputChange}
+								name='name'
+								text='Name'
+							/>
+							<Input
+								value={formData.description}
+								onChange={handleInputChange}
+								name='description'
+								text='Description'
 							/>
 						</div>
 					</Dialog.Content>

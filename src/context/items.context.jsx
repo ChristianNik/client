@@ -19,6 +19,7 @@ export function ItemsProvider({ children }) {
 		addItem: async (data) => {
 			const newItem = { ...data, created: Date.now() };
 			setItems((prev) => [...prev, newItem]);
+			console.log('newItem :', newItem);
 			uploadItem(newItem);
 		},
 		removeItem: async (id) => {

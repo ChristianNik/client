@@ -1,13 +1,30 @@
 import React from 'react';
 import './button.style.css';
 
-const Button = ({ onClick, active, children, style, className, ...rest }) => {
+const Button = ({
+	primary,
+	onClick,
+	active,
+	children,
+	style,
+	className,
+	...rest
+}) => {
 	return (
 		<button
-			className={`Button ${className} ${active ? 'active' : ''}`}
+			className={`Button ${className} ${active ? 'active' : ''} ${
+				primary ? 'primary' : ''
+			}`}
 			type='button'
 			style={{
 				...style,
+				...(primary && {
+					'--btn-bg': 'var(--primary)',
+					'--btn-fg': 'var(--on-primary)',
+					'--btn-border-color': 'var(--primary)',
+					'--btn-hover': 'var(--primary-variant)',
+					'--btn-fg-hover': 'var(--white)',
+				}),
 				...(active && {
 					'--btn-bg': 'var(--primary)',
 					'--btn-fg': 'var(--on-primary)',
