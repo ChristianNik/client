@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { RouteAnimationWrapper } from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 
@@ -23,7 +24,7 @@ const Dashboard = () => {
 	}, {});
 
 	return (
-		<div
+		<RouteAnimationWrapper
 			style={{
 				color: 'var(--on-background)',
 			}}
@@ -36,7 +37,11 @@ const Dashboard = () => {
 				}}
 			>
 				<div
-					style={{ display: 'flex', flexDirection: 'column', margin: '24px 0' }}
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						margin: '24px 0',
+					}}
 				>
 					<small>
 						{lang('ui/dashboard/title', 'defaultLabel', ['Christian'])}
@@ -116,7 +121,7 @@ const Dashboard = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</RouteAnimationWrapper>
 	);
 };
 

@@ -1,4 +1,5 @@
 // Don't edit manually
+import RouteAnimationWrapper from "./routeanimationwrapper";
 import Button from "./button";
 import ItemsListItemSkeleton from "./itemslistitemskeleton";
 import IconButton from './iconbutton';
@@ -11,6 +12,7 @@ import Sidebar from './sidebar';
 import Input from './input';
 
 export {
+    RouteAnimationWrapper,
     Button,
     ItemsListItemSkeleton,
 	Input,

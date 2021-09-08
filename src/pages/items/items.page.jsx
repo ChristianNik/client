@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import { Input } from '../../components';
+import { Input, RouteAnimationWrapper } from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import { deleteItem } from '../../utils/server';
@@ -43,7 +43,7 @@ const ItemsPage = () => {
 	};
 
 	return (
-		<div
+		<RouteAnimationWrapper
 			style={{
 				color: 'var(--on-background)',
 			}}
@@ -139,7 +139,7 @@ const ItemsPage = () => {
 					/>
 				</>
 			)}
-		</div>
+		</RouteAnimationWrapper>
 	);
 };
 
