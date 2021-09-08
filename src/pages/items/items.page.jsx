@@ -3,7 +3,6 @@ import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { Input, RouteAnimationWrapper } from '../../components';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
-import { deleteItem } from '../../utils/server';
 import queryString from 'query-string';
 import ItemsList from './components/items-list.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +22,7 @@ const ItemsPage = () => {
 	const filteredItems = useMemo(() => {
 		return items.filter((item) => {
 			if (!filterText) return true;
-			if (filterText === '::noimage') {
+			if (filterText === '::noimage' || filterText === ':!img') {
 				return !item.image;
 			}
 			if (filterText === '::noname') {
@@ -47,6 +46,13 @@ const ItemsPage = () => {
 		});
 	}, [items, filterText]);
 
+	const [showContextMenu, setShowContextMenu] = useState(false);
+	const [contextMenuLocation, setContextMenuLocation] = useState({
+		x: 0,
+		y: 0,
+	});
+	const [activeId, setActiveId] = useState('');
+
 	const itemsListProps = {
 		items: filteredItems.filter((v) => !v.flag_mark_deleted),
 		onItemClick: (item) => {
@@ -55,6 +61,17 @@ const ItemsPage = () => {
 		onItemRemoveClick: (item) => {
 			removeItem(item.id);
 		},
+		onItemContextMenu: (item, e) => {
+			e.preventDefault();
+			setActiveId(item.id);
+			setContextMenuLocation(e.target.getBoundingClientRect());
+			setShowContextMenu(!showContextMenu);
+		},
+	};
+
+	const handleDeleteItem = (item) => {
+		removeItem(item.id);
+		setShowContextMenu(false);
 	};
 
 	return (
@@ -64,6 +81,21 @@ const ItemsPage = () => {
 				color: 'var(--on-background)',
 			}}
 		>
+			{showContextMenu && (
+				<div
+					style={{
+						position: 'fixed',
+						transform: `translate(0, ${contextMenuLocation.y}px)`,
+						zIndex: 100,
+						background: 'red',
+					}}
+				>
+					<ul>
+						<li onClick={() => handleDeleteItem({ id: activeId })}>Delete</li>
+					</ul>
+				</div>
+			)}
+
 			<div
 				style={{
 					display: 'flex',
@@ -149,9 +181,7 @@ const ItemsPage = () => {
 						onItemClick={(item) => {
 							history.push(`/items/${item.id}`);
 						}}
-						onItemRemoveClick={(item) => {
-							deleteItem(item.id);
-						}}
+						onItemRemoveClick={() => handleDeleteItem(item)}
 					/>
 				</>
 			)}

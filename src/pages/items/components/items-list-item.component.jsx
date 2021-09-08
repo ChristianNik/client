@@ -29,6 +29,9 @@ const ItemsListItem = (props) => {
 				}),
 			}}
 			onClick={(e) => props.onItemClick && props.onItemClick(item, e)}
+			onContextMenu={(e) =>
+				props.onItemContextMenu && props.onItemContextMenu(item, e)
+			}
 		>
 			<ItemsImage
 				src={item.image}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchItems, uploadItem } from '../utils/server';
+import { deleteItem, fetchItems, uploadItem } from '../utils/server';
 
 const ItemsContext = React.createContext([]);
 
@@ -19,19 +19,21 @@ export function ItemsProvider({ children }) {
 		addItem: async (data) => {
 			const newItem = { ...data, created: Date.now() };
 			setItems((prev) => [...prev, newItem]);
-			console.log('newItem :', newItem);
 			uploadItem(newItem);
 		},
 		removeItem: async (id) => {
+			deleteItem(id);
 			setItems((prev) =>
-				prev.map((v) =>
-					v.id != id
-						? v
-						: {
-								...v,
-								flag_mark_deleted: true,
-						  }
-				)
+				prev
+					.map((v) =>
+						v.id != id
+							? v
+							: {
+									...v,
+									flag_mark_deleted: true,
+							  }
+					)
+					.filter((i) => !i.flag_mark_deleted)
 			);
 		},
 	};
