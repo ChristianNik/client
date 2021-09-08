@@ -21,9 +21,10 @@
 	outline: none;
 	transition: color var(--animation-duration),
 		background-color var(--animation-duration);
+	cursor: pointer;
 }
 
-.Button:hover {
+.Button:hover:not(.active):not(:disabled) {
 	background-color: var(--btn-hover);
 	color: var(--btn-hover-fg);
 	border: 2px solid var(--gray-100);
@@ -32,4 +33,5 @@
 .Button:disabled {
 	background-color: var(--btn-bg-disabled);
 	color: var(--btn-fg-disabled);
+	cursor: default;
 }

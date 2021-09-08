@@ -113,12 +113,7 @@ const ItemAdd = () => {
 					>
 						<Route exact path='/items/add'>
 							<Button
-								style={{
-									...(formData.type && {
-										'--btn-bg': 'var(--primary)',
-										'--btn-fg': 'var(--on-primary)',
-									}),
-								}}
+								active={formData.type}
 								disabled={!formData.type}
 								onClick={() => history.push(`/items/add/details`)}
 							>
@@ -127,23 +122,14 @@ const ItemAdd = () => {
 						</Route>
 						<Route exact path='/items/add/details'>
 							<Button
-								style={{
-									'--btn-bg': 'var(--primary)',
-									'--btn-fg': 'var(--on-primary)',
-								}}
+								active
 								onClick={() => history.push(`/items/add/valuation`)}
 							>
 								{lang('ui/items/add', 'nextLabel')}
 							</Button>
 						</Route>
 						<Route exact path='/items/add/valuation'>
-							<Button
-								style={{
-									'--btn-bg': 'var(--primary)',
-									'--btn-fg': 'var(--on-primary)',
-								}}
-								onClick={handleAddItem}
-							>
+							<Button active onClick={handleAddItem}>
 								{lang('ui/items/add', 'add')}
 							</Button>
 						</Route>
@@ -182,15 +168,11 @@ const ItemAdd = () => {
 										return (
 											<li key={type}>
 												<Button
+													active={formData.type === type}
 													style={{
 														'--btn-fg': 'var(--inactive)',
 														'--btn-border-color': 'currentcolor',
 														'--btn-bg': 'transparent',
-														...(formData.type === type && {
-															'--btn-border-color': 'var(--primary)',
-															'--btn-fg': 'var(--on-primary)',
-															'--btn-bg': 'var(--primary)',
-														}),
 													}}
 													onClick={() => {
 														handleTypeChange(type);
