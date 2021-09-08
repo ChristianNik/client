@@ -114,6 +114,8 @@ const ItemAdd = () => {
 				<Dialog.Header
 					style={{
 						padding: '16px',
+						display: 'grid',
+						gap: '8px',
 					}}
 				>
 					<Route exact path='/items/add'>
@@ -131,10 +133,13 @@ const ItemAdd = () => {
 						</Button>
 					</Route>
 					<Route exact path='/items/add/valuation'>
-						<Button active onClick={handleAddItem}>
+						<Button primary onClick={handleAddItem}>
 							{lang('ui/items/add', 'add')}
 						</Button>
 					</Route>
+					<Button secondary onClick={() => history.push('/items')}>
+						Cancel
+					</Button>
 				</Dialog.Header>
 			}
 		>

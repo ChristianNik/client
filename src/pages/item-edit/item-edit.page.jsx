@@ -86,14 +86,13 @@ const ItemEditPage = () => {
 					style={{
 						padding: '16px',
 						display: 'grid',
-						gridAutoFlow: 'column',
 						gap: '8px',
 					}}
 				>
-					<Button onClick={pushToView}>Cancel</Button>
 					<Button primary onClick={handleEditItem}>
 						Save
 					</Button>
+					<Button onClick={pushToView}>Cancel</Button>
 				</Dialog.Header>
 			}
 		>

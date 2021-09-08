@@ -8,12 +8,13 @@ const Button = ({
 	children,
 	style,
 	className,
+	secondary,
 	...rest
 }) => {
 	return (
 		<button
 			className={`Button ${className} ${active ? 'active' : ''} ${
-				primary ? 'primary' : ''
+				primary ? 'primary' : secondary ? 'secondary' : ''
 			}`}
 			type='button'
 			style={{

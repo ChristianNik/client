@@ -3,7 +3,7 @@
 	--btn-bg-disabled: #ccc;
 	--btn-border-color: transparent;
 	/* --btn-fg: #000; */
-	--btn-fg-disabled: #eee;
+	--btn-fg-disabled: gray;
 	--btn-hover: var(--gray-100);
 	--btn-fg-hover: gray;
 	--animation-duration: 100ms;
@@ -25,9 +25,15 @@
 	cursor: pointer;
 }
 
+.Button.secondary {
+	--btn-fg: inherit;
+	--btn-border-color: gray;
+	--btn-bg: transparent;
+}
+
 .Button:hover:not(.active):not(:disabled) {
 	background-color: var(--btn-hover);
-	color: var(--btn-fg-hover);
+	color: var(--btn-fg-hover, gray);
 	border: 2px solid var(--btn-hover);
 }
 
