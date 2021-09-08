@@ -12,10 +12,11 @@ const DashboardPage = React.lazy(() => import('./pages/dashboard'));
 const ItemsPage = React.lazy(() => import('./pages/items/items.page'));
 const SettingsPage = React.lazy(() => import('./pages/settings'));
 const ItemAddDialog = React.lazy(() => import('./pages/item-add'));
-const ItemEditDialog = React.lazy(() => import('./pages/item-edit'));
-const ItemViewDialog = React.lazy(() => import('./pages/item-view'));
+const ItemDialog = React.lazy(() =>
+	import('./pages/items/components/items-dialog')
+);
 
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
 	useTotalHeight();
@@ -27,7 +28,24 @@ function App() {
 			style={{
 				background: 'var(--background)',
 			}}
-			bottom={<Sidebar />}
+			bottom={
+				<motion.div
+					initial={{
+						x: 0,
+						opacity: 1,
+					}}
+					animate={{
+						opacity: 1,
+					}}
+					exit={{
+						opacity: 0,
+					}}
+				>
+					<Route exact path={['/', '/items', '/settings']}>
+						<Sidebar />
+					</Route>
+				</motion.div>
+			}
 		>
 			<div
 				style={{
@@ -62,12 +80,8 @@ function App() {
 						<AnimatePresence>
 							<Switch location={location} key={location.pathname}>
 								<Route path='/items/add' component={ItemAddDialog} />
-								<Route
-									exact
-									path='/items/:id/edit'
-									component={ItemEditDialog}
-								/>
-								<Route exact path='/items/:id' component={ItemViewDialog} />
+								<Route exact path='/items/:id/edit' component={ItemDialog} />
+								<Route exact path='/items/:id' component={ItemDialog} />
 							</Switch>
 
 							<Switch>

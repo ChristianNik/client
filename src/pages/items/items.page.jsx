@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { Input, RouteAnimationWrapper } from '../../components';
 import { useItems } from '../../context/items.context';
@@ -8,9 +8,10 @@ import queryString from 'query-string';
 import ItemsList from './components/items-list.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faThLarge } from '@fortawesome/free-solid-svg-icons';
+import useScrollTop from '../../hooks/use-scroll-top';
 
 const ItemsPage = () => {
-	useEffect(() => window.scrollTo(0, 0), []);
+	useScrollTop();
 	const { lang } = useLanguage();
 	const { items, removeItem } = useItems();
 	const history = useHistory();
