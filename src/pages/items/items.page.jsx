@@ -6,13 +6,12 @@ import { useLanguage } from '../../context/language.context';
 import { deleteItem } from '../../utils/server';
 import queryString from 'query-string';
 import ItemsList from './components/items-list.component';
-import CompactItemsList from './components/items-list-compact.component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faThLarge } from '@fortawesome/free-solid-svg-icons';
 
 const ItemsPage = () => {
 	const { lang } = useLanguage();
-	const { items, setItems, removeItem } = useItems();
+	const { items, removeItem } = useItems();
 	const history = useHistory();
 
 	const location = useLocation();
@@ -40,17 +39,14 @@ const ItemsPage = () => {
 		onItemRemoveClick: (item) => {
 			removeItem(item.id);
 		},
-		items: filteredItems.filter((v) => !v.flag_mark_deleted),
-		onItemClick: (item) => {
-			history.push(`/items/${item.id}`);
-		},
-		onItemRemoveClick: (item) => {
-			removeItem(item.id);
-		},
 	};
 
 	return (
-		<div>
+		<div
+			style={{
+				color: 'var(--on-background)',
+			}}
+		>
 			<div
 				style={{
 					display: 'flex',
@@ -69,18 +65,17 @@ const ItemsPage = () => {
 					style={{
 						display: 'flex',
 						textDecoration: 'none',
-						color: 'hsl(220, 13%, 50%)',
+						color: 'var(--primary)',
 					}}
 				>
 					<NavLink
 						style={{
 							textDecoration: 'none',
-							color: 'inherit',
+							color: 'var(--inactive, #fff)',
 							padding: '8px',
 						}}
-						activeStyle={{
-							color: '#fff',
-						}}
+						exact
+						activeStyle={{ color: 'inherit' }}
 						isActive={() => !view || view === 'list'}
 						to='/items?view=list'
 					>
@@ -89,13 +84,11 @@ const ItemsPage = () => {
 					<NavLink
 						style={{
 							textDecoration: 'none',
-							color: 'inherit',
+							color: 'var(--inactive, #fff)',
 							padding: '8px',
 						}}
 						exact
-						activeStyle={{
-							color: '#fff',
-						}}
+						activeStyle={{ color: 'inherit' }}
 						isActive={() => view === 'gallery'}
 						to='/items?view=gallery'
 					>
@@ -120,7 +113,7 @@ const ItemsPage = () => {
 			</h2>
 
 			{view === 'gallery' ? (
-				<CompactItemsList {...itemsListProps} />
+				<ItemsList {...itemsListProps} compact />
 			) : view === 'list' ? (
 				<ItemsList {...itemsListProps} />
 			) : (

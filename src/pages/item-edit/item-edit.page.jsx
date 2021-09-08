@@ -1,23 +1,16 @@
+import {
+	faChevronLeft,
+	faSave,
+	faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import React, { useMemo } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { Avatar, EmojiButton } from '../../components';
-import { useItems } from '../../context/items.context';
-import useAddItem from '../../hooks/use-add-item';
-import { updateItem } from '../../utils/server';
 
-function Placeholder(props) {
-	return (
-		<div
-			style={{
-				backgroundColor: 'hsl(220, 13%, 26%)',
-				color: 'transparent',
-				display: 'inline-flex',
-				borderRadius: '8px',
-			}}
-			{...props}
-		/>
-	);
-}
+import MobileLayout from '../../layouts/mobile.layout';
+import useAddItem from '../../hooks/use-add-item';
+import { Avatar, Dialog, IconButton } from '../../components';
+import { deleteItem, updateItem } from '../../utils/server';
+import { useItems } from '../../context/items.context';
 
 const ItemEditPage = () => {
 	const { id } = useParams();
@@ -25,7 +18,7 @@ const ItemEditPage = () => {
 
 	const history = useHistory();
 
-	const pushToView = () => history.push(`/items/${id}`);
+	const pushToView = () => history.goBack();
 
 	const handleEditItem = async (e) => {
 		e.preventDefault();
@@ -41,51 +34,106 @@ const ItemEditPage = () => {
 		return null;
 	}
 	return (
-		<div>
-			<div
+		<Dialog>
+			<MobileLayout
 				style={{
-					display: 'flex',
-					justifyContent: 'space-between',
-					alignItems: 'center',
+					background: 'var(--background)',
 				}}
-			>
-				<EmojiButton onClick={pushToView}>❌</EmojiButton>
-				<h2>Edit</h2>
-				<EmojiButton onClick={handleEditItem}>💾</EmojiButton>
-			</div>
-
-			<div
-				style={{
-					textAlign: 'center',
-				}}
-			>
-				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<Avatar
-						src={formData.image}
-						size='xl'
-						onClick={handleSelectImage}
+				top={
+					<Dialog.Header
 						style={{
-							marginRight: '16px',
+							display: 'grid',
+							gridTemplateColumns: 'repeat(3, 1fr)',
+							justifyItems: 'center',
+							alignItems: 'center',
+							background: 'var(--surface)',
+							color: 'var(--on-surface)',
 						}}
-					/>
-				</div>
-				<Placeholder>
-					<h1>{formData.name || <small>{formData.id}</small>}</h1>
-				</Placeholder>
-				<div>
-					<small>
-						Created: <strong>{new Date(item.created).toLocaleString()}</strong>
-					</small>
-				</div>
-				<Placeholder>
-					<small>
-						<strong>{item.type}</strong>
-					</small>
-				</Placeholder>
-			</div>
-
-			<hr style={{ margin: '16px 0', borderColor: 'hsl(220, 13%, 50%)' }} />
-		</div>
+					>
+						<IconButton
+							icon={faChevronLeft}
+							onClick={pushToView}
+							style={{
+								justifySelf: 'start',
+							}}
+						/>
+						<h2
+							style={{
+								textAlign: 'center',
+								margin: '24px 0',
+							}}
+						>
+							Edit
+						</h2>
+						<div
+							style={{
+								display: 'flex',
+								justifySelf: 'end',
+							}}
+						>
+							<IconButton
+								icon={faSave}
+								noBorder
+								size='lg'
+								onClick={handleEditItem}
+							/>
+							<IconButton
+								icon={faTrash}
+								noBorder
+								size='lg'
+								onClick={() => {
+									deleteItem(id).then(() => {
+										history.push(`/items`);
+									});
+								}}
+							/>
+						</div>
+					</Dialog.Header>
+				}
+			>
+				<Dialog.Content>
+					<div
+						style={{
+							textAlign: 'center',
+							marginTop: '26px',
+						}}
+					>
+						<div style={{ display: 'flex', justifyContent: 'center' }}>
+							<Avatar
+								src={formData.image}
+								size='xl'
+								onClick={handleSelectImage}
+								style={{
+									marginRight: '16px',
+								}}
+							/>
+						</div>
+						<h1>{formData.name || <small>{formData.id}</small>}</h1>
+						<div>
+							<small>
+								Created:{' '}
+								<strong>{new Date(item.created).toLocaleString()}</strong>
+							</small>
+						</div>
+						<small>
+							<strong>{item.type}</strong>
+						</small>
+					</div>
+					<div
+						style={{
+							margin: '16px',
+						}}
+					>
+						<hr
+							style={{
+								margin: '16px 0',
+								borderColor: 'var(--inactive)',
+							}}
+						/>
+					</div>
+				</Dialog.Content>
+			</MobileLayout>
+		</Dialog>
 	);
 };
 

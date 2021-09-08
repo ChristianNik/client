@@ -2,65 +2,104 @@ import React from 'react';
 import ItemsImage from './items-image';
 
 const ItemsListItem = (props) => {
-	const { item } = props;
+	const { item, compact } = props;
 
 	const creationDate =
-		window.innerWidth > 600 &&
-		new Date(item.created)
-			.toISOString()
-			.split('T')[0]
-			.split('-')
-			.reverse()
-			.join('/');
+		window.innerWidth > 600 && item.created
+			? new Date(item.created)
+					.toISOString()
+					.split('T')[0]
+					.split('-')
+					.reverse()
+					.join('/')
+			: '';
 
 	return (
 		<li
 			style={{
+				transition: 'all 300ms',
 				display: 'flex',
 				alignItems: 'center',
 				overflow: 'hidden',
-				background: 'hsl(220, 13%, 16%)',
-				padding: '14px',
-				borderRadius: '8px',
+				background: 'var(--surface)',
+				...(!compact && {
+					padding: '14px',
+					borderRadius: '8px',
+				}),
 			}}
 			onClick={(e) => props.onItemClick && props.onItemClick(item, e)}
 		>
 			<ItemsImage
 				src={item.image}
 				style={{
-					marginRight: '16px',
-				}}
-			/>
-
-			<div
-				style={{
-					overflow: 'auto',
-					whiteSpace: 'nowrap',
+					...(compact && {
+						objectFit: 'cover',
+						width: '100%',
+						height: '100px',
+						borderRadius: 0,
+					}),
+					...(!compact && {
+						marginRight: '16px',
+					}),
 				}}
 			>
-				<div
-					style={{
-						overflow: 'hidden',
-						textOverflow: 'ellipsis',
-					}}
-				>
-					{item.name || item.description ? '' : item.id}
-				</div>
-				{item.description && (
-					<p
+				{compact && (
+					<div
 						style={{
-							overflow: 'hidden',
-							textOverflow: 'ellipsis',
+							padding: '8px',
+							height: '100%',
+							width: '100%',
+							display: 'flex',
+							flexWrap: 'wrap',
+							justifyContent: 'center',
+							alignItems: 'center',
 						}}
 					>
-						{item.description}
-					</p>
+						<div
+							style={{
+								overflow: 'hidden',
+								textOverflow: 'ellipsis',
+								textAlign: 'center',
+							}}
+						>
+							{item.name || item.description ? '' : item.id}
+						</div>
+					</div>
 				)}
-			</div>
-			{creationDate && (
-				<div style={{ marginLeft: 'auto', display: 'grid' }}>
-					{creationDate}
-				</div>
+			</ItemsImage>
+			{!compact && (
+				<>
+					<div
+						style={{
+							overflow: 'auto',
+							whiteSpace: 'nowrap',
+						}}
+					>
+						<div
+							style={{
+								overflow: 'hidden',
+								textOverflow: 'ellipsis',
+							}}
+						>
+							{item.name || item.description ? '' : item.id}
+						</div>
+						{item.description && (
+							<p
+								style={{
+									overflow: 'hidden',
+									textOverflow: 'ellipsis',
+								}}
+							>
+								{item.description}
+							</p>
+						)}
+					</div>
+					{creationDate && (
+						<div style={{ marginLeft: 'auto', display: 'grid' }}>
+							{creationDate}
+						</div>
+					)}
+				</>
 			)}
 		</li>
 	);

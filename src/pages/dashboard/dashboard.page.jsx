@@ -23,7 +23,11 @@ const Dashboard = () => {
 	}, {});
 
 	return (
-		<div>
+		<div
+			style={{
+				color: 'var(--on-background)',
+			}}
+		>
 			<div
 				style={{
 					display: 'flex',
@@ -43,7 +47,7 @@ const Dashboard = () => {
 			<div style={{ display: 'grid', gap: '16px' }}>
 				<div
 					style={{
-						backgroundColor: 'hsl(220, 13%, 26%)',
+						backgroundColor: 'var(--background-variant)',
 						padding: '16px',
 						borderRadius: '8px',
 					}}
@@ -62,7 +66,8 @@ const Dashboard = () => {
 									key={key}
 									style={{
 										margin: '2px',
-										backgroundColor: 'hsl(220, 13%, 50%)',
+										backgroundColor: 'var(--background)',
+										color: 'var(--on-background)',
 										padding: '4px',
 										borderRadius: '4px',
 									}}
@@ -77,7 +82,7 @@ const Dashboard = () => {
 				</div>
 				<div
 					style={{
-						backgroundColor: 'hsl(220, 13%, 26%)',
+						backgroundColor: 'var(--background-variant)',
 						padding: '16px',
 						borderRadius: '8px',
 					}}
@@ -96,7 +101,8 @@ const Dashboard = () => {
 									key={key}
 									style={{
 										margin: '2px',
-										backgroundColor: 'hsl(220, 13%, 50%)',
+										backgroundColor: 'var(--background)',
+										color: 'var(--on-background)',
 										padding: '4px',
 										borderRadius: '4px',
 									}}

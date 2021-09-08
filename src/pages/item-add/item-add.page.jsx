@@ -9,28 +9,11 @@ import {
 	Input,
 	Rating,
 } from '../../components';
+import Button from '../../components/button/button.component';
 import { useItems } from '../../context/items.context';
 import { useLanguage } from '../../context/language.context';
 import useAddItem from '../../hooks/use-add-item';
 import MobileLayout from '../../layouts/mobile.layout';
-
-function FullWidthButton({ children, onClick }) {
-	return (
-		<button
-			type='button'
-			style={{
-				fontSize: '14px',
-				padding: '8px 32px',
-				width: '100%',
-				border: 'none',
-				borderRadius: '4px',
-			}}
-			onClick={onClick}
-		>
-			{children}
-		</button>
-	);
-}
 
 const ItemAdd = () => {
 	const { lang } = useLanguage();
@@ -80,11 +63,16 @@ const ItemAdd = () => {
 	return (
 		<Dialog>
 			<MobileLayout
+				style={{
+					background: 'var(--background)',
+				}}
 				top={
-					<div
+					<Dialog.Header
 						style={{
 							display: 'flex',
 							alignItems: 'center',
+							background: 'var(--surface)',
+							color: 'var(--on-surface)',
 						}}
 					>
 						<Route exact path='/items/add'>
@@ -115,43 +103,66 @@ const ItemAdd = () => {
 								{lang('ui/items/add', 'valuationTabTitle')}
 							</Route>
 						</h2>
-					</div>
+					</Dialog.Header>
 				}
 				bottom={
-					<div
+					<Dialog.Header
 						style={{
 							padding: '16px',
 						}}
 					>
 						<Route exact path='/items/add'>
-							<FullWidthButton
+							<Button
+								style={{
+									...(formData.type && {
+										'--btn-bg': 'var(--primary)',
+										'--btn-fg': 'var(--on-primary)',
+									}),
+								}}
+								disabled={!formData.type}
 								onClick={() => history.push(`/items/add/details`)}
 							>
 								{lang('ui/items/add', 'nextLabel')}
-							</FullWidthButton>
+							</Button>
 						</Route>
 						<Route exact path='/items/add/details'>
-							<FullWidthButton
+							<Button
+								style={{
+									'--btn-bg': 'var(--primary)',
+									'--btn-fg': 'var(--on-primary)',
+								}}
 								onClick={() => history.push(`/items/add/valuation`)}
 							>
 								{lang('ui/items/add', 'nextLabel')}
-							</FullWidthButton>
+							</Button>
 						</Route>
 						<Route exact path='/items/add/valuation'>
-							<FullWidthButton onClick={handleAddItem}>
+							<Button
+								style={{
+									'--btn-bg': 'var(--primary)',
+									'--btn-fg': 'var(--on-primary)',
+								}}
+								onClick={handleAddItem}
+							>
 								{lang('ui/items/add', 'add')}
-							</FullWidthButton>
+							</Button>
 						</Route>
-					</div>
+					</Dialog.Header>
 				}
 			>
-				<div
+				<Dialog.Header
 					style={{
 						padding: '16px',
 						overflow: 'auto',
 					}}
 				>
-					<form onSubmit={handleAddItem}>
+					<form
+						onSubmit={handleAddItem}
+						style={{
+							display: 'grid',
+							gap: '8px',
+						}}
+					>
 						<Route exact path='/items/add'>
 							<div
 								style={{
@@ -164,34 +175,33 @@ const ItemAdd = () => {
 										display: 'grid',
 										gap: '8px',
 										overflow: 'hidden',
+										color: 'inherit',
 									}}
 								>
 									{itemTypes.map((type) => {
 										return (
-											<li
-												key={type}
-												style={{
-													display: 'block',
-													padding: '8px 16px',
-													border: '2px solid currentColor',
-													borderRadius: '4px',
-													textDecoration: 'none',
-													textAlign: 'center',
-													textTransform: 'uppercase',
-													color: 'hsl(220, 13%, 50%)',
-													...(formData.type === type && {
-														color: '#fff',
-													}),
-												}}
-												onClick={() => {
-													handleTypeChange(type);
-												}}
-												onDoubleClick={() => {
-													handleTypeChange(type);
-													history.push(`/items/add/details`);
-												}}
-											>
-												{type}
+											<li key={type}>
+												<Button
+													style={{
+														'--btn-fg': 'var(--inactive)',
+														'--btn-border-color': 'currentcolor',
+														'--btn-bg': 'transparent',
+														...(formData.type === type && {
+															'--btn-border-color': 'var(--primary)',
+															'--btn-fg': 'var(--on-primary)',
+															'--btn-bg': 'var(--primary)',
+														}),
+													}}
+													onClick={() => {
+														handleTypeChange(type);
+													}}
+													onDoubleClick={() => {
+														handleTypeChange(type);
+														history.push(`/items/add/details`);
+													}}
+												>
+													{type}
+												</Button>
 											</li>
 										);
 									})}
@@ -214,15 +224,16 @@ const ItemAdd = () => {
 								<hr
 									style={{
 										margin: '16px 0',
-										borderColor: 'hsl(220, 13%, 50%)',
+										borderColor: 'var(--inactive)',
 									}}
 								/>
-								<h3>{lang('ui/items/add', 'tagsCaption')}</h3>
 								<Hashtags
+									text={lang('ui/items/add', 'tagsCaption')}
 									tags={formData.tags}
 									onSubmit={addTag}
 									onRemove={removeTag}
 								/>
+
 								<Input
 									name='description'
 									text={lang('ui/items/add', 'descriptionCaption')}
@@ -245,7 +256,7 @@ const ItemAdd = () => {
 							/>
 						</Route>
 					</form>
-				</div>
+				</Dialog.Header>
 			</MobileLayout>
 		</Dialog>
 	);

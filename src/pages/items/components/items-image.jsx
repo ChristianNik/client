@@ -1,6 +1,7 @@
 import React from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-const ItemsImage = (props) => {
+const ItemsImage = ({ children, ...rest }) => {
 	const SIZE = {
 		sm: { width: '24px', minWidth: '24px', height: '24px', minHeight: '24px' },
 		md: { width: '40px', minWidth: '40px', height: '40px', minHeight: '40px' },
@@ -14,18 +15,19 @@ const ItemsImage = (props) => {
 	};
 
 	const elementStyle = {
-		...SIZE[props.size || 'lg'],
-		marginRight: '16px',
-		background: 'hsl(220, 13%, 26%)',
+		...SIZE[rest.size || 'lg'],
+		background: 'var(--background-variant)',
 		borderRadius: '16px',
 		objectFit: 'cover',
-		...props.style,
+		...rest.style,
 	};
 
-	return props.src ? (
-		<img className='Avatar' {...props} src={props.src} style={elementStyle} />
+	return rest.src ? (
+		<LazyLoadImage {...rest} src={rest.src} style={elementStyle} />
 	) : (
-		<div className='Avatar' {...props} style={elementStyle} />
+		<div className='Avatar' {...rest} style={elementStyle}>
+			{children}
+		</div>
 	);
 };
 

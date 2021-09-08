@@ -3,7 +3,6 @@ import React from 'react';
 const MobileLayout = ({ children, bottom, top, style, ...rest }) => {
 	return (
 		<div
-			className='App'
 			style={{
 				display: 'grid',
 				gridTemplateRows: `${top ? 'min-content' : ''} 1fr min-content`,

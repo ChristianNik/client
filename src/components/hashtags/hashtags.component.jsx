@@ -1,7 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
+import Input from '../input';
 import './hashtags.style.css';
 
 const Hashtags = (props) => {
+	const handleAddTag = (e, force) => {
+		const lastChar = e.target.value[e.target.value.length - 1];
+		const isSpacePressed = lastChar === ' ';
+
+		if (force || isSpacePressed) {
+			props.onSubmit && props.onSubmit(e.target.value);
+			e.target.value = '';
+		}
+	};
 	return (
 		<div className='Hashtags'>
 			<div
@@ -12,25 +22,10 @@ const Hashtags = (props) => {
 					...props.labelStyle,
 				}}
 			>
-				<input
-					style={{
-						width: '100%',
-						outline: 'none',
-						borderRadius: '8px',
-						border: '2px solid hsl(220, 13%, 30%)',
-						background: 'hsl(220, 13%, 16%)',
-						color: '#fff',
-						padding: '12px 16px',
-					}}
-					onChange={(e) => {
-						const lastChar = e.target.value[e.target.value.length - 1];
-						const isSpacePressed = lastChar === ' ';
-
-						if (isSpacePressed) {
-							props.onSubmit && props.onSubmit(e.target.value);
-							e.target.value = '';
-						}
-					}}
+				<Input
+					text={props.text}
+					onBlur={(e) => handleAddTag(e, true)}
+					onChange={handleAddTag}
 				/>
 
 				<div
@@ -38,13 +33,12 @@ const Hashtags = (props) => {
 						top: 0,
 						bottom: 0,
 						left: '12px',
-						// display: 'flex',
 						alignItems: 'center',
 						width: '100%',
 						outline: 'none',
 						borderRadius: '8px',
-						background: 'hsl(220, 13%, 16%)',
-						color: '#fff',
+						background: 'var(--background-variant)',
+						color: 'var(--on-background-variant)',
 						padding: '12px 16px',
 						minHeight: '43px',
 						maxHeight: '62px',

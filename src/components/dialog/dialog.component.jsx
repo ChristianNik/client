@@ -12,12 +12,46 @@ const Dialog = ({ style, ...rest }) => {
 				height: '100%',
 				overflow: 'auto',
 				zIndex: 200,
-				backgroundColor: 'hsl(220, 13%, 26%)',
 				...style,
 			}}
 			{...rest}
 		/>,
 		document.getElementById('modal-root')
+	);
+};
+
+Dialog.Header = ({ style, ...rest }) => {
+	return (
+		<div
+			style={{
+				width: '100%',
+				margin: '0 auto',
+				maxWidth: 'var(--app-max-mobile-width, 600px)',
+				overflow: 'auto',
+				height: '100%',
+				background: 'var(--background)',
+				color: 'var(--on-background)',
+				...style,
+			}}
+			{...rest}
+		/>
+	);
+};
+
+Dialog.Content = ({ style, ...rest }) => {
+	return (
+		<div
+			style={{
+				margin: '0 auto',
+				maxWidth: 'var(--app-max-mobile-width, 600px)',
+				overflow: 'auto',
+				height: '100%',
+				background: 'var(--background)',
+				color: 'var(--on-background)',
+				...style,
+			}}
+			{...rest}
+		/>
 	);
 };
 
