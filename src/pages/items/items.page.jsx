@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { Input } from '../../components';
 import { useItems } from '../../context/items.context';
@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList, faThLarge } from '@fortawesome/free-solid-svg-icons';
 
 const ItemsPage = () => {
+	useEffect(() => window.scrollTo(0, 0), []);
 	const { lang } = useLanguage();
 	const { items, removeItem } = useItems();
 	const history = useHistory();
