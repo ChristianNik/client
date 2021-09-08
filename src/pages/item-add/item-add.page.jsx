@@ -1,4 +1,4 @@
-import { faTimes, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import React, { useMemo } from 'react';
 import { Route, useHistory } from 'react-router-dom';
 import {
@@ -76,6 +76,7 @@ const ItemAdd = () => {
 				>
 					<Route exact path='/items/add'>
 						<IconButton
+							size='lg'
 							icon={faTimes}
 							onClick={() => {
 								history.push('/items');
@@ -83,7 +84,12 @@ const ItemAdd = () => {
 						/>
 					</Route>
 					<Route exact path={['/items/add/details', '/items/add/valuation']}>
-						<IconButton icon={faChevronLeft} onClick={prevPage} />
+						<IconButton
+							color='var(--primary)'
+							size='lg'
+							icon={faArrowLeft}
+							onClick={prevPage}
+						/>
 					</Route>
 
 					<h2

@@ -1,4 +1,4 @@
-import { faChevronLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
 import React, { useMemo } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
@@ -46,7 +46,9 @@ const ItemEditPage = () => {
 					}}
 				>
 					<IconButton
-						icon={faChevronLeft}
+						color='var(--primary)'
+						size='lg'
+						icon={faArrowLeft}
 						onClick={pushToView}
 						style={{
 							justifySelf: 'start',

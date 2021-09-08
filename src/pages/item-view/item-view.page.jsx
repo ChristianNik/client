@@ -1,4 +1,4 @@
-import { faChevronLeft, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faEdit } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import {
@@ -44,7 +44,9 @@ const ItemViewPage = () => {
 					}}
 				>
 					<IconButton
-						icon={faChevronLeft}
+						color='var(--primary)'
+						size='lg'
+						icon={faArrowLeft}
 						style={{
 							justifySelf: 'start',
 						}}

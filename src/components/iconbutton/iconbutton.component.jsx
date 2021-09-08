@@ -2,7 +2,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import './iconbutton.style.css';
 
-const IconButton = ({ onClick, icon, noBorder, size, style, color }) => {
+const IconButton = ({
+	onClick,
+	icon,
+	border,
+	size,
+	style,
+	color,
+	borderColor,
+}) => {
 	return (
 		<div
 			style={{
@@ -12,9 +20,9 @@ const IconButton = ({ onClick, icon, noBorder, size, style, color }) => {
 				width: '32px',
 				height: '32px',
 				margin: '16px',
-				...(!noBorder && {
+				...(border && {
 					borderRadius: '50%',
-					border: '2px solid var(--inactive)',
+					border: `2px solid ${borderColor || 'var(--inactive)'}`,
 				}),
 				...(onClick && {
 					cursor: 'pointer',
