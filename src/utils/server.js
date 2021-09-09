@@ -41,41 +41,9 @@ export async function updateItem(item) {
 }
 
 export async function deleteItem(id) {
-	return fetch(`${API.itemsRemoveUrl}/${id}`, {
+	return fetch(`${API.itemsUrl}/${id}`, {
 		method: 'DELETE',
 	})
 		.then((response) => response.json())
 		.catch((err) => err);
-}
-
-export async function sync(localItems, callback) {
-	const serverItems = await fetchItems();
-
-	// add local items to db
-	localItems.forEach((item) => {
-		if (item.flag_mark_deleted) return;
-		const existsOnServer = !!serverItems.find(({ id }) => id == item.id);
-
-		if (existsOnServer) return;
-		uploadItem(item);
-	});
-
-	// remove local items from db
-	localItems.forEach((item) => {
-		if (!item.flag_mark_deleted) return;
-		fetch(`${API.itemsUrl}/${item.id}`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				...item,
-				flag_mark_deleted: true,
-			}),
-		});
-	});
-
-	setTimeout(async () => {
-		callback(await fetchItems());
-	}, 0);
 }
