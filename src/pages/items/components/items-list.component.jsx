@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { LazyLoadComponent } from 'react-lazy-load-image-component';
-import { ItemsListItemSkeleton } from '../../../components';
 import ItemsListItem from './items-list-item.component';
 
 const variants = {
@@ -57,22 +55,7 @@ const ItemsList = ({ items, compact, ...rest }) => {
 							width: '100%',
 						}}
 					>
-						<LazyLoadComponent
-							style={{
-								width: '100%',
-							}}
-							key={item.id}
-							placeholder={
-								<ItemsListItemSkeleton
-									style={{
-										width: '100%',
-									}}
-									compact={compact}
-								/>
-							}
-						>
-							<ItemsListItem item={item} {...rest} compact={compact} />
-						</LazyLoadComponent>
+						<ItemsListItem item={item} {...rest} compact={compact} />
 					</motion.div>
 				);
 			})}
