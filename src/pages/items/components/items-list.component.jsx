@@ -40,7 +40,7 @@ const ItemsList = ({ items, compact, ...rest }) => {
 					show: {
 						opacity: 1,
 						transition: {
-							delay: i * 0.08,
+							delay: 0.3,
 						},
 					},
 				};
@@ -51,7 +51,7 @@ const ItemsList = ({ items, compact, ...rest }) => {
 							scale: 1.05,
 						}}
 						variants={itemVariants}
-						key={item.id}
+						key={item._id}
 						layout
 						style={{
 							width: '100%',
@@ -61,7 +61,7 @@ const ItemsList = ({ items, compact, ...rest }) => {
 							style={{
 								width: '100%',
 							}}
-							key={item.id}
+							key={item._id}
 							placeholder={
 								<ItemsListItemSkeleton
 									style={{

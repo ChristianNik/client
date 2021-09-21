@@ -23,10 +23,10 @@ const ItemsPage = () => {
 		return items.filter((item) => {
 			if (!filterText) return true;
 			if (filterText === '::noimage' || filterText === ':!img') {
-				return !item.image;
+				return !item.mainImage;
 			}
-			if (filterText === '::noname') {
-				return !item.name;
+			if (filterText === '::notitle') {
+				return !item.title;
 			}
 			if (filterText === '::nodesc') {
 				return !item.description;
@@ -34,15 +34,12 @@ const ItemsPage = () => {
 
 			const regex = new RegExp(filterText, 'gi');
 
-			return (
-				(item.name &&
-					item.name.toLowerCase().includes(filterText.toLowerCase())) ||
-				(item.description &&
-					item.description.toLowerCase().includes(filterText.toLowerCase())) ||
-				(item.tags && item.tags.some((t) => t.trim().match(regex))) ||
-				(item.type &&
-					item.type.toLowerCase().includes(filterText.toLowerCase()))
-			);
+			return [
+				item.title || '',
+				item.description || '',
+				item._type,
+				...item.tags,
+			].some((v) => v.trim().match(regex));
 		});
 	}, [items, filterText]);
 
@@ -54,23 +51,23 @@ const ItemsPage = () => {
 	const [activeId, setActiveId] = useState('');
 
 	const itemsListProps = {
-		items: filteredItems.filter((v) => !v.flag_mark_deleted),
+		items: filteredItems,
 		onItemClick: (item) => {
-			history.push(`/items/${item.id}`);
+			history.push(`/items/${item._id}`);
 		},
 		onItemRemoveClick: (item) => {
-			removeItem(item.id);
+			removeItem(item._id);
 		},
 		onItemContextMenu: (item, e) => {
 			e.preventDefault();
-			setActiveId(item.id);
+			setActiveId(item._id);
 			setContextMenuLocation(e.target.getBoundingClientRect());
 			setShowContextMenu(!showContextMenu);
 		},
 	};
 
 	const handleDeleteItem = (item) => {
-		removeItem(item.id);
+		removeItem(item._id);
 		setShowContextMenu(false);
 	};
 
@@ -156,9 +153,8 @@ const ItemsPage = () => {
 					margin: '24px 0',
 				}}
 			>
-				{lang('ui/items/list', 'itemsTitle')} [
-				{filteredItems.filter((v) => !v.flag_mark_deleted).length}/
-				{items.filter((v) => !v.flag_mark_deleted).length}]
+				{lang('ui/items/list', 'itemsTitle')} [{filteredItems.length}/
+				{items.length}]
 			</h2>
 
 			{view === 'gallery' ? (
@@ -167,23 +163,6 @@ const ItemsPage = () => {
 				<ItemsList {...itemsListProps} />
 			) : (
 				<ItemsList {...itemsListProps} />
-			)}
-
-			{filteredItems.filter((v) => v.flag_mark_deleted).length > 0 && (
-				<>
-					<h2>
-						{lang('ui/items/list', 'trashTitle')} [
-						{filteredItems.filter((v) => v.flag_mark_deleted).length}/
-						{items.filter((v) => v.flag_mark_deleted).length}]
-					</h2>
-					<ItemsList
-						items={items.filter((v) => v.flag_mark_deleted)}
-						onItemClick={(item) => {
-							history.push(`/items/${item.id}`);
-						}}
-						onItemRemoveClick={() => handleDeleteItem(item)}
-					/>
-				</>
 			)}
 		</RouteAnimationWrapper>
 	);

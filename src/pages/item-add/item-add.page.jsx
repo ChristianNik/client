@@ -28,7 +28,7 @@ const ItemAdd = () => {
 	const handleTypeChange = (value) => {
 		handleInputChange({
 			target: {
-				name: 'type',
+				name: '_type',
 				value: value,
 			},
 		});
@@ -43,14 +43,14 @@ const ItemAdd = () => {
 
 	const itemTypes = useMemo(() => {
 		const types = items.reduce((acc, item) => {
-			const types = [...acc, item.type];
+			const types = [...acc, item._type];
 			const typesSet = new Set(types);
 			typesSet.delete('');
 			return [...typesSet];
 		}, []);
 
 		const typeCounts = items.reduce((acc, item) => {
-			acc[item.type] = (acc[item.type] || 0) + 1;
+			acc[item._type] = (acc[item._type] || 0) + 1;
 			return acc;
 		}, {});
 
@@ -122,8 +122,8 @@ const ItemAdd = () => {
 					>
 						<Route exact path='/items/add'>
 							<Button
-								active={formData.type}
-								disabled={!formData.type}
+								active={formData._type}
+								disabled={!formData._type}
 								onClick={() => history.push(`/items/add/details`)}
 							>
 								{lang('ui/items/add', 'nextLabel')}
@@ -180,13 +180,14 @@ const ItemAdd = () => {
 										return (
 											<li key={type}>
 												<Button
-													active={formData.type === type}
+													active={formData._type === type}
 													style={{
 														'--btn-fg': 'var(--inactive)',
 														'--btn-border-color': 'currentcolor',
 														'--btn-bg': 'transparent',
 													}}
 													onClick={() => {
+														console.log('type :', type, formData._type);
 														handleTypeChange(type);
 													}}
 													onDoubleClick={() => {
@@ -194,7 +195,7 @@ const ItemAdd = () => {
 														history.push(`/items/add/details`);
 													}}
 												>
-													{type}
+													{type.split('.')[1]}
 												</Button>
 											</li>
 										);

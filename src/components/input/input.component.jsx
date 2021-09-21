@@ -31,8 +31,8 @@ const Input = ({ id, name, labelStyle, text, options, style, ...rest }) => {
 					{text}
 				</span>
 				<input
-					list={options && `list-{$rest.name}`}
-					id={rest.id || rest.name}
+					list={options && `list-${rest.name}`}
+					id={rest._id || rest.name}
 					name={name}
 					{...rest}
 					style={{

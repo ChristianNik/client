@@ -5,7 +5,7 @@ import { makeId } from '../utils/make-id';
 const useAddItem = (initialData) => {
 	const [formData, setFormData] = useState({
 		id: makeId(20),
-		type: '',
+		_type: '',
 		name: '',
 		description: '',
 		valuationConvenience: '1',

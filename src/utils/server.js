@@ -29,7 +29,7 @@ export async function uploadItem(item) {
 }
 
 export async function updateItem(item) {
-	return fetch(`${API.itemsUrl}/${item.id}`, {
+	return fetch(`${API.itemsUrl}/${item._id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',

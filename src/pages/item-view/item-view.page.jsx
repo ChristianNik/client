@@ -100,7 +100,7 @@ const ItemViewPage = () => {
 								textOverflow: 'ellipsis',
 							}}
 						>
-							{item.name || <small>{item.id}</small>}
+							{item.title || <small>{item._id}</small>}
 						</h1>
 						<div>
 							<small>
@@ -109,7 +109,7 @@ const ItemViewPage = () => {
 							</small>
 						</div>
 						<small>
-							<strong>{item.type}</strong>
+							<strong>{item._type}</strong>
 						</small>
 					</div>
 					<div

@@ -3,6 +3,7 @@ import ItemsImage from './items-image';
 
 const ItemsListItem = (props) => {
 	const { item, compact } = props;
+	console.log('item :', item.title);
 
 	const creationDate =
 		window.innerWidth > 600 && item.created
@@ -66,7 +67,7 @@ const ItemsListItem = (props) => {
 								textAlign: 'center',
 							}}
 						>
-							{item.name || item.description ? '' : item.id}
+							{item.title || item.description ? '' : item._id}
 						</div>
 					</div>
 				)}
@@ -85,16 +86,16 @@ const ItemsListItem = (props) => {
 								textOverflow: 'ellipsis',
 							}}
 						>
-							{item.name || item.description ? '' : item.id}
+							{item.title || item.description ? '' : item._id}
 						</div>
-						{item.description && (
+						{(item.description || item.title) && (
 							<p
 								style={{
 									overflow: 'hidden',
 									textOverflow: 'ellipsis',
 								}}
 							>
-								{item.description}
+								{item.description || item.title}
 							</p>
 						)}
 					</div>

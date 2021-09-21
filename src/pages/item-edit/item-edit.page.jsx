@@ -30,7 +30,7 @@ const ItemEditPage = () => {
 		pushToView();
 	};
 
-	const item = useMemo(() => items.find((item) => item.id == id), [items]);
+	const item = useMemo(() => items.find((item) => item._id == id), [items]);
 	const { formData, handleSelectImage, handleInputChange } = useAddItem(item);
 
 	if (!item) {
@@ -121,7 +121,7 @@ const ItemEditPage = () => {
 								}}
 							/>
 						</div>
-						<h1>{formData.name || <small>{formData.id}</small>}</h1>
+						<h1>{formData.title || <small>{formData._id}</small>}</h1>
 						<div>
 							<small>
 								Created:{' '}
@@ -129,7 +129,7 @@ const ItemEditPage = () => {
 							</small>
 						</div>
 						<small>
-							<strong>{item.type}</strong>
+							<strong>{item._type}</strong>
 						</small>
 					</div>
 					<div
