@@ -7,9 +7,10 @@ import {
 	IconButton,
 	RouteAnimationWrapper,
 } from '../../components';
+import useItemImage from '../../hooks/use-item-image';
 import useScrollTop from '../../hooks/use-scroll-top';
 import MobileLayout from '../../layouts/mobile.layout';
-import { fetchItem } from '../../utils/server';
+import { fetchItem, fetchItemImage } from '../../utils/server';
 
 const ItemViewPage = () => {
 	useScrollTop();
@@ -24,6 +25,8 @@ const ItemViewPage = () => {
 			setItem(item);
 		})();
 	}, []);
+
+	const itemImage = useItemImage(item);
 
 	if (!item) return null;
 
@@ -87,7 +90,7 @@ const ItemViewPage = () => {
 					>
 						<div style={{ display: 'flex', justifyContent: 'center' }}>
 							<Avatar
-								src={item.image}
+								src={itemImage}
 								size='xl'
 								style={{
 									marginRight: '16px',

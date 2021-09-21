@@ -47,3 +47,13 @@ export async function deleteItem(id) {
 		.then((response) => response.json())
 		.catch((err) => err);
 }
+
+export async function fetchItemImage(id) {
+	const data = await fetch(`${API.itemsImageUrl}/${id}`)
+		.then((response) => response.json())
+		.catch((e) => {
+			message: e.message;
+		});
+
+	return data;
+}

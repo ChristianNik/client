@@ -1,9 +1,11 @@
 import React from 'react';
+import useItemImage from '../../../hooks/use-item-image';
 import ItemsImage from './items-image';
 
 const ItemsListItem = (props) => {
 	const { item, compact } = props;
-	console.log('item :', item.title);
+
+	const itemImage = useItemImage(item);
 
 	const creationDate =
 		window.innerWidth > 600 && item.created
@@ -35,7 +37,7 @@ const ItemsListItem = (props) => {
 			}
 		>
 			<ItemsImage
-				src={item.image}
+				src={itemImage}
 				style={{
 					...(compact && {
 						objectFit: 'cover',
