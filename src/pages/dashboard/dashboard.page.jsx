@@ -19,7 +19,7 @@ const Dashboard = () => {
 	}, {});
 
 	const typeUsage = items.reduce((acc, item) => {
-		acc[item.type] = (acc[item.type] || 0) + 1;
+		acc[item._type.split('.')[1]] = (acc[item._type] || 0) + 1;
 		return acc;
 	}, {});
 
